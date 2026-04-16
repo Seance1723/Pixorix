@@ -1,0 +1,231 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders';
+
+.px-button,
+.px-link-button {
+  --px-button-height: var(--px-control-height);
+  --px-button-padding-x: var(--px-control-padding-x);
+  --px-button-gap: var(--px-space-2);
+  --px-button-radius: var(--px-radius-md);
+  --px-button-bg: var(--px-color-surface);
+  --px-button-border: var(--px-color-border);
+  --px-button-color: var(--px-color-text);
+  --px-button-shadow: var(--px-shadow-xs);
+  --px-button-hover-bg: var(--px-color-surface-muted);
+  --px-button-hover-border: var(--px-color-border-strong);
+  --px-button-hover-color: var(--px-color-text);
+  --px-button-active-bg: var(--px-color-surface-muted);
+  --px-button-active-border: var(--px-color-border-strong);
+  --px-button-active-color: var(--px-color-text);
+
+  @extend %px-interactive-base;
+  @include mixins.px-type-role('ui', 'button');
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--px-button-gap);
+  min-width: 0;
+  min-height: var(--px-button-height);
+  padding-inline: var(--px-button-padding-x);
+  border: 1px solid var(--px-button-border);
+  border-radius: var(--px-button-radius);
+  background-color: var(--px-button-bg);
+  color: var(--px-button-color);
+  box-shadow: var(--px-button-shadow);
+  text-decoration: none;
+  vertical-align: middle;
+
+  @include mixins.px-interactive-states(
+    var(--px-button-hover-bg),
+    var(--px-button-hover-border),
+    var(--px-button-hover-color),
+    var(--px-button-active-bg),
+    var(--px-button-active-border),
+    var(--px-button-active-color)
+  );
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled,
+  &.is-disabled,
+  &[aria-disabled='true'] {
+    @include mixins.px-state-disabled;
+
+    box-shadow: none;
+  }
+
+  &.is-loading {
+    color: transparent;
+    position: relative;
+  }
+
+  &.is-loading::after {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: 50%;
+    animation: px-button-spin 0.8s linear infinite;
+  }
+
+  &__icon,
+  .px-button__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.05em;
+  }
+
+  &--primary {
+    --px-button-bg: var(--px-color-primary);
+    --px-button-border: var(--px-color-primary);
+    --px-button-color: var(--px-color-primary-contrast);
+    --px-button-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
+    --px-button-hover-bg: var(--px-color-primary-hover);
+    --px-button-hover-border: var(--px-color-primary-hover);
+    --px-button-hover-color: var(--px-color-primary-contrast);
+    --px-button-active-bg: var(--px-color-primary-active);
+    --px-button-active-border: var(--px-color-primary-active);
+    --px-button-active-color: var(--px-color-primary-contrast);
+  }
+
+  &--secondary {
+    --px-button-bg: var(--px-color-surface);
+    --px-button-border: var(--px-color-border-strong);
+    --px-button-color: var(--px-color-text);
+    --px-button-shadow: none;
+    --px-button-hover-bg: var(--px-color-surface-muted);
+    --px-button-hover-border: var(--px-color-border-strong);
+  }
+
+  &--soft {
+    --px-button-bg: var(--px-color-surface-muted);
+    --px-button-border: transparent;
+    --px-button-color: var(--px-color-text);
+    --px-button-shadow: none;
+    --px-button-hover-bg: var(--px-color-surface-subtle);
+    --px-button-hover-border: transparent;
+  }
+
+  &--ghost {
+    --px-button-bg: transparent;
+    --px-button-border: transparent;
+    --px-button-color: var(--px-color-text);
+    --px-button-shadow: none;
+    --px-button-hover-bg: var(--px-color-surface-muted);
+    --px-button-hover-border: transparent;
+    --px-button-active-bg: var(--px-color-surface-muted);
+    --px-button-active-border: transparent;
+  }
+
+  &--danger {
+    --px-button-bg: var(--px-color-danger);
+    --px-button-border: var(--px-color-danger);
+    --px-button-color: var(--px-color-primary-contrast);
+    --px-button-shadow: 0 10px 20px rgba(240, 68, 56, 0.16);
+    --px-button-hover-bg: #d9382f;
+    --px-button-hover-border: #d9382f;
+    --px-button-hover-color: var(--px-color-primary-contrast);
+    --px-button-active-bg: #bd2f27;
+    --px-button-active-border: #bd2f27;
+    --px-button-active-color: var(--px-color-primary-contrast);
+  }
+
+  &--sm {
+    --px-button-height: 2.25rem;
+    --px-button-padding-x: var(--px-space-3);
+    --px-button-gap: var(--px-space-1_5);
+    border-radius: var(--px-radius-sm);
+  }
+
+  &--lg {
+    --px-button-height: 3rem;
+    --px-button-padding-x: var(--px-space-5);
+    --px-button-gap: var(--px-space-3);
+    border-radius: var(--px-radius-lg);
+  }
+
+  &--block {
+    width: 100%;
+  }
+}
+
+.px-button--icon,
+.px-icon-button {
+  --px-button-padding-x: 0;
+
+  inline-size: var(--px-button-height);
+  min-inline-size: var(--px-button-height);
+  padding: 0;
+}
+
+.px-button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+  align-items: center;
+}
+
+.px-button-group--attached {
+  gap: 0;
+}
+
+.px-button-group--attached > .px-button:not(:first-child),
+.px-button-group--attached > .px-icon-button:not(:first-child) {
+  margin-inline-start: -1px;
+}
+
+.px-button-group--attached > :first-child {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.px-button-group--attached > :last-child {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.px-button-group--attached > :not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.px-link {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  color: var(--px-color-primary);
+  text-decoration: none;
+  text-underline-offset: 0.16em;
+}
+
+.px-link:hover {
+  color: var(--px-color-primary-hover);
+  text-decoration: underline;
+}
+
+.px-link:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+@media (max-width: 47.99rem) {
+  .px-button-group {
+    width: 100%;
+  }
+
+  .px-button-group > .px-button,
+  .px-button-group > .px-icon-button {
+    flex: 1 1 auto;
+  }
+}
+
+@keyframes px-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

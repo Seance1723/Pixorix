@@ -1,0 +1,89 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-badge,
+.px-chip,
+.px-tag {
+  --px-badge-height: 1.625rem;
+  --px-badge-padding-x: var(--px-space-2_5);
+  --px-badge-gap: var(--px-space-1_5);
+  --px-badge-radius: var(--px-radius-round);
+  --px-badge-bg: var(--px-color-surface-muted);
+  --px-badge-border: transparent;
+  --px-badge-color: var(--px-color-text);
+
+  @include mixins.px-type-role('ui', 'caption');
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-badge-gap);
+  min-height: var(--px-badge-height);
+  max-width: 100%;
+  padding-inline: var(--px-badge-padding-x);
+  border: 1px solid var(--px-badge-border);
+  border-radius: var(--px-badge-radius);
+  background-color: var(--px-badge-bg);
+  color: var(--px-badge-color);
+  vertical-align: middle;
+}
+
+.px-badge__label,
+.px-chip__label,
+.px-tag__label {
+  @include mixins.px-truncate;
+}
+
+.px-badge--neutral {
+  --px-badge-bg: var(--px-color-surface-muted);
+  --px-badge-color: var(--px-color-text);
+}
+
+.px-badge--primary {
+  --px-badge-bg: rgba(37, 99, 235, 0.12);
+  --px-badge-color: var(--px-color-primary);
+}
+
+.px-badge--success {
+  --px-badge-bg: var(--px-color-success-surface);
+  --px-badge-color: var(--px-color-success);
+}
+
+.px-badge--warning {
+  --px-badge-bg: var(--px-color-warning-surface);
+  --px-badge-color: var(--px-color-warning);
+}
+
+.px-badge--danger {
+  --px-badge-bg: var(--px-color-danger-surface);
+  --px-badge-color: var(--px-color-danger);
+}
+
+.px-badge--outline {
+  --px-badge-bg: transparent;
+  --px-badge-border: var(--px-color-border);
+}
+
+.px-chip {
+  --px-badge-height: 2rem;
+  --px-badge-padding-x: var(--px-space-3);
+  --px-badge-radius: var(--px-radius-round);
+}
+
+.px-chip--interactive {
+  cursor: pointer;
+  transition:
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-chip--interactive:hover {
+  background-color: var(--px-color-surface-subtle);
+}
+
+.px-chip--interactive:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-tag {
+  --px-badge-radius: var(--px-radius-md);
+}

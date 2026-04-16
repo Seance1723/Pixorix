@@ -1,0 +1,86 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-avatar {
+  --px-avatar-size: 2.5rem;
+  --px-avatar-radius: var(--px-radius-round);
+  --px-avatar-bg: var(--px-color-surface-muted);
+  --px-avatar-color: var(--px-color-text);
+  --px-avatar-border: var(--px-color-bg-elevated);
+
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--px-avatar-size);
+  block-size: var(--px-avatar-size);
+  overflow: hidden;
+  border-radius: var(--px-avatar-radius);
+  background-color: var(--px-avatar-bg);
+  color: var(--px-avatar-color);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.28);
+  flex: 0 0 auto;
+}
+
+.px-avatar img,
+.px-avatar picture,
+.px-avatar svg {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.px-avatar--sm {
+  --px-avatar-size: 2rem;
+}
+
+.px-avatar--lg {
+  --px-avatar-size: 3rem;
+}
+
+.px-avatar--xl {
+  --px-avatar-size: 4rem;
+}
+
+.px-avatar--square {
+  --px-avatar-radius: var(--px-radius-lg);
+}
+
+.px-avatar__status {
+  position: absolute;
+  inset-inline-end: 0.08rem;
+  inset-block-end: 0.08rem;
+  inline-size: 0.7rem;
+  block-size: 0.7rem;
+  border: 2px solid var(--px-color-bg-elevated);
+  border-radius: var(--px-radius-round);
+  background-color: var(--px-color-success);
+}
+
+.px-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.px-avatar-group > .px-avatar {
+  margin-inline-start: -0.5rem;
+  border: 2px solid var(--px-color-bg-elevated);
+}
+
+.px-avatar-group > .px-avatar:first-child {
+  margin-inline-start: 0;
+}
+
+.px-avatar-group__more {
+  @include mixins.px-type-role('ui', 'caption');
+
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  margin-inline-start: -0.5rem;
+  border: 2px solid var(--px-color-bg-elevated);
+  border-radius: var(--px-radius-round);
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text);
+}

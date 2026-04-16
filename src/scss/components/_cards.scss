@@ -1,0 +1,120 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders';
+
+.px-card {
+  --px-card-padding: var(--px-space-5);
+  --px-card-gap: var(--px-space-4);
+  --px-card-radius: var(--px-radius-xl);
+  --px-card-bg: var(--px-color-surface);
+  --px-card-border: var(--px-color-border);
+  --px-card-shadow: var(--px-shadow-sm);
+
+  display: grid;
+  gap: var(--px-card-gap);
+  min-width: 0;
+  padding: var(--px-card-padding);
+  border: 1px solid var(--px-card-border);
+  border-radius: var(--px-card-radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)),
+    var(--px-card-bg);
+  box-shadow: var(--px-card-shadow);
+}
+
+.px-card--flat {
+  --px-card-shadow: none;
+}
+
+.px-card--raised {
+  --px-card-shadow: var(--px-shadow-md);
+}
+
+.px-card--interactive {
+  transition:
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-card--interactive:hover {
+  border-color: var(--px-color-border-strong);
+  box-shadow: var(--px-shadow-md);
+  transform: translateY(-2px);
+}
+
+.px-card--interactive:focus-within {
+  @include mixins.px-focus-ring;
+}
+
+.px-card--sm {
+  --px-card-padding: var(--px-space-4);
+  --px-card-gap: var(--px-space-3);
+}
+
+.px-card--lg {
+  --px-card-padding: var(--px-space-6);
+  --px-card-gap: var(--px-space-5);
+}
+
+.px-card__header,
+.px-card__body,
+.px-card__footer,
+.px-card__actions {
+  min-width: 0;
+}
+
+.px-card__header {
+  display: grid;
+  gap: var(--px-space-2);
+}
+
+.px-card__eyebrow {
+  @include mixins.px-type-role('ui', 'overline');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-card__title {
+  @include mixins.px-type-role('headings', 'h5');
+
+  margin: 0;
+  color: var(--px-color-text);
+}
+
+.px-card__subtitle,
+.px-card__meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-card__body {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  color: var(--px-color-text-muted);
+}
+
+.px-card__footer,
+.px-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-3);
+  align-items: center;
+}
+
+.px-card__footer {
+  justify-content: space-between;
+  padding-block-start: var(--px-space-4);
+  border-top: 1px solid var(--px-color-border);
+}
+
+.px-card__actions {
+  justify-content: flex-start;
+}
+
+@media (max-width: 47.99rem) {
+  .px-card__footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
