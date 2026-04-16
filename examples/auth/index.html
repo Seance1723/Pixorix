@@ -1,1 +1,123 @@
-<!-- Pixorix auth example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Auth Example</title>
+    <meta name="description" content="Pixorix auth example with polished sign-in layout, trust content, and accessible form patterns." />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-auth-example">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="px-auth-example__header">
+      <div class="px-container px-auth-example__header-inner">
+        <a class="px-navbar__brand" href="../marketing/">
+          <span class="px-auth-example__brand-mark" aria-hidden="true">P</span>
+          Pixorix
+        </a>
+        <div class="px-button-group">
+          <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>Toggle theme</button>
+          <a class="px-button px-button--secondary px-button--sm" href="../marketing/">Back to site</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="px-auth-shell px-auth-example__shell">
+      <div class="px-auth-example__layout">
+        <section class="px-gradient-card px-auth-example__brand-panel" data-px-motion="slide-up">
+          <span class="px-badge px-badge--primary">Auth starter</span>
+          <h1 class="px-auth-example__title">Sign in to your product without compromising polish.</h1>
+          <p class="px-auth-example__text">
+            Pixorix gives you a strong field system, validation patterns, buttons, helpers, and themed auth shells
+            that look ready for production from the first screen.
+          </p>
+
+          <div class="px-grid px-grid--1 px-grid--md-3 px-grid--cards">
+            <article class="px-feature-card">
+              <h2 class="px-feature-card__title">Accessible fields</h2>
+              <p class="px-feature-card__text">Labels, helper text, validation, dark mode, and keyboard-safe controls.</p>
+            </article>
+            <article class="px-feature-card">
+              <h2 class="px-feature-card__title">Brand-ready theming</h2>
+              <p class="px-feature-card__text">Switch modes instantly with CSS variables and a JS theme controller.</p>
+            </article>
+            <article class="px-feature-card">
+              <h2 class="px-feature-card__title">Low-clutter markup</h2>
+              <p class="px-feature-card__text">Semantic structure instead of utility overload or nested wrappers.</p>
+            </article>
+          </div>
+
+          <div class="px-auth-example__proof">
+            <span class="px-tag">Single sign-on ready</span>
+            <span class="px-tag">Validation patterns</span>
+            <span class="px-tag">Dark mode</span>
+          </div>
+        </section>
+
+        <section class="px-auth-shell__card" data-px-motion="slide-left">
+          <div class="px-auth-example__card-header">
+            <span class="px-badge px-badge--outline">Welcome back</span>
+            <h2 class="px-auth-example__card-title">Sign in to your workspace</h2>
+            <p class="px-auth-example__card-text">Use your team email to open dashboards, docs, and admin flows.</p>
+          </div>
+
+          <form class="px-form">
+            <div class="px-field">
+              <div class="px-field__head">
+                <label class="px-label px-label--required" for="auth-email">Email</label>
+              </div>
+              <div class="px-field__body">
+                <div class="px-field__control">
+                  <input class="px-input" id="auth-email" type="email" placeholder="team@company.com" />
+                </div>
+              </div>
+            </div>
+
+            <div class="px-field">
+              <div class="px-field__head">
+                <label class="px-label px-label--required" for="auth-password">Password</label>
+              </div>
+              <div class="px-field__body">
+                <div class="px-field__control">
+                  <input class="px-input" id="auth-password" type="password" placeholder="Enter your password" />
+                </div>
+              </div>
+              <div class="px-field__footer">
+                <p class="px-helper-text">At least 8 characters. Works cleanly with password managers and browser autofill.</p>
+              </div>
+            </div>
+
+            <div class="px-auth-example__form-row">
+              <label class="px-check">
+                <input class="px-check__input" type="checkbox" checked />
+                <span class="px-check__body">
+                  <span class="px-check__label">Keep me signed in</span>
+                </span>
+              </label>
+              <a class="px-link" href="#forgot">Forgot password?</a>
+            </div>
+
+            <div class="px-form-actions">
+              <button class="px-button px-button--primary px-button--block" type="button">Sign in</button>
+            </div>
+
+            <div class="px-alert px-alert--info" role="status">
+              <div class="px-alert__body">
+                <div class="px-alert__title">Starter account</div>
+                <p class="px-alert__text">Use this screen as the foundation for login, signup, reset, or invite flows.</p>
+              </div>
+            </div>
+          </form>
+
+          <div class="px-auth-example__footer">
+            <span class="px-helper-text">New to Pixorix?</span>
+            <a class="px-link" href="#signup">Create an account</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

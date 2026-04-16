@@ -1,1 +1,179 @@
-<!-- Pixorix admin example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Admin Example</title>
+    <meta name="description" content="Pixorix admin dashboard example with sidebar navigation, KPI cards, filters, forms, and responsive data table patterns." />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-admin-example">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <div class="px-admin-example__shell">
+      <aside class="px-admin-example__sidebar">
+        <a class="px-navbar__brand" href="../marketing/">
+          <span class="px-admin-example__brand-mark" aria-hidden="true">P</span>
+          Pixorix Admin
+        </a>
+
+        <nav class="px-sidebar-nav" aria-label="Sidebar">
+          <a class="px-sidebar-nav__link" href="#overview" aria-current="page">Overview</a>
+          <a class="px-sidebar-nav__link" href="#pipeline">Pipeline</a>
+          <a class="px-sidebar-nav__link" href="#settings">Settings</a>
+          <a class="px-sidebar-nav__link" href="#activity">Activity</a>
+        </nav>
+
+        <div class="px-card px-card--sm">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Workspace</span>
+            <h2 class="px-card__title">Ops control</h2>
+          </header>
+          <div class="px-card__body">
+            Manage billing, product rollout, member access, and account health from a single admin shell.
+          </div>
+        </div>
+      </aside>
+
+      <main class="px-admin-example__main" id="main-content">
+        <header class="px-admin-example__topbar">
+          <div>
+            <span class="px-badge px-badge--primary">Admin example</span>
+            <h1 class="px-admin-example__title">Operations dashboard</h1>
+            <p class="px-admin-example__intro">
+              A realistic admin surface using Pixorix navigation, KPI cards, filters, tables, cards, and form patterns.
+            </p>
+          </div>
+          <div class="px-button-group">
+            <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>Toggle theme</button>
+            <button class="px-button px-button--secondary px-button--sm" type="button">Export</button>
+            <button class="px-button px-button--primary px-button--sm" type="button">Invite admin</button>
+          </div>
+        </header>
+
+        <section class="px-kpi-grid" id="overview">
+          <article class="px-kpi-card">
+            <span class="px-kpi-card__label">Monthly active orgs</span>
+            <strong class="px-kpi-card__value">842</strong>
+            <span class="px-kpi-card__delta px-kpi-card__delta--positive">+12.3% vs last month</span>
+          </article>
+          <article class="px-kpi-card">
+            <span class="px-kpi-card__label">Open incidents</span>
+            <strong class="px-kpi-card__value">7</strong>
+            <span class="px-kpi-card__delta">2 require follow-up today</span>
+          </article>
+          <article class="px-kpi-card">
+            <span class="px-kpi-card__label">Billing at risk</span>
+            <strong class="px-kpi-card__value">$48K</strong>
+            <span class="px-kpi-card__delta">Based on 13 flagged accounts</span>
+          </article>
+        </section>
+
+        <section class="px-grid px-grid--1 px-grid--lg-5 px-admin-example__content">
+          <div class="px-col-span-3">
+            <section class="px-card px-card--raised" id="pipeline">
+              <header class="px-card__header">
+                <span class="px-card__eyebrow">Pipeline health</span>
+                <h2 class="px-card__title">Accounts needing review</h2>
+              </header>
+              <div class="px-data-table">
+                <div class="px-data-table__toolbar">
+                  <div class="px-data-table__toolbar-start">
+                    <span class="px-chip">Enterprise</span>
+                    <span class="px-chip">Watchlist</span>
+                    <span class="px-chip">Renewal</span>
+                  </div>
+                  <div class="px-data-table__toolbar-end">
+                    <div class="px-search-bar">
+                      <div class="px-search">
+                        <span class="px-search__icon" aria-hidden="true">S</span>
+                        <input class="px-search-input" type="search" placeholder="Search accounts" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="px-table-wrap">
+                  <table class="px-table px-table--responsive">
+                    <thead>
+                      <tr>
+                        <th>Account</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>ARR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-label="Account">
+                          <div class="px-table__cell-title">Northstar Labs</div>
+                          <div class="px-table__cell-meta">Expansion requested</div>
+                        </td>
+                        <td data-label="Status"><span class="px-badge px-badge--warning">Watch</span></td>
+                        <td data-label="Owner">Avery</td>
+                        <td data-label="ARR">$142K</td>
+                      </tr>
+                      <tr>
+                        <td data-label="Account">
+                          <div class="px-table__cell-title">Signal Harbor</div>
+                          <div class="px-table__cell-meta">Renewal in 14 days</div>
+                        </td>
+                        <td data-label="Status"><span class="px-badge px-badge--danger">Critical</span></td>
+                        <td data-label="Owner">Jordan</td>
+                        <td data-label="ARR">$98K</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside class="px-col-span-2 px-grid__item px-grid__item--sticky">
+            <div class="px-card">
+              <header class="px-card__header">
+                <span class="px-card__eyebrow">Quick settings</span>
+                <h2 class="px-card__title">Ops controls</h2>
+              </header>
+              <div class="px-card__body">
+                <form class="px-form px-form--compact" id="settings">
+                  <label class="px-check">
+                    <input class="px-check__input" type="checkbox" checked />
+                    <span class="px-check__body">
+                      <span class="px-check__label">Enable renewal alerts</span>
+                      <span class="px-check__hint">Surface high-risk accounts before revenue slips.</span>
+                    </span>
+                  </label>
+                  <div class="px-field">
+                    <div class="px-field__head">
+                      <label class="px-label" for="ops-owner">Ops lead</label>
+                    </div>
+                    <div class="px-field__body">
+                      <div class="px-field__control">
+                        <input class="px-input" id="ops-owner" type="text" placeholder="Avery Rhodes" />
+                      </div>
+                    </div>
+                  </div>
+                  <button class="px-button px-button--primary px-button--block" type="button">Save changes</button>
+                </form>
+              </div>
+            </div>
+
+            <div class="px-activity-feed" id="activity">
+              <article class="px-activity-feed__item">
+                <div class="px-activity-feed__title">Billing review queued</div>
+                <div class="px-activity-feed__meta">2 minutes ago by revenue ops</div>
+              </article>
+              <article class="px-activity-feed__item">
+                <div class="px-activity-feed__title">Admin role updated</div>
+                <div class="px-activity-feed__meta">15 minutes ago by workspace owner</div>
+              </article>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

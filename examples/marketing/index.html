@@ -1,1 +1,573 @@
-<!-- Pixorix marketing example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Landing Showcase</title>
+    <meta
+      name="description"
+      content="Pixorix showcase landing page with real component examples, layout patterns, and code snippets for dashboard, SaaS, and product UI work."
+    />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-example-page">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="px-example-header">
+      <div class="px-container">
+        <div class="px-navbar px-example-navbar">
+          <a class="px-navbar__brand" href="#top">
+            <span class="px-example-brand-mark" aria-hidden="true">P</span>
+            Pixorix
+          </a>
+
+          <nav class="px-navbar__nav" aria-label="Primary">
+            <a class="px-navbar__link" href="#components">Components</a>
+            <a class="px-navbar__link" href="#layouts">Layouts</a>
+            <a class="px-navbar__link" href="#code">Code</a>
+            <a class="px-navbar__link" href="#pricing">Pricing</a>
+            <a class="px-navbar__link" href="#faq">FAQ</a>
+          </nav>
+
+          <div class="px-example-navbar__actions">
+            <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>
+              Toggle theme
+            </button>
+            <a class="px-button px-button--secondary px-button--sm" href="#code">See code</a>
+            <a class="px-button px-button--primary px-button--sm" href="#pricing">Start building</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="px-container px-hero px-hero--split px-example-hero" id="top">
+        <div class="px-hero__content" data-px-motion="slide-up">
+          <span class="px-hero__eyebrow">SCSS + Vanilla JS + GSAP-ready motion</span>
+          <h1 class="px-hero__title">Build polished product UI without fighting your framework.</h1>
+          <p class="px-hero__text">
+            Pixorix gives teams a premium SCSS architecture, semantic components, dashboard-ready patterns,
+            theme switching, and a practical JavaScript core for real SaaS, admin, analytics, and product work.
+          </p>
+
+          <div class="px-hero__actions">
+            <a class="px-button px-button--primary px-button--lg" href="#components">
+              <span class="px-button__icon" aria-hidden="true">+</span>
+              Explore components
+            </a>
+            <a class="px-button px-button--secondary px-button--lg" href="#code">View code patterns</a>
+          </div>
+
+          <div class="px-example-hero__meta">
+            <span class="px-chip px-chip--interactive">100% responsive</span>
+            <span class="px-chip px-chip--interactive">Dark mode ready</span>
+            <span class="px-chip px-chip--interactive">Admin + SaaS focused</span>
+          </div>
+        </div>
+
+        <div class="px-hero__media px-example-hero__media" data-px-motion="slide-left">
+          <section class="px-example-code-window">
+            <div class="px-example-code-window__bar">
+              <div class="px-example-code-window__dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="px-badge px-badge--primary">pixorix.scss</span>
+              <button class="px-button px-button--ghost px-button--sm" type="button" data-copy-target="hero-snippet">
+                Copy code
+              </button>
+            </div>
+            <pre class="px-example-code-window__body"><code id="hero-snippet">@use '../../src/scss/pixorix';
+
+&lt;section class="px-container px-hero px-hero--split"&gt;
+  &lt;div class="px-hero__content"&gt;
+    &lt;h1 class="px-hero__title"&gt;Ship better UI faster.&lt;/h1&gt;
+    &lt;a class="px-button px-button--primary"&gt;Start building&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="px-kpi-grid"&gt;
+    &lt;article class="px-kpi-card"&gt;...&lt;/article&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </section>
+
+          <div class="px-kpi-grid px-example-kpi-grid" data-px-motion="stagger-in" data-px-stagger=".px-kpi-card">
+            <article class="px-kpi-card">
+              <span class="px-kpi-card__label">Launch speed</span>
+              <strong class="px-kpi-card__value">3.2x</strong>
+              <span class="px-kpi-card__delta px-kpi-card__delta--positive">Faster implementation</span>
+            </article>
+            <article class="px-kpi-card">
+              <span class="px-kpi-card__label">Odd column grids</span>
+              <strong class="px-kpi-card__value">1-12</strong>
+              <span class="px-kpi-card__delta">3, 5, 7, 9, 11 included</span>
+            </article>
+            <article class="px-kpi-card">
+              <span class="px-kpi-card__label">Theme modes</span>
+              <strong class="px-kpi-card__value">4</strong>
+              <span class="px-kpi-card__delta">Light, dark, contrast, brand</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-container px-example-proof" data-px-motion="fade-in">
+        <div class="px-example-proof__header">
+          <span class="px-badge px-badge--outline">Designed for product teams</span>
+          <p class="px-example-proof__text">
+            The example page below intentionally combines marketing sections, product UI, forms, pricing, tables,
+            theming, motion, and dashboard shells in one surface.
+          </p>
+        </div>
+        <div class="px-example-proof__logos">
+          <span class="px-tag">SaaS product pages</span>
+          <span class="px-tag">Analytics dashboards</span>
+          <span class="px-tag">Admin panels</span>
+          <span class="px-tag">Settings flows</span>
+          <span class="px-tag">Support tools</span>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="components">
+        <div class="px-example-section__header" data-px-motion="slide-up">
+          <span class="px-badge px-badge--primary">Component showcase</span>
+          <h2>Real building blocks, not generic starter styles.</h2>
+          <p>
+            Pixorix ships with semantic components, dashboard patterns, and premium defaults that still stay easy to
+            override. The cards below demonstrate how the pieces fit together in real product work.
+          </p>
+        </div>
+
+        <div class="px-grid px-grid--1 px-grid--lg-3 px-grid--cards px-example-component-grid">
+          <article class="px-card px-card--interactive" data-px-motion="slide-up">
+            <header class="px-card__header">
+              <span class="px-card__eyebrow">Buttons + badges</span>
+              <h3 class="px-card__title">Action patterns that feel product-grade</h3>
+              <p class="px-card__subtitle">Primary, secondary, soft, ghost, danger, icon buttons, and button groups.</p>
+            </header>
+            <div class="px-card__body">
+              <div class="px-button-group">
+                <button class="px-button px-button--primary" type="button">Create report</button>
+                <button class="px-button px-button--secondary" type="button">Preview</button>
+                <button class="px-icon-button px-button px-button--ghost px-button--icon" type="button" aria-label="Favorite">
+                  *
+                </button>
+              </div>
+              <div class="px-example-inline-list">
+                <span class="px-badge px-badge--success">Stable API</span>
+                <span class="px-badge px-badge--outline">Low markup</span>
+                <span class="px-chip">Composable</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="px-card px-card--interactive" data-px-motion="slide-up" data-px-motion-delay="0.08">
+            <header class="px-card__header">
+              <span class="px-card__eyebrow">Forms</span>
+              <h3 class="px-card__title">Field structure with accessibility built in</h3>
+              <p class="px-card__subtitle">Labels, helper text, validation, checkboxes, and clean control shells.</p>
+            </header>
+            <div class="px-card__body">
+              <form class="px-form px-form--compact">
+                <div class="px-field">
+                  <div class="px-field__head">
+                    <label class="px-label px-label--required" for="example-email">Work email</label>
+                  </div>
+                  <div class="px-field__body">
+                    <div class="px-field__control">
+                      <input class="px-input" id="example-email" type="email" placeholder="team@company.com" />
+                    </div>
+                  </div>
+                  <div class="px-field__footer">
+                    <p class="px-helper-text">Use your team email so theme and design tokens can sync across projects.</p>
+                  </div>
+                </div>
+                <label class="px-check">
+                  <input class="px-check__input" type="checkbox" checked />
+                  <span class="px-check__body">
+                    <span class="px-check__label">Enable dark mode from first load</span>
+                    <span class="px-check__hint">Pixorix keeps theme switching runtime-safe with CSS variables.</span>
+                  </span>
+                </label>
+              </form>
+            </div>
+          </article>
+
+          <article class="px-card px-card--interactive" data-px-motion="slide-up" data-px-motion-delay="0.16">
+            <header class="px-card__header">
+              <span class="px-card__eyebrow">Data display</span>
+              <h3 class="px-card__title">Admin and SaaS UI that feels ready on day one</h3>
+              <p class="px-card__subtitle">KPI cards, table wrappers, search bars, and dashboard-friendly density.</p>
+            </header>
+            <div class="px-card__body">
+              <div class="px-data-table">
+                <div class="px-data-table__toolbar">
+                  <div class="px-data-table__toolbar-start">
+                    <span class="px-badge px-badge--neutral">Invoices</span>
+                    <span class="px-badge px-badge--success">Synced</span>
+                  </div>
+                  <div class="px-search-bar">
+                    <div class="px-search">
+                      <span class="px-search__icon" aria-hidden="true">S</span>
+                      <input class="px-search-input" type="search" placeholder="Search records" />
+                    </div>
+                  </div>
+                </div>
+                <div class="px-table-wrap">
+                  <table class="px-table px-table--dense">
+                    <thead>
+                      <tr>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>ARR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="px-badge px-badge--success">Live</span></td>
+                        <td>
+                          <div class="px-avatar-group">
+                            <span class="px-avatar px-avatar--sm">RK</span>
+                            <span class="px-avatar px-avatar--sm">AJ</span>
+                          </div>
+                        </td>
+                        <td>$128K</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="layouts">
+        <div class="px-example-section__header" data-px-motion="slide-up">
+          <span class="px-badge px-badge--outline">Layouts and odd grids</span>
+          <h2>Layouts that work for marketing, dashboards, and mixed product surfaces.</h2>
+          <p>
+            Pixorix treats layout as a first-class system. This section intentionally mixes 3, 5, and asymmetrical
+            grids to show how odd and even layouts behave in one page.
+          </p>
+        </div>
+
+        <div class="px-grid px-grid--1 px-grid--lg-5 px-example-layout-grid" data-px-motion="stagger-in" data-px-stagger=".px-example-layout-card">
+          <article class="px-spotlight-card px-example-layout-card px-col-span-2">
+            <span class="px-badge px-badge--primary">3-column content rhythm</span>
+            <h3 class="px-spotlight-card__title">Build asymmetric product pages without fragile custom CSS.</h3>
+            <p class="px-spotlight-card__text">
+              Containers, grids, split layouts, sidebar shells, and dashboard widgets share the same spacing and token
+              system.
+            </p>
+          </article>
+
+          <article class="px-feature-card px-example-layout-card">
+            <h3 class="px-feature-card__title">5-card metric strips</h3>
+            <p class="px-feature-card__text">Useful for finance, analytics, CRM, and project dashboards.</p>
+          </article>
+
+          <article class="px-feature-card px-example-layout-card">
+            <h3 class="px-feature-card__title">Sticky regions</h3>
+            <p class="px-feature-card__text">Side inspectors and save bars can stay stable without layout hacks.</p>
+          </article>
+
+          <article class="px-feature-card px-example-layout-card">
+            <h3 class="px-feature-card__title">Nested grids</h3>
+            <p class="px-feature-card__text">Mix cards, tables, forms, and panels inside the same shell cleanly.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section px-example-dashboard">
+        <div class="px-grid px-grid--1 px-grid--lg-5">
+          <div class="px-col-span-3">
+            <div class="px-example-section__header" data-px-motion="slide-up">
+              <span class="px-badge px-badge--primary">Dashboard preview</span>
+              <h2>One framework, marketing and product UI in the same language.</h2>
+              <p>
+                This dashboard slice demonstrates KPI cards, toolbars, responsive tables, filters, and dense
+                information hierarchy using the same core tokens and component rules as the landing page.
+              </p>
+            </div>
+
+            <div class="px-kpi-grid" data-px-motion="stagger-in" data-px-stagger=".px-kpi-card">
+              <article class="px-kpi-card">
+                <span class="px-kpi-card__label">Active workspaces</span>
+                <strong class="px-kpi-card__value">12,482</strong>
+                <span class="px-kpi-card__delta px-kpi-card__delta--positive">+18.4% this month</span>
+              </article>
+              <article class="px-kpi-card">
+                <span class="px-kpi-card__label">Conversion rate</span>
+                <strong class="px-kpi-card__value">6.7%</strong>
+                <span class="px-kpi-card__delta">Across pricing, trial, and activation flows</span>
+              </article>
+              <article class="px-kpi-card">
+                <span class="px-kpi-card__label">Support SLA</span>
+                <strong class="px-kpi-card__value">94%</strong>
+                <span class="px-kpi-card__delta px-kpi-card__delta--positive">Within target range</span>
+              </article>
+            </div>
+
+            <section class="px-card px-card--raised px-example-data-table" data-px-motion="slide-up">
+              <header class="px-card__header">
+                <span class="px-card__eyebrow">Pipeline</span>
+                <h3 class="px-card__title">A responsive data table that still looks premium.</h3>
+              </header>
+              <div class="px-data-table">
+                <div class="px-data-table__toolbar">
+                  <div class="px-data-table__toolbar-start">
+                    <span class="px-chip">Enterprise</span>
+                    <span class="px-chip">Renewal risk</span>
+                  </div>
+                  <div class="px-data-table__toolbar-end">
+                    <button class="px-button px-button--soft px-button--sm" type="button">Export</button>
+                    <button class="px-button px-button--secondary px-button--sm" type="button">Filter</button>
+                  </div>
+                </div>
+                <div class="px-table-wrap">
+                  <table class="px-table px-table--responsive">
+                    <thead>
+                      <tr>
+                        <th><button class="px-table__sort" type="button">Account</button></th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>ARR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-label="Account">
+                          <div class="px-table__cell-title">Northstar Labs</div>
+                          <div class="px-table__cell-meta">Expansion in progress</div>
+                        </td>
+                        <td data-label="Status"><span class="px-badge px-badge--success">Healthy</span></td>
+                        <td data-label="Owner">Elena</td>
+                        <td data-label="ARR">$142K</td>
+                      </tr>
+                      <tr>
+                        <td data-label="Account">
+                          <div class="px-table__cell-title">Summit Cloud</div>
+                          <div class="px-table__cell-meta">Review scheduled</div>
+                        </td>
+                        <td data-label="Status"><span class="px-badge px-badge--warning">Watch</span></td>
+                        <td data-label="Owner">Marcus</td>
+                        <td data-label="ARR">$96K</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside class="px-col-span-2 px-grid__item px-grid__item--sticky">
+            <div class="px-card px-card--raised" data-px-motion="slide-left">
+              <header class="px-card__header">
+                <span class="px-card__eyebrow">Form experience</span>
+                <h3 class="px-card__title">The same framework handles polished forms too.</h3>
+              </header>
+              <div class="px-card__body">
+                <form class="px-form">
+                  <div class="px-form-grid px-form-grid--2">
+                    <div class="px-field">
+                      <div class="px-field__head">
+                        <label class="px-label" for="company-name">Company</label>
+                      </div>
+                      <div class="px-field__body">
+                        <div class="px-field__control">
+                          <input class="px-input" id="company-name" type="text" placeholder="Northstar Labs" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="px-field">
+                      <div class="px-field__head">
+                        <label class="px-label" for="team-size">Team size</label>
+                      </div>
+                      <div class="px-field__body">
+                        <div class="px-field__control">
+                          <input class="px-input" id="team-size" type="text" placeholder="25-50" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="px-field">
+                    <div class="px-field__head">
+                      <label class="px-label" for="workspace-goal">What are you building?</label>
+                    </div>
+                    <div class="px-field__body">
+                      <div class="px-field__control">
+                        <textarea class="px-textarea" id="workspace-goal" placeholder="An analytics dashboard with themed admin tools and clean responsive layouts."></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="px-form-actions">
+                    <button class="px-button px-button--primary px-button--block" type="button">Create workspace</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="code">
+        <div class="px-example-section__header" data-px-motion="slide-up">
+          <span class="px-badge px-badge--outline">Code and classes</span>
+          <h2>Simple class names, predictable structure, and code teams can actually maintain.</h2>
+          <p>
+            Pixorix is designed around semantic class names, component-local hooks, SCSS maps, CSS variables, and a
+            modular JS core. These code snippets reflect how the framework is meant to be used in daily work.
+          </p>
+        </div>
+
+        <div class="px-grid px-grid--1 px-grid--lg-2 px-grid--cards">
+          <article class="px-gradient-card" data-px-motion="slide-up">
+            <div class="px-example-code-card__header">
+              <div>
+                <span class="px-badge px-badge--primary">Hero + buttons</span>
+                <h3 class="px-example-code-card__title">Low-clutter markup</h3>
+              </div>
+              <button class="px-button px-button--ghost px-button--sm" type="button" data-copy-target="component-snippet">
+                Copy
+              </button>
+            </div>
+            <pre class="px-example-code-card__body"><code id="component-snippet">&lt;section class="px-container px-hero px-hero--split"&gt;
+  &lt;div class="px-hero__content"&gt;
+    &lt;span class="px-hero__eyebrow"&gt;Build with Pixorix&lt;/span&gt;
+    &lt;h1 class="px-hero__title"&gt;Premium UI defaults&lt;/h1&gt;
+    &lt;div class="px-hero__actions"&gt;
+      &lt;a class="px-button px-button--primary"&gt;Start&lt;/a&gt;
+      &lt;a class="px-button px-button--secondary"&gt;Docs&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </article>
+
+          <article class="px-glass-block" data-px-motion="slide-up" data-px-motion-delay="0.08">
+            <div class="px-example-code-card__header">
+              <div>
+                <span class="px-badge px-badge--outline">Theme switch + JS</span>
+                <h3 class="px-example-code-card__title">Runtime-safe theming hooks</h3>
+              </div>
+              <button class="px-button px-button--ghost px-button--sm" type="button" data-copy-target="theme-snippet">
+                Copy
+              </button>
+            </div>
+            <pre class="px-example-code-card__body"><code id="theme-snippet">import { initPixorix } from '../../src/js/pixorix.js';
+
+const app = initPixorix(document);
+const theme = app.getThemeController();
+
+theme.setTheme('dark');
+theme.setBrand('default');</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="pricing">
+        <div class="px-example-section__header" data-px-motion="slide-up">
+          <span class="px-badge px-badge--primary">Pricing cards</span>
+          <h2>Framework bundles that scale from quick landing pages to full product systems.</h2>
+          <p>
+            Ship only what you need: full framework bundle, core bundle, or utility-focused setup. Pixorix keeps the
+            public API consistent even when teams start small and grow into larger product surfaces.
+          </p>
+        </div>
+
+        <div class="px-pricing-grid" data-px-motion="stagger-in" data-px-stagger=".px-pricing-card">
+          <article class="px-pricing-card">
+            <span class="px-badge px-badge--outline">Starter</span>
+            <h3 class="px-pricing-card__title">Landing and docs</h3>
+            <p class="px-pricing-card__price">Core CSS</p>
+            <p class="px-pricing-card__text">Use layout, utilities, buttons, cards, and motion-safe marketing patterns.</p>
+            <button class="px-button px-button--secondary" type="button">Use starter bundle</button>
+          </article>
+
+          <article class="px-pricing-card px-pricing-card--featured">
+            <span class="px-badge px-badge--primary">Recommended</span>
+            <h3 class="px-pricing-card__title">SaaS and product teams</h3>
+            <p class="px-pricing-card__price">Full framework</p>
+            <p class="px-pricing-card__text">
+              Theme system, JS core, overlays, data-display, forms, and premium advanced components in one system.
+            </p>
+            <button class="px-button px-button--primary" type="button">Build with Pixorix</button>
+          </article>
+
+          <article class="px-pricing-card">
+            <span class="px-badge px-badge--outline">Advanced</span>
+            <h3 class="px-pricing-card__title">White-label and enterprise</h3>
+            <p class="px-pricing-card__price">Theme API + source</p>
+            <p class="px-pricing-card__text">Use SCSS maps, CSS variable hooks, and custom brand themes at scale.</p>
+            <button class="px-button px-button--secondary" type="button">Explore theming</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="faq">
+        <div class="px-example-section__header" data-px-motion="slide-up">
+          <span class="px-badge px-badge--outline">FAQ</span>
+          <h2>Questions teams ask before choosing a frontend framework.</h2>
+        </div>
+
+        <div class="px-accordion" data-example-accordion>
+          <div class="px-accordion__item">
+            <button class="px-accordion__trigger" type="button" aria-expanded="true" aria-controls="faq-panel-1" id="faq-trigger-1">
+              Is Pixorix utility-first or component-first?
+              <span class="px-accordion__icon" aria-hidden="true">v</span>
+            </button>
+            <div class="px-accordion__panel" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1">
+              Pixorix is component-first with a curated utility layer. Teams get semantic building blocks first, then
+              utilities for layout and fine adjustments without utility spam.
+            </div>
+          </div>
+
+          <div class="px-accordion__item">
+            <button class="px-accordion__trigger" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-trigger-2">
+              Can we use it for dashboards and admin products?
+              <span class="px-accordion__icon" aria-hidden="true">v</span>
+            </button>
+            <div class="px-accordion__panel" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2" hidden>
+              Yes. The framework is intentionally strong in forms, data display, dashboard cards, layout shells,
+              sidebars, overlays, and settings flows.
+            </div>
+          </div>
+
+          <div class="px-accordion__item">
+            <button class="px-accordion__trigger" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-trigger-3">
+              How does theming work?
+              <span class="px-accordion__icon" aria-hidden="true">v</span>
+            </button>
+            <div class="px-accordion__panel" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3" hidden>
+              Raw tokens and semantic theme maps are defined in SCSS, while runtime switching uses CSS variables and
+              data attributes for light, dark, contrast, and brand modes.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="px-example-footer">
+      <div class="px-container px-example-footer__inner">
+        <div>
+          <a class="px-navbar__brand" href="#top">
+            <span class="px-example-brand-mark" aria-hidden="true">P</span>
+            Pixorix
+          </a>
+          <p class="px-example-footer__text">
+            A modern SCSS + JavaScript framework for dashboards, SaaS tools, admin panels, and premium product UI.
+          </p>
+        </div>
+        <div class="px-button-group">
+          <button class="px-button px-button--secondary" type="button" data-example-theme-toggle>Toggle theme</button>
+          <a class="px-button px-button--primary" href="#top">Back to top</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

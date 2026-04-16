@@ -1,1 +1,151 @@
-<!-- Pixorix ecommerce example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Ecommerce Example</title>
+    <meta name="description" content="Pixorix ecommerce example with featured product hero, product grid, filters, and cart summary patterns." />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-ecommerce-example">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="px-ecommerce-example__header">
+      <div class="px-container px-navbar">
+        <a class="px-navbar__brand" href="../marketing/">
+          <span class="px-ecommerce-example__brand-mark" aria-hidden="true">P</span>
+          Pixorix Store
+        </a>
+        <nav class="px-navbar__nav" aria-label="Store">
+          <a class="px-navbar__link" href="#featured">Featured</a>
+          <a class="px-navbar__link" href="#catalog">Catalog</a>
+          <a class="px-navbar__link" href="#bundle">Bundle</a>
+        </nav>
+        <div class="px-button-group">
+          <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>Toggle theme</button>
+          <button class="px-button px-button--secondary px-button--sm" type="button">Cart (2)</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="px-container px-hero px-hero--split px-ecommerce-example__hero" id="featured">
+        <div class="px-hero__content">
+          <span class="px-hero__eyebrow">Ecommerce starter</span>
+          <h1 class="px-hero__title">Modern commerce pages with premium layout defaults.</h1>
+          <p class="px-hero__text">
+            Use Pixorix to build catalog pages, filters, checkout-adjacent forms, product cards, comparison surfaces,
+            and customer account layouts without starting from generic styles.
+          </p>
+          <div class="px-hero__actions">
+            <a class="px-button px-button--primary" href="#catalog">Browse products</a>
+            <a class="px-button px-button--secondary" href="#bundle">View bundle</a>
+          </div>
+        </div>
+
+        <article class="px-spotlight-card">
+          <span class="px-badge px-badge--primary">Featured bundle</span>
+          <h2 class="px-spotlight-card__title">Pixorix UI kit starter pack</h2>
+          <p class="px-spotlight-card__text">Landing page, auth, admin, analytics, and ecommerce patterns in one starter set.</p>
+          <div class="px-ecommerce-example__price-row">
+            <strong class="px-pricing-card__price">$129</strong>
+            <span class="px-badge px-badge--success">Launch ready</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="px-container px-example-section" id="catalog">
+        <div class="px-grid px-grid--1 px-grid--lg-5">
+          <aside class="px-col-span-2">
+            <div class="px-card">
+              <header class="px-card__header">
+                <span class="px-card__eyebrow">Filters</span>
+                <h2 class="px-card__title">Product discovery</h2>
+              </header>
+              <div class="px-card__body">
+                <div class="px-form px-form--compact">
+                  <div class="px-field">
+                    <div class="px-field__body">
+                      <div class="px-field__control">
+                        <input class="px-search-input" type="search" placeholder="Search templates" />
+                      </div>
+                    </div>
+                  </div>
+                  <label class="px-check">
+                    <input class="px-check__input" type="checkbox" checked />
+                    <span class="px-check__body">
+                      <span class="px-check__label">Dashboard kits</span>
+                    </span>
+                  </label>
+                  <label class="px-check">
+                    <input class="px-check__input" type="checkbox" checked />
+                    <span class="px-check__body">
+                      <span class="px-check__label">Marketing layouts</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="px-col-span-3">
+            <div class="px-feature-grid">
+              <article class="px-feature-card">
+                <span class="px-badge px-badge--outline">UI starter</span>
+                <h3 class="px-feature-card__title">Dashboard starter</h3>
+                <p class="px-feature-card__text">KPI cards, filters, data table, settings shell, and stat surfaces.</p>
+                <div class="px-button-group">
+                  <button class="px-button px-button--primary px-button--sm" type="button">Add to cart</button>
+                  <button class="px-button px-button--ghost px-button--sm" type="button">Preview</button>
+                </div>
+              </article>
+              <article class="px-feature-card">
+                <span class="px-badge px-badge--outline">Auth kit</span>
+                <h3 class="px-feature-card__title">Login and signup pages</h3>
+                <p class="px-feature-card__text">Accessible field shells, trust panels, helper text, and validation UI.</p>
+                <div class="px-button-group">
+                  <button class="px-button px-button--primary px-button--sm" type="button">Add to cart</button>
+                  <button class="px-button px-button--ghost px-button--sm" type="button">Preview</button>
+                </div>
+              </article>
+              <article class="px-feature-card">
+                <span class="px-badge px-badge--outline">Commerce</span>
+                <h3 class="px-feature-card__title">Product grid shell</h3>
+                <p class="px-feature-card__text">Featured hero, filters, pricing cards, and polished product blocks.</p>
+                <div class="px-button-group">
+                  <button class="px-button px-button--primary px-button--sm" type="button">Add to cart</button>
+                  <button class="px-button px-button--ghost px-button--sm" type="button">Preview</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-container px-example-section" id="bundle">
+        <div class="px-pricing-grid">
+          <article class="px-pricing-card">
+            <span class="px-badge px-badge--outline">Single template</span>
+            <h3 class="px-pricing-card__title">One example</h3>
+            <p class="px-pricing-card__price">$29</p>
+            <p class="px-pricing-card__text">Pick a single page starter and adapt it to your product brand.</p>
+          </article>
+          <article class="px-pricing-card px-pricing-card--featured">
+            <span class="px-badge px-badge--primary">Best value</span>
+            <h3 class="px-pricing-card__title">Complete bundle</h3>
+            <p class="px-pricing-card__price">$129</p>
+            <p class="px-pricing-card__text">Landing, admin, dashboard, docs portal, auth, and commerce examples together.</p>
+          </article>
+          <article class="px-pricing-card">
+            <span class="px-badge px-badge--outline">Enterprise</span>
+            <h3 class="px-pricing-card__title">White-label pack</h3>
+            <p class="px-pricing-card__price">Custom</p>
+            <p class="px-pricing-card__text">Add brand themes, component variations, and package-level handoff structure.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

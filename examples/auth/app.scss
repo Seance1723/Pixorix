@@ -1,1 +1,103 @@
-// Auth example style entry.
+@use '../../src/scss/pixorix';
+@use '../../src/scss/abstracts/mixins' as mixins;
+
+.px-auth-example {
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.1), transparent 32%),
+    var(--px-color-bg);
+}
+
+.px-skip-link {
+  position: absolute;
+  inset-block-start: var(--px-space-3);
+  inset-inline-start: var(--px-space-3);
+  z-index: var(--px-z-toast);
+  padding: var(--px-space-3) var(--px-space-4);
+  border-radius: var(--px-radius-lg);
+  background: var(--px-color-surface-inverse);
+  color: var(--px-color-text-inverse);
+  text-decoration: none;
+  transform: translateY(-140%);
+}
+
+.px-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.px-auth-example__header {
+  padding-block: var(--px-space-4);
+}
+
+.px-auth-example__header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-3);
+}
+
+.px-auth-example__brand-mark {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.9rem;
+  block-size: 1.9rem;
+  border-radius: var(--px-radius-lg);
+  background: linear-gradient(135deg, var(--px-color-primary), var(--px-color-info));
+  color: var(--px-color-primary-contrast);
+}
+
+.px-auth-example__shell {
+  padding-block: var(--px-space-5);
+}
+
+.px-auth-example__layout {
+  display: grid;
+  gap: var(--px-space-5);
+  width: min(100%, 76rem);
+  margin-inline: auto;
+}
+
+.px-auth-example__brand-panel {
+  align-content: start;
+}
+
+.px-auth-example__title {
+  @include mixins.px-type-role('headings', 'h2');
+  margin: 0;
+}
+
+.px-auth-example__text,
+.px-auth-example__card-text {
+  @include mixins.px-type-role('body', 'body-lg');
+  margin: 0;
+  color: var(--px-color-text-muted);
+}
+
+.px-auth-example__proof,
+.px-auth-example__form-row,
+.px-auth-example__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-3);
+}
+
+.px-auth-example__card-header {
+  display: grid;
+  gap: var(--px-space-2);
+  margin-block-end: var(--px-space-5);
+}
+
+.px-auth-example__card-title {
+  @include mixins.px-type-role('headings', 'h4');
+  margin: 0;
+}
+
+@media (min-width: 64rem) {
+  .px-auth-example__layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 30rem);
+    align-items: center;
+  }
+}

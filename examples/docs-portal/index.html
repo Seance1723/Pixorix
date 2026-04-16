@@ -1,1 +1,100 @@
-<!-- Pixorix docs portal example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Docs Portal Example</title>
+    <meta name="description" content="Pixorix docs portal example with sidebar navigation, content sections, code blocks, and reference page layout." />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-docs-example">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="px-docs-example__header">
+      <div class="px-container px-docs-example__header-inner">
+        <a class="px-navbar__brand" href="../marketing/">
+          <span class="px-docs-example__brand-mark" aria-hidden="true">P</span>
+          Pixorix Docs
+        </a>
+        <div class="px-button-group">
+          <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>Toggle theme</button>
+          <a class="px-button px-button--secondary px-button--sm" href="../marketing/">Showcase</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-container px-docs-example__layout" id="main-content">
+      <aside class="px-docs-example__sidebar">
+        <div class="px-card px-card--sm">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Documentation</span>
+            <h1 class="px-card__title">Getting started</h1>
+          </header>
+        </div>
+
+        <nav class="px-sidebar-nav" aria-label="Documentation">
+          <a class="px-sidebar-nav__link" href="#install" aria-current="page">Installation</a>
+          <a class="px-sidebar-nav__link" href="#structure">File structure</a>
+          <a class="px-sidebar-nav__link" href="#theming">Theming</a>
+          <a class="px-sidebar-nav__link" href="#components">Components</a>
+        </nav>
+      </aside>
+
+      <article class="px-docs-example__content">
+        <section class="px-card" id="install">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Install</span>
+            <h2 class="px-card__title">Start with compiled CSS and the JS runtime</h2>
+          </header>
+          <pre class="px-docs-example__code"><code>npm install pixorix
+
+import 'pixorix/dist/css/pixorix.css';
+import { initPixorix } from 'pixorix';</code></pre>
+        </section>
+
+        <section class="px-card" id="structure">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Architecture</span>
+            <h2 class="px-card__title">A structure built for teams, not toy examples</h2>
+          </header>
+          <div class="px-grid px-grid--1 px-grid--lg-2 px-grid--cards">
+            <article class="px-feature-card">
+              <h3 class="px-feature-card__title">SCSS layers</h3>
+              <p class="px-feature-card__text">Tokens, base, layout, utilities, components, advanced components, and themes.</p>
+            </article>
+            <article class="px-feature-card">
+              <h3 class="px-feature-card__title">JS layers</h3>
+              <p class="px-feature-card__text">Core app runtime, registry, DOM/events/state helpers, theme hooks, and motion presets.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="px-card" id="theming">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Theme API</span>
+            <h2 class="px-card__title">Runtime switching with semantic CSS variables</h2>
+          </header>
+          <pre class="px-docs-example__code"><code>&lt;html data-px-theme="dark" data-px-brand="default"&gt;
+
+const app = initPixorix(document);
+app.getThemeController().setTheme('light');</code></pre>
+        </section>
+
+        <section class="px-card" id="components">
+          <header class="px-card__header">
+            <span class="px-card__eyebrow">Components</span>
+            <h2 class="px-card__title">A standard page pattern for every component doc</h2>
+          </header>
+          <div class="px-list-group">
+            <div class="px-list-group__item"><a class="px-list-group__link" href="#install">Preview</a></div>
+            <div class="px-list-group__item"><a class="px-list-group__link" href="#structure">Usage</a></div>
+            <div class="px-list-group__item"><a class="px-list-group__link" href="#theming">Variants, sizes, states</a></div>
+            <div class="px-list-group__item"><a class="px-list-group__link" href="#components">Accessibility, theming, JS behavior, motion, browser notes</a></div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

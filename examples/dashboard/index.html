@@ -1,1 +1,121 @@
-<!-- Pixorix dashboard example entry. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixorix Analytics Dashboard Example</title>
+    <meta name="description" content="Pixorix analytics dashboard example with KPI cards, comparison panels, activity feed, and responsive dashboard layouts." />
+    <link rel="stylesheet" href="./app.scss" />
+  </head>
+  <body class="px-dashboard-example">
+    <a class="px-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="px-dashboard-example__header">
+      <div class="px-container px-dashboard-example__header-inner">
+        <div>
+          <span class="px-badge px-badge--primary">Dashboard example</span>
+          <h1 class="px-dashboard-example__title">Analytics cockpit</h1>
+        </div>
+        <div class="px-button-group">
+          <button class="px-button px-button--ghost px-button--sm" type="button" data-example-theme-toggle>Toggle theme</button>
+          <button class="px-button px-button--secondary px-button--sm" type="button">Last 30 days</button>
+          <button class="px-button px-button--primary px-button--sm" type="button">Share report</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-container px-dashboard-example__main" id="main-content">
+      <section class="px-kpi-grid">
+        <article class="px-kpi-card">
+          <span class="px-kpi-card__label">Revenue</span>
+          <strong class="px-kpi-card__value">$482K</strong>
+          <span class="px-kpi-card__delta px-kpi-card__delta--positive">+21% vs previous period</span>
+        </article>
+        <article class="px-kpi-card">
+          <span class="px-kpi-card__label">Activation</span>
+          <strong class="px-kpi-card__value">42%</strong>
+          <span class="px-kpi-card__delta">Trial to activated workspace</span>
+        </article>
+        <article class="px-kpi-card">
+          <span class="px-kpi-card__label">Retention</span>
+          <strong class="px-kpi-card__value">91%</strong>
+          <span class="px-kpi-card__delta px-kpi-card__delta--positive">Stable enterprise cohort</span>
+        </article>
+      </section>
+
+      <section class="px-grid px-grid--1 px-grid--lg-5 px-dashboard-example__content">
+        <div class="px-col-span-3">
+          <div class="px-analytics-grid">
+            <article class="px-analytics-card">
+              <span class="px-analytics-card__label">Traffic by source</span>
+              <div class="px-example-chart px-example-chart--bars">
+                <span style="--px-chart-size: 72%"></span>
+                <span style="--px-chart-size: 84%"></span>
+                <span style="--px-chart-size: 58%"></span>
+                <span style="--px-chart-size: 92%"></span>
+                <span style="--px-chart-size: 64%"></span>
+              </div>
+            </article>
+            <article class="px-analytics-card">
+              <span class="px-analytics-card__label">Pipeline quality</span>
+              <div class="px-example-chart px-example-chart--line">
+                <span></span>
+              </div>
+            </article>
+          </div>
+
+          <article class="px-card px-card--raised">
+            <header class="px-card__header">
+              <span class="px-card__eyebrow">Comparison cards</span>
+              <h2 class="px-card__title">Quarter-over-quarter growth</h2>
+            </header>
+            <div class="px-metric-card__compare">
+              <div class="px-metric-card">
+                <span class="px-metric-card__label">Current quarter</span>
+                <strong class="px-metric-card__value">$1.2M</strong>
+                <span class="px-kpi-card__delta px-kpi-card__delta--positive">Stronger enterprise conversion</span>
+              </div>
+              <div class="px-metric-card">
+                <span class="px-metric-card__label">Previous quarter</span>
+                <strong class="px-metric-card__value">$980K</strong>
+                <span class="px-kpi-card__delta">Baseline for renewal season</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="px-col-span-2 px-grid__item px-grid__item--sticky">
+          <div class="px-card">
+            <header class="px-card__header">
+              <span class="px-card__eyebrow">Live activity</span>
+              <h2 class="px-card__title">What changed today</h2>
+            </header>
+            <div class="px-activity-feed">
+              <article class="px-activity-feed__item">
+                <div class="px-activity-feed__title">Conversion rule updated</div>
+                <div class="px-activity-feed__meta">7 minutes ago</div>
+              </article>
+              <article class="px-activity-feed__item">
+                <div class="px-activity-feed__title">New pricing test launched</div>
+                <div class="px-activity-feed__meta">18 minutes ago</div>
+              </article>
+              <article class="px-activity-feed__item">
+                <div class="px-activity-feed__title">Weekly report exported</div>
+                <div class="px-activity-feed__meta">32 minutes ago</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="px-roadmap-grid">
+            <article class="px-roadmap-card">
+              <div class="px-roadmap-card__title">Next milestone</div>
+              <div class="px-roadmap-card__meta">Improve activation flow and documentation onboarding.</div>
+            </article>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

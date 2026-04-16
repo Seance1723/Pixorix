@@ -1,1 +1,52 @@
-// Ecommerce example style entry.
+@use '../../src/scss/pixorix';
+
+.px-ecommerce-example {
+  background: var(--px-color-bg);
+}
+
+.px-skip-link {
+  position: absolute;
+  inset-block-start: var(--px-space-3);
+  inset-inline-start: var(--px-space-3);
+  z-index: var(--px-z-toast);
+  padding: var(--px-space-3) var(--px-space-4);
+  border-radius: var(--px-radius-lg);
+  background: var(--px-color-surface-inverse);
+  color: var(--px-color-text-inverse);
+  text-decoration: none;
+  transform: translateY(-140%);
+}
+
+.px-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.px-ecommerce-example__header {
+  padding-block: var(--px-space-4);
+  border-bottom: 1px solid var(--px-color-border);
+}
+
+.px-ecommerce-example__brand-mark {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.9rem;
+  block-size: 1.9rem;
+  border-radius: var(--px-radius-lg);
+  background: linear-gradient(135deg, var(--px-color-primary), var(--px-color-info));
+  color: var(--px-color-primary-contrast);
+}
+
+.px-ecommerce-example__hero {
+  min-block-size: 36rem;
+}
+
+.px-ecommerce-example__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--px-space-3);
+}
+
+.px-example-section {
+  padding-block: var(--px-space-7);
+}
