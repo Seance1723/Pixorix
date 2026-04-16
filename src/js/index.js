@@ -1,4 +1,4 @@
-export { initPixorix } from './core/app.js';
+export * from './pixorix.js';
 export * from './core/theme.js';
 export * from './motion/gsap-core.js';
 export * from './motion/presets.js';

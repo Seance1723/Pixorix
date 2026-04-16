@@ -1,3 +1,5 @@
+import { emit } from './events.js';
+
 const STORAGE_KEY = 'pixorix-theme';
 const CONTRAST_STORAGE_KEY = 'pixorix-contrast';
 const BRAND_STORAGE_KEY = 'pixorix-brand';
@@ -55,6 +57,11 @@ export function applyTheme(theme, options = {}) {
     setStoredValue(STORAGE_KEY, theme || 'system');
   }
 
+  emit(root, 'px:themechange', {
+    theme: theme || 'system',
+    resolvedTheme
+  });
+
   return resolvedTheme;
 }
 
@@ -70,6 +77,10 @@ export function applyContrast(contrast = 'default', options = {}) {
   if (options.persist !== false) {
     setStoredValue(CONTRAST_STORAGE_KEY, contrast || 'default');
   }
+
+  emit(root, 'px:contrastchange', {
+    contrast: contrast || 'default'
+  });
 }
 
 export function applyBrand(brand = 'default', options = {}) {
@@ -84,6 +95,10 @@ export function applyBrand(brand = 'default', options = {}) {
   if (options.persist !== false) {
     setStoredValue(BRAND_STORAGE_KEY, brand || 'default');
   }
+
+  emit(root, 'px:brandchange', {
+    brand: brand || 'default'
+  });
 }
 
 export function initTheme(options = {}) {
