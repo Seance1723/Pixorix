@@ -1,0 +1,210 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-hero {
+  display: grid;
+  gap: var(--px-space-6);
+  align-items: center;
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.px-hero--split {
+  @include mixins.px-media-up(lg) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  }
+}
+
+.px-hero__content,
+.px-hero__media {
+  min-width: 0;
+}
+
+.px-hero__eyebrow {
+  @include mixins.px-type-role('ui', 'overline');
+
+  color: var(--px-color-primary);
+}
+
+.px-hero__title {
+  @include mixins.px-type-role('headings', 'h1');
+
+  margin: 0;
+  max-inline-size: 14ch;
+}
+
+.px-hero__text {
+  @include mixins.px-type-role('body', 'lead');
+
+  margin: 0;
+  max-inline-size: 58ch;
+  color: var(--px-color-text-muted);
+}
+
+.px-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-3);
+}
+
+.px-feature-grid,
+.px-pricing-grid,
+.px-team-grid {
+  display: grid;
+  gap: var(--px-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.px-feature-card,
+.px-pricing-card,
+.px-team-card,
+.px-spotlight-card,
+.px-gradient-card,
+.px-glass-block {
+  position: relative;
+  display: grid;
+  gap: var(--px-space-4);
+  min-width: 0;
+  padding: var(--px-space-5);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background: var(--px-color-surface);
+  box-shadow: var(--px-shadow-md);
+}
+
+.px-feature-card__title,
+.px-pricing-card__title,
+.px-team-card__title,
+.px-faq__question,
+.px-spotlight-card__title {
+  @include mixins.px-type-role('headings', 'h5');
+
+  margin: 0;
+}
+
+.px-feature-card__text,
+.px-pricing-card__text,
+.px-team-card__meta,
+.px-spotlight-card__text {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  margin: 0;
+  color: var(--px-color-text-muted);
+}
+
+.px-pricing-card--featured {
+  border-color: var(--px-color-primary);
+  box-shadow: var(--px-shadow-lg);
+  transform: translateY(-0.25rem);
+}
+
+.px-pricing-card__price {
+  @include mixins.px-type-role('headings', 'h2');
+
+  margin: 0;
+}
+
+.px-comparison-table {
+  overflow: auto;
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background: var(--px-color-surface);
+  box-shadow: var(--px-shadow-sm);
+}
+
+.px-comparison-table table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+}
+
+.px-comparison-table th,
+.px-comparison-table td {
+  padding: var(--px-space-4);
+  border-bottom: 1px solid var(--px-color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.px-testimonial-slider,
+.px-logo-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.px-testimonial-slider__track,
+.px-logo-carousel__track {
+  display: flex;
+  gap: var(--px-space-4);
+  width: max-content;
+}
+
+.px-testimonial-slide,
+.px-logo-carousel__item {
+  flex: 0 0 auto;
+}
+
+.px-testimonial-slide {
+  width: min(100%, 30rem);
+  padding: var(--px-space-5);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background: var(--px-color-surface);
+  box-shadow: var(--px-shadow-md);
+}
+
+.px-faq {
+  display: grid;
+  gap: var(--px-space-3);
+}
+
+.px-faq__item {
+  padding: var(--px-space-4) var(--px-space-5);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-xl);
+  background: var(--px-color-surface);
+}
+
+.px-faq__answer {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  margin: 0;
+  color: var(--px-color-text-muted);
+}
+
+.px-spotlight-card {
+  overflow: hidden;
+  border-color: rgba(14, 165, 233, 0.18);
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0)),
+    var(--px-color-surface);
+}
+
+.px-glass-block {
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(var(--px-backdrop-md, 18px));
+  -webkit-backdrop-filter: blur(var(--px-backdrop-md, 18px));
+}
+
+.px-gradient-card {
+  background:
+    linear-gradient(var(--px-color-surface), var(--px-color-surface)) padding-box,
+    linear-gradient(135deg, rgba(14, 165, 233, 0.85), rgba(168, 85, 247, 0.65)) border-box;
+  border: 1px solid transparent;
+}
+
+@media (max-width: 47.99rem) {
+  .px-hero {
+    padding-block: var(--px-space-7);
+  }
+
+  .px-feature-card,
+  .px-pricing-card,
+  .px-team-card,
+  .px-spotlight-card,
+  .px-gradient-card,
+  .px-glass-block,
+  .px-testimonial-slide,
+  .px-faq__item {
+    padding: var(--px-space-4);
+  }
+}
