@@ -1,4 +1,38 @@
 .px-split {
+  --px-split-gap: var(--px-space-6);
+  --px-split-main: 1fr;
+  --px-split-side: minmax(16rem, 28rem);
+
   display: grid;
-  gap: var(--px-space-6);
+  gap: var(--px-split-gap);
+  align-items: start;
+}
+
+.px-split--equal {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.px-split--aside {
+  grid-template-columns: minmax(0, var(--px-split-main)) var(--px-split-side);
+}
+
+.px-split--feature {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+}
+
+.px-split--reverse {
+  grid-template-columns: var(--px-split-side) minmax(0, var(--px-split-main));
+}
+
+.px-split > * {
+  min-width: 0;
+}
+
+@media (max-width: 63.99rem) {
+  .px-split--equal,
+  .px-split--aside,
+  .px-split--feature,
+  .px-split--reverse {
+    grid-template-columns: 1fr;
+  }
 }

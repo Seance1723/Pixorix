@@ -1,0 +1,30 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-container,
+.px-container--fixed {
+  @include mixins.px-container(xl, 4);
+}
+
+.px-container--fluid {
+  width: min(100% - (var(--px-space-4) * 2), var(--px-container-full));
+  margin-inline: auto;
+}
+
+.px-container--narrow {
+  @include mixins.px-container(md, 4);
+}
+
+.px-container--wide {
+  @include mixins.px-container(xxl, 5);
+}
+
+.px-container--full,
+.px-container--bleed {
+  width: 100%;
+  max-width: none;
+}
+
+.px-container--bleed {
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--px-space-4);
+}

@@ -1,6 +1,25 @@
 .px-cluster {
+  --px-cluster-gap: var(--px-space-3);
+
   display: flex;
   flex-wrap: wrap;
-  gap: var(--px-space-3);
+  gap: var(--px-cluster-gap);
   align-items: center;
+  justify-content: flex-start;
+}
+
+.px-cluster--tight {
+  --px-cluster-gap: var(--px-space-2);
+}
+
+.px-cluster--loose {
+  --px-cluster-gap: var(--px-space-5);
+}
+
+.px-cluster--between {
+  justify-content: space-between;
+}
+
+.px-cluster--end {
+  justify-content: flex-end;
 }

@@ -1,4 +1,23 @@
 .px-stack {
+  --px-stack-gap: var(--px-space-4);
+
   display: grid;
-  gap: var(--px-space-4);
+  gap: var(--px-stack-gap);
+  align-content: start;
+}
+
+.px-stack--tight {
+  --px-stack-gap: var(--px-space-2);
+}
+
+.px-stack--loose {
+  --px-stack-gap: var(--px-space-6);
+}
+
+.px-stack--section {
+  --px-stack-gap: var(--px-space-8);
+}
+
+.px-stack > * {
+  min-width: 0;
 }

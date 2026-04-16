@@ -1,3 +1,18 @@
 .px-section {
-  padding-block: clamp(3rem, 2.2rem + 2vw, 5rem);
+  --px-section-space: clamp(3rem, 2.2rem + 2vw, 5rem);
+
+  padding-block: var(--px-section-space);
+}
+
+.px-section--tight {
+  --px-section-space: clamp(2rem, 1.6rem + 1.2vw, 3rem);
+}
+
+.px-section--loose {
+  --px-section-space: clamp(4rem, 3.2rem + 2.6vw, 6rem);
+}
+
+.px-section__inner {
+  width: min(100% - (var(--px-space-4) * 2), var(--px-container-xl));
+  margin-inline: auto;
 }
