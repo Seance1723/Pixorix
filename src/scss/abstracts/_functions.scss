@@ -9,22 +9,32 @@
 
   @if $group == 'breakpoints' {
     $token-group: tokens.$px-breakpoints;
+  } @else if $group == 'containers' {
+    $token-group: tokens.$px-containers;
   } @else if $group == 'spacing' {
-    $token-group: tokens.$px-spacing-scale;
-  } @else if $group == 'radii' {
-    $token-group: tokens.$px-radii;
+    $token-group: tokens.$px-spacing;
+  } @else if $group == 'radius' {
+    $token-group: tokens.$px-radius;
   } @else if $group == 'motion-duration' {
     $token-group: map.get(tokens.$px-motion, 'duration');
   } @else if $group == 'motion-easing' {
     $token-group: map.get(tokens.$px-motion, 'easing');
-  } @else if $group == 'elevation' {
-    $token-group: tokens.$px-elevation;
+  } @else if $group == 'motion-preset' {
+    $token-group: map.get(tokens.$px-motion, 'presets');
+  } @else if $group == 'shadow' {
+    $token-group: tokens.$px-shadows;
   } @else if $group == 'typography-size' {
     $token-group: map.get(tokens.$px-typography, 'size');
   } @else if $group == 'typography-weight' {
     $token-group: map.get(tokens.$px-typography, 'weight');
+  } @else if $group == 'line-height' {
+    $token-group: map.get(tokens.$px-typography, 'line-height');
+  } @else if $group == 'letter-spacing' {
+    $token-group: map.get(tokens.$px-typography, 'letter-spacing');
+  } @else if $group == 'font-family' {
+    $token-group: map.get(tokens.$px-typography, 'family');
   } @else if $group == 'color' {
-    $token-group: map.get(tokens.$px-colors, 'semantic');
+    $token-group: map.get(map.get(tokens.$px-colors, 'semantic'), 'light');
   }
 
   @if $token-group == null {
@@ -55,7 +65,7 @@
 }
 
 @function px-radius($key, $fallback: null) {
-  @return px-token('radii', $key, $fallback);
+  @return px-token('radius', $key, $fallback);
 }
 
 @function px-color($key, $fallback: null) {
@@ -70,9 +80,13 @@
   @return px-token('typography-size', $key, $fallback);
 }
 
+@function px-shadow($key, $fallback: null) {
+  @return px-token('shadow', $key, $fallback);
+}
+
 @function px-z($key, $fallback: null) {
-  @if map.has-key(tokens.$px-z-index, $key) {
-    @return map.get(tokens.$px-z-index, $key);
+  @if map.has-key(tokens.$px-zindex, $key) {
+    @return map.get(tokens.$px-zindex, $key);
   }
 
   @if $fallback != null {

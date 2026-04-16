@@ -24,14 +24,14 @@
 }
 
 @mixin px-focus-ring($offset: 2px) {
-  outline: 2px solid fn.px-css-var('focus-ring', fn.px-color('focus-ring'));
+  outline: 2px solid var(--px-focus-ring-color, #{fn.px-color('focus-ring')});
   outline-offset: $offset;
 }
 
 @mixin px-surface($background: 'surface', $border: 'border', $shadow: 'sm') {
   background-color: fn.px-css-var('color-#{$background}', fn.px-color($background));
   border: 1px solid fn.px-css-var('color-#{$border}', fn.px-color($border));
-  box-shadow: fn.px-css-var('shadow-#{$shadow}', fn.px-token('elevation', $shadow));
+  box-shadow: fn.px-css-var('shadow-#{$shadow}', fn.px-shadow($shadow));
 }
 
 @mixin px-scrollbar($thumb: 'border-strong', $track: 'surface-muted') {
@@ -73,7 +73,7 @@
 }
 
 @mixin px-generate-space-utilities($property, $short) {
-  @each $key, $value in tokens.$px-spacing-scale {
+  @each $key, $value in tokens.$px-spacing {
     .px-#{$short}-#{$key} {
       #{$property}: #{$value} !important;
     }

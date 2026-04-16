@@ -6,3 +6,12 @@ $px-breakpoints: (
   xl: 80rem,
   xxl: 96rem
 ) !default;
+
+$px-containers: (
+  sm: 34rem,
+  md: 44rem,
+  lg: 60rem,
+  xl: 72rem,
+  xxl: 84rem,
+  full: 100%
+) !default;

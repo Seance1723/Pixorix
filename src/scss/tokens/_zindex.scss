@@ -1,0 +1,12 @@
+$px-zindex: (
+  base: 1,
+  raised: 10,
+  sticky: 100,
+  dropdown: 400,
+  overlay: 700,
+  drawer: 780,
+  modal: 800,
+  toast: 900,
+  tooltip: 950,
+  debug: 9999
+) !default;

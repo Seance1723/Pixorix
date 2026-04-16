@@ -1,6 +1,6 @@
 :focus-visible {
-  outline: 2px solid var(--px-color-focus-ring);
-  outline-offset: 2px;
+  outline: var(--px-focus-ring-width, 2px) solid var(--px-focus-ring-color, currentColor);
+  outline-offset: var(--px-focus-ring-offset, 2px);
 }
 
 @media (prefers-reduced-motion: reduce) {

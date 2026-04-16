@@ -1,18 +1,146 @@
+@use 'sass:map';
+
+$px-color-brand: (
+  blue-50: #eff6ff,
+  blue-100: #dbeafe,
+  blue-200: #bfdbfe,
+  blue-300: #93c5fd,
+  blue-400: #60a5fa,
+  blue-500: #3b82f6,
+  blue-600: #2563eb,
+  blue-700: #1d4ed8,
+  blue-800: #1e40af,
+  blue-900: #1e3a8a,
+  cyan-500: #06b6d4,
+  teal-500: #14b8a6,
+  emerald-500: #10b981,
+  amber-500: #f59e0b,
+  rose-500: #f43f5e
+) !default;
+
+$px-color-neutral: (
+  white: #ffffff,
+  black: #020617,
+  0: #ffffff,
+  25: #fcfdff,
+  50: #f8fafc,
+  100: #f1f5f9,
+  200: #e2e8f0,
+  300: #cbd5e1,
+  400: #94a3b8,
+  500: #64748b,
+  600: #475569,
+  700: #334155,
+  800: #1e293b,
+  900: #0f172a,
+  950: #020617
+) !default;
+
+$px-color-feedback: (
+  success-50: #ecfdf3,
+  success-500: #12b76a,
+  success-700: #027a48,
+  warning-50: #fffaeb,
+  warning-500: #f79009,
+  warning-700: #b54708,
+  danger-50: #fef3f2,
+  danger-500: #f04438,
+  danger-700: #b42318,
+  info-50: #eff8ff,
+  info-500: #0ba5ec,
+  info-700: #026aa2
+) !default;
+
+$px-color-raw: (
+  brand: $px-color-brand,
+  neutral: $px-color-neutral,
+  feedback: $px-color-feedback
+) !default;
+
+$px-color-semantic-light: (
+  bg: map.get($px-color-neutral, 50),
+  bg-elevated: map.get($px-color-neutral, 0),
+  surface: map.get($px-color-neutral, 0),
+  surface-muted: #eef3f8,
+  surface-subtle: #f8fafc,
+  surface-inverse: map.get($px-color-neutral, 900),
+  text: #182230,
+  text-muted: #526071,
+  text-soft: #6b7a90,
+  text-inverse: map.get($px-color-neutral, 0),
+  primary: map.get($px-color-brand, blue-600),
+  primary-hover: map.get($px-color-brand, blue-700),
+  primary-active: map.get($px-color-brand, blue-800),
+  primary-contrast: map.get($px-color-neutral, 0),
+  secondary: map.get($px-color-neutral, 700),
+  secondary-contrast: map.get($px-color-neutral, 0),
+  success: map.get($px-color-feedback, success-500),
+  success-surface: map.get($px-color-feedback, success-50),
+  warning: map.get($px-color-feedback, warning-500),
+  warning-surface: map.get($px-color-feedback, warning-50),
+  danger: map.get($px-color-feedback, danger-500),
+  danger-surface: map.get($px-color-feedback, danger-50),
+  info: map.get($px-color-feedback, info-500),
+  info-surface: map.get($px-color-feedback, info-50),
+  border: #d7deea,
+  border-strong: #b7c2d4,
+  border-inverse: rgba(255, 255, 255, 0.18),
+  overlay: rgba(2, 6, 23, 0.56),
+  scrim: rgba(15, 23, 42, 0.72),
+  selection: rgba(37, 99, 235, 0.18),
+  focus-ring: rgba(37, 99, 235, 0.42),
+  focus-ring-contrast: map.get($px-color-neutral, 0)
+) !default;
+
+$px-color-semantic-dark: (
+  bg: #0b1220,
+  bg-elevated: #111a2b,
+  surface: #162133,
+  surface-muted: #1d2a40,
+  surface-subtle: #111a2b,
+  surface-inverse: map.get($px-color-neutral, 0),
+  text: #edf2fb,
+  text-muted: #b8c4d8,
+  text-soft: #93a3bc,
+  text-inverse: #0f172a,
+  primary: #5b8cff,
+  primary-hover: #7aa2ff,
+  primary-active: #8aaeff,
+  primary-contrast: #081120,
+  secondary: #94a3b8,
+  secondary-contrast: #081120,
+  success: #34d399,
+  success-surface: rgba(52, 211, 153, 0.14),
+  warning: #fbbf24,
+  warning-surface: rgba(251, 191, 36, 0.14),
+  danger: #fb7185,
+  danger-surface: rgba(251, 113, 133, 0.14),
+  info: #38bdf8,
+  info-surface: rgba(56, 189, 248, 0.14),
+  border: #314158,
+  border-strong: #465a77,
+  border-inverse: rgba(15, 23, 42, 0.2),
+  overlay: rgba(2, 6, 23, 0.7),
+  scrim: rgba(2, 6, 23, 0.82),
+  selection: rgba(91, 140, 255, 0.22),
+  focus-ring: rgba(91, 140, 255, 0.48),
+  focus-ring-contrast: map.get($px-color-neutral, 0)
+) !default;
+
+$px-color-brand-default: (
+  primary: map.get($px-color-brand, blue-600),
+  primary-hover: map.get($px-color-brand, blue-700),
+  primary-active: map.get($px-color-brand, blue-800),
+  primary-contrast: map.get($px-color-neutral, 0)
+) !default;
+
 $px-colors: (
+  raw: $px-color-raw,
   semantic: (
-    bg: #f5f7fb,
-    surface: #ffffff,
-    surface-muted: #eef2f8,
-    text: #182230,
-    text-muted: #526071,
-    border: #d7deea,
-    border-strong: #b7c2d4,
-    primary: #1463ff,
-    primary-contrast: #ffffff,
-    success: #0e9f6e,
-    warning: #d97706,
-    danger: #dc2626,
-    info: #0ea5e9,
-    focus-ring: #1463ff
+    light: $px-color-semantic-light,
+    dark: $px-color-semantic-dark
+  ),
+  brand-themes: (
+    default: $px-color-brand-default
   )
 ) !default;
