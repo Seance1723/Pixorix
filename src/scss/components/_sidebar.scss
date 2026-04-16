@@ -1,0 +1,45 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-sidebar-nav {
+  display: grid;
+  gap: var(--px-space-2);
+  min-width: 0;
+}
+
+.px-sidebar-nav__section {
+  display: grid;
+  gap: var(--px-space-2);
+}
+
+.px-sidebar-nav__title {
+  @include mixins.px-type-role('ui', 'overline');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-sidebar-nav__list {
+  display: grid;
+  gap: var(--px-space-1);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.px-sidebar-nav__link {
+  @include mixins.px-type-role('ui', 'label');
+
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  min-height: 2.75rem;
+  padding-inline: var(--px-space-3);
+  border-radius: var(--px-radius-lg);
+  color: var(--px-color-text-muted);
+  text-decoration: none;
+}
+
+.px-sidebar-nav__link:hover,
+.px-sidebar-nav__link[aria-current='page'] {
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text);
+}

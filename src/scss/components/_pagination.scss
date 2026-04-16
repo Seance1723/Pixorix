@@ -1,5 +1,62 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-pagination {
   display: flex;
   flex-wrap: wrap;
   gap: var(--px-space-2);
+  align-items: center;
+}
+
+.px-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.px-pagination__item {
+  min-width: 0;
+}
+
+.px-pagination__link {
+  @include mixins.px-type-role('ui', 'label');
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding-inline: var(--px-space-3);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-md);
+  background-color: var(--px-color-surface);
+  color: var(--px-color-text);
+  text-decoration: none;
+  box-shadow: var(--px-shadow-xs);
+}
+
+.px-pagination__link:hover {
+  background-color: var(--px-color-surface-muted);
+  border-color: var(--px-color-border-strong);
+}
+
+.px-pagination__link:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-pagination__link[aria-current='page'],
+.px-pagination__link.is-active {
+  background-color: var(--px-color-primary);
+  border-color: var(--px-color-primary);
+  color: var(--px-color-primary-contrast);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
+}
+
+.px-pagination__ellipsis {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
 }

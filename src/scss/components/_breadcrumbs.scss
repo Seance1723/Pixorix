@@ -1,0 +1,49 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.px-breadcrumbs__item {
+  @include mixins.px-type-role('ui', 'helper');
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  min-width: 0;
+  color: var(--px-color-text-soft);
+}
+
+.px-breadcrumbs__item:not(:last-child)::after {
+  content: '/';
+  color: var(--px-color-text-soft);
+}
+
+.px-breadcrumbs__link {
+  @include mixins.px-truncate;
+
+  max-width: 16rem;
+  color: var(--px-color-text-muted);
+  text-decoration: none;
+}
+
+.px-breadcrumbs__link:hover {
+  color: var(--px-color-primary);
+}
+
+.px-breadcrumbs__link:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-breadcrumbs__item[aria-current='page'],
+.px-breadcrumbs__current {
+  color: var(--px-color-text);
+  font-weight: var(--px-font-weight-medium);
+}

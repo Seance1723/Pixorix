@@ -1,0 +1,76 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-toast-stack {
+  position: fixed;
+  inset-inline-end: var(--px-space-4);
+  inset-block-end: var(--px-space-4);
+  z-index: var(--px-z-toast);
+  display: grid;
+  gap: var(--px-space-3);
+  width: min(24rem, calc(100vw - 2rem));
+}
+
+.px-toast {
+  --px-toast-bg: var(--px-color-surface);
+  --px-toast-border: var(--px-color-border);
+  --px-toast-accent: var(--px-color-primary);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--px-space-3);
+  align-items: start;
+  padding: var(--px-space-4);
+  border: 1px solid var(--px-toast-border);
+  border-radius: var(--px-radius-xl);
+  background-color: var(--px-toast-bg);
+  box-shadow: var(--px-shadow-lg);
+}
+
+.px-toast::before {
+  content: '';
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  margin-top: 0.35rem;
+  border-radius: var(--px-radius-round);
+  background-color: var(--px-toast-accent);
+}
+
+.px-toast__body {
+  display: grid;
+  gap: var(--px-space-1);
+}
+
+.px-toast__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  color: var(--px-color-text);
+}
+
+.px-toast__text {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-muted);
+}
+
+.px-toast--success {
+  --px-toast-accent: var(--px-color-success);
+}
+
+.px-toast--warning {
+  --px-toast-accent: var(--px-color-warning);
+}
+
+.px-toast--danger {
+  --px-toast-accent: var(--px-color-danger);
+}
+
+.px-toast--info {
+  --px-toast-accent: var(--px-color-info);
+}
+
+@media (max-width: 47.99rem) {
+  .px-toast-stack {
+    inset-inline: var(--px-space-3);
+    width: auto;
+  }
+}

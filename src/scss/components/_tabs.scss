@@ -1,5 +1,69 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-tabs {
+  display: grid;
+  gap: var(--px-space-4);
+  min-width: 0;
+}
+
+.px-tabs__list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--px-space-2);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--px-color-border);
+}
+
+.px-tabs__tab {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding-inline: var(--px-space-4);
+  border: 0;
+  border-radius: var(--px-radius-md) var(--px-radius-md) 0 0;
+  background: transparent;
+  color: var(--px-color-text-muted);
+}
+
+.px-tabs__tab::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--px-space-3);
+  inset-block-end: -1px;
+  block-size: 2px;
+  border-radius: var(--px-radius-round);
+  background-color: transparent;
+}
+
+.px-tabs__tab:hover {
+  color: var(--px-color-text);
+}
+
+.px-tabs__tab:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-tabs__tab[aria-selected='true'],
+.px-tabs__tab.is-active {
+  color: var(--px-color-text);
+}
+
+.px-tabs__tab[aria-selected='true']::after,
+.px-tabs__tab.is-active::after {
+  background-color: var(--px-color-primary);
+}
+
+.px-tabs__panel {
+  min-width: 0;
+}
+
+.px-tabs__panel[hidden] {
+  display: none !important;
 }

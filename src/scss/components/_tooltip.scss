@@ -1,7 +1,16 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-tooltip {
+  @include mixins.px-type-role('ui', 'helper');
+
   max-width: 18rem;
   padding: var(--px-space-2) var(--px-space-3);
-  border-radius: var(--px-radius-sm);
+  border-radius: var(--px-radius-md);
   background-color: var(--px-color-text);
-  color: var(--px-color-surface);
+  color: var(--px-color-text-inverse);
+  box-shadow: var(--px-shadow-md);
+}
+
+.px-tooltip[data-state='hidden'] {
+  display: none;
 }

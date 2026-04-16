@@ -1,0 +1,31 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-popover {
+  display: grid;
+  gap: var(--px-space-3);
+  min-width: min(22rem, calc(100vw - 2rem));
+  max-width: 28rem;
+  padding: var(--px-space-4);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-xl);
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-lg);
+}
+
+.px-popover__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  color: var(--px-color-text);
+}
+
+.px-popover__body {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  color: var(--px-color-text-muted);
+}
+
+.px-popover__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+}

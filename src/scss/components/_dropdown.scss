@@ -1,8 +1,62 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-dropdown {
-  min-width: 12rem;
+  min-width: 13rem;
+  max-width: min(22rem, calc(100vw - 2rem));
   padding: var(--px-space-2);
   border: 1px solid var(--px-color-border);
-  border-radius: var(--px-radius-md);
+  border-radius: var(--px-radius-xl);
   background-color: var(--px-color-surface);
-  box-shadow: var(--px-shadow-md);
+  box-shadow: var(--px-shadow-lg);
+}
+
+.px-dropdown__menu,
+.px-menu {
+  display: grid;
+  gap: var(--px-space-1);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.px-dropdown__item,
+.px-menu__item {
+  min-width: 0;
+}
+
+.px-dropdown__link,
+.px-menu__link {
+  @include mixins.px-type-role('ui', 'label');
+
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  width: 100%;
+  min-height: 2.5rem;
+  padding-inline: var(--px-space-3);
+  border: 0;
+  border-radius: var(--px-radius-md);
+  background: transparent;
+  color: var(--px-color-text);
+  text-decoration: none;
+  text-align: start;
+}
+
+.px-dropdown__link:hover,
+.px-menu__link:hover,
+.px-dropdown__link.is-active,
+.px-menu__link.is-active {
+  background-color: var(--px-color-surface-muted);
+}
+
+.px-dropdown__link:focus-visible,
+.px-menu__link:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-dropdown__divider,
+.px-menu__divider {
+  height: 1px;
+  margin-block: var(--px-space-1);
+  background-color: var(--px-color-border);
 }

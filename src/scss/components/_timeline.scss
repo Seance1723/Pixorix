@@ -1,0 +1,53 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-timeline {
+  position: relative;
+  display: grid;
+  gap: var(--px-space-5);
+}
+
+.px-timeline::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0.45rem;
+  width: 2px;
+  background-color: var(--px-color-border);
+}
+
+.px-timeline__item {
+  position: relative;
+  display: grid;
+  gap: var(--px-space-2);
+  padding-inline-start: var(--px-space-6);
+}
+
+.px-timeline__item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.35rem;
+  inline-size: 0.9rem;
+  block-size: 0.9rem;
+  border-radius: var(--px-radius-round);
+  background-color: var(--px-color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+.px-timeline__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  color: var(--px-color-text);
+}
+
+.px-timeline__meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-timeline__body {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  color: var(--px-color-text-muted);
+}

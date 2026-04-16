@@ -1,4 +1,64 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-accordion {
   display: grid;
-  gap: var(--px-space-2);
+  gap: var(--px-space-3);
+}
+
+.px-accordion__item {
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-lg);
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-xs);
+  overflow: clip;
+}
+
+.px-accordion__trigger {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-3);
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--px-space-4);
+  border: 0;
+  background: transparent;
+  color: var(--px-color-text);
+  text-align: start;
+}
+
+.px-accordion__trigger:hover {
+  background-color: var(--px-color-surface-subtle);
+}
+
+.px-accordion__trigger:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-accordion__icon {
+  flex: 0 0 auto;
+  transition: transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-accordion__trigger[aria-expanded='true'] .px-accordion__icon {
+  transform: rotate(180deg);
+}
+
+.px-accordion__panel {
+  padding: 0 var(--px-space-4) var(--px-space-4);
+  color: var(--px-color-text-muted);
+}
+
+.px-accordion__panel[hidden] {
+  display: none !important;
+}
+
+.px-collapse {
+  overflow: hidden;
+}
+
+.px-collapse[hidden] {
+  display: none !important;
 }
