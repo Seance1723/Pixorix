@@ -1,0 +1,100 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-spinner {
+  --px-spinner-size: 1.25rem;
+  --px-spinner-stroke: 2px;
+  --px-spinner-color: var(--px-color-primary);
+
+  display: inline-flex;
+  inline-size: var(--px-spinner-size);
+  block-size: var(--px-spinner-size);
+  border: var(--px-spinner-stroke) solid rgba(37, 99, 235, 0.16);
+  border-inline-end-color: var(--px-spinner-color);
+  border-radius: var(--px-radius-round);
+  animation: px-spinner-rotate 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+.px-spinner--sm {
+  --px-spinner-size: 1rem;
+  --px-spinner-stroke: 1.75px;
+}
+
+.px-spinner--lg {
+  --px-spinner-size: 1.75rem;
+  --px-spinner-stroke: 2.5px;
+}
+
+.px-loader-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2);
+}
+
+.px-loader-inline__label {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-skeleton {
+  --px-skeleton-radius: var(--px-radius-md);
+  --px-skeleton-bg: rgba(148, 163, 184, 0.12);
+  --px-skeleton-sheen: rgba(255, 255, 255, 0.5);
+
+  position: relative;
+  overflow: hidden;
+  display: block;
+  inline-size: 100%;
+  min-block-size: 1rem;
+  border-radius: var(--px-skeleton-radius);
+  background-color: var(--px-skeleton-bg);
+}
+
+.px-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--px-skeleton-sheen) 50%,
+      transparent 100%
+    );
+  animation: px-skeleton-sheen 1.6s ease-in-out infinite;
+}
+
+.px-skeleton--text {
+  min-block-size: 0.9em;
+  border-radius: var(--px-radius-sm);
+}
+
+.px-skeleton--title {
+  min-block-size: 1.4rem;
+  inline-size: 58%;
+}
+
+.px-skeleton--avatar {
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--px-radius-round);
+}
+
+.px-skeleton--card {
+  min-block-size: 10rem;
+  border-radius: var(--px-radius-xl);
+}
+
+@keyframes px-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes px-skeleton-sheen {
+  100% {
+    transform: translateX(100%);
+  }
+}

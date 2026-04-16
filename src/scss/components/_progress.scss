@@ -1,0 +1,105 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-progress {
+  --px-progress-height: 0.625rem;
+  --px-progress-radius: var(--px-radius-round);
+  --px-progress-bg: var(--px-color-surface-muted);
+  --px-progress-fill: var(--px-color-primary);
+  --px-progress-value: 0%;
+
+  display: grid;
+  gap: var(--px-space-2);
+  min-width: 0;
+}
+
+.px-progress__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-2);
+}
+
+.px-progress__label {
+  @include mixins.px-type-role('ui', 'label');
+
+  color: var(--px-color-text);
+}
+
+.px-progress__value {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-progress__track {
+  position: relative;
+  overflow: hidden;
+  block-size: var(--px-progress-height);
+  border-radius: var(--px-progress-radius);
+  background-color: var(--px-progress-bg);
+}
+
+.px-progress__bar {
+  inline-size: var(--px-progress-value);
+  block-size: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+    var(--px-progress-fill);
+  transition: inline-size var(--px-motion-duration-normal) var(--px-motion-easing-standard);
+}
+
+.px-progress--success {
+  --px-progress-fill: var(--px-color-success);
+}
+
+.px-progress--warning {
+  --px-progress-fill: var(--px-color-warning);
+}
+
+.px-progress--danger {
+  --px-progress-fill: var(--px-color-danger);
+}
+
+.px-progress--sm {
+  --px-progress-height: 0.4rem;
+}
+
+.px-progress--lg {
+  --px-progress-height: 0.875rem;
+}
+
+.px-progress--striped .px-progress__bar {
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.22) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.22) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 1rem 1rem;
+}
+
+.px-progress--indeterminate .px-progress__bar {
+  inline-size: 40%;
+  animation: px-progress-indeterminate 1.35s ease-in-out infinite;
+}
+
+@keyframes px-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  60% {
+    transform: translateX(180%);
+  }
+
+  100% {
+    transform: translateX(180%);
+  }
+}
