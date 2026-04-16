@@ -62,6 +62,40 @@
   }
 }
 
+@mixin px-type-role($category, $role) {
+  $size-token: fn.px-type-role($category, $role, 'size');
+  $weight-token: fn.px-type-role($category, $role, 'weight', null);
+  $line-height-token: fn.px-type-role($category, $role, 'line-height', null);
+  $letter-spacing-token: fn.px-type-role($category, $role, 'letter-spacing', null);
+  $max-width: fn.px-type-role($category, $role, 'max-width', null);
+  $margin-block-end: fn.px-type-role($category, $role, 'margin-block-end', null);
+
+  @include px-fluid-type($size-token);
+
+  @if $weight-token != null {
+    font-weight: fn.px-css-var('font-weight-#{$weight-token}', fn.px-token('font-weight', $weight-token));
+  }
+
+  @if $line-height-token != null {
+    line-height: fn.px-css-var('line-height-#{$line-height-token}', fn.px-token('line-height', $line-height-token));
+  }
+
+  @if $letter-spacing-token != null {
+    letter-spacing: fn.px-css-var(
+      'letter-spacing-#{$letter-spacing-token}',
+      fn.px-token('letter-spacing', $letter-spacing-token)
+    );
+  }
+
+  @if $max-width != null {
+    max-width: $max-width;
+  }
+
+  @if $margin-block-end != null {
+    margin-block-end: fn.px-css-var('space-#{$margin-block-end}', fn.px-space($margin-block-end));
+  }
+}
+
 @mixin px-focus-ring($offset: null, $width: null, $color: null) {
   $resolved-width: if($width == null, fn.px-css-var('focus-ring-width', 2px), $width);
   $resolved-offset: if($offset == null, fn.px-css-var('focus-ring-offset', 2px), $offset);

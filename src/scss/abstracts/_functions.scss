@@ -88,6 +88,10 @@
     @return px-map-deep-get(tokens.$px-motion, 'presets');
   }
 
+  @if $group == 'typography-role' {
+    @return tokens.$px-typography;
+  }
+
   @error 'Unknown Pixorix token group: #{$group}.';
 }
 
@@ -203,4 +207,26 @@
   }
 
   @return $result;
+}
+
+@function px-type-role($category, $role, $property: null, $fallback: null) {
+  $role-map: px-map-deep-get(tokens.$px-typography, $category, $role);
+
+  @if $role-map == null {
+    @if $fallback != null {
+      @return $fallback;
+    }
+
+    @error 'Unknown Pixorix typography role "#{$role}" in category "#{$category}".';
+  }
+
+  @if $property == null {
+    @return $role-map;
+  }
+
+  @if map.has-key($role-map, $property) {
+    @return map.get($role-map, $property);
+  }
+
+  @return $fallback;
 }
