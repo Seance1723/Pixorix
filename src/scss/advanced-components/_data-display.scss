@@ -1,0 +1,185 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-data-table {
+  display: grid;
+  gap: var(--px-space-4);
+  min-width: 0;
+}
+
+.px-data-table__toolbar,
+.px-filter-bar,
+.px-bulk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.px-data-table__toolbar-start,
+.px-data-table__toolbar-end,
+.px-filter-bar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+  align-items: center;
+  min-width: 0;
+}
+
+.px-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-3);
+  min-width: min(100%, 20rem);
+}
+
+.px-kpi-grid,
+.px-stat-grid,
+.px-analytics-grid,
+.px-roadmap-grid {
+  display: grid;
+  gap: var(--px-space-4);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.px-kpi-card,
+.px-stat-card,
+.px-analytics-card,
+.px-metric-card,
+.px-roadmap-card {
+  display: grid;
+  gap: var(--px-space-3);
+  min-width: 0;
+  padding: var(--px-space-5);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+    var(--px-color-surface);
+  box-shadow: var(--px-shadow-sm);
+}
+
+.px-kpi-card {
+  grid-column: span 3 / span 3;
+}
+
+.px-stat-card {
+  grid-column: span 4 / span 4;
+}
+
+.px-analytics-card,
+.px-roadmap-card {
+  grid-column: span 6 / span 6;
+}
+
+.px-kpi-card__label,
+.px-stat-card__label,
+.px-analytics-card__label,
+.px-metric-card__label {
+  @include mixins.px-type-role('ui', 'overline');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-kpi-card__value,
+.px-stat-card__value,
+.px-metric-card__value {
+  @include mixins.px-type-role('data', 'dashboard-metric');
+
+  color: var(--px-color-text);
+}
+
+.px-kpi-card__delta,
+.px-stat-card__delta,
+.px-metric-card__delta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-1);
+}
+
+.px-kpi-card__delta--positive,
+.px-status-tracker__step.is-complete {
+  color: var(--px-color-success);
+}
+
+.px-kpi-card__delta--negative {
+  color: var(--px-color-danger);
+}
+
+.px-metric-card__compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--px-space-3);
+}
+
+.px-activity-feed,
+.px-notification-list,
+.px-status-tracker {
+  display: grid;
+  gap: var(--px-space-3);
+}
+
+.px-activity-feed__item,
+.px-notification-list__item,
+.px-status-tracker__step,
+.px-roadmap-card__item {
+  display: grid;
+  gap: var(--px-space-1);
+  min-width: 0;
+  padding: var(--px-space-4);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-lg);
+  background-color: var(--px-color-surface);
+}
+
+.px-activity-feed__title,
+.px-notification-list__title,
+.px-status-tracker__title,
+.px-roadmap-card__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  color: var(--px-color-text);
+}
+
+.px-activity-feed__meta,
+.px-notification-list__meta,
+.px-status-tracker__meta,
+.px-roadmap-card__meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-audit-log {
+  display: grid;
+  gap: var(--px-space-4);
+}
+
+.px-audit-log__table .px-table tbody td {
+  @include mixins.px-type-role('data', 'data-dense');
+}
+
+@media (max-width: 63.99rem) {
+  .px-kpi-card,
+  .px-stat-card,
+  .px-analytics-card,
+  .px-roadmap-card {
+    grid-column: span 12 / span 12;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .px-data-table__toolbar,
+  .px-filter-bar,
+  .px-bulk-actions,
+  .px-search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .px-metric-card__compare {
+    grid-template-columns: 1fr;
+  }
+}

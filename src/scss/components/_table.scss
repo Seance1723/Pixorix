@@ -1,4 +1,130 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-xl);
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-xs);
+}
+
 .px-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--px-color-text);
+}
+
+.px-table caption {
+  @include mixins.px-type-role('ui', 'helper');
+
+  padding: var(--px-space-4);
+  color: var(--px-color-text-soft);
+  text-align: start;
+}
+
+.px-table thead th {
+  @include mixins.px-type-role('data', 'data-label');
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--px-space-3) var(--px-space-4);
+  border-bottom: 1px solid var(--px-color-border);
+  background-color: var(--px-color-bg-elevated);
+  color: var(--px-color-text);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.px-table tbody td {
+  @include mixins.px-type-role('data', 'data-dense');
+
+  padding: var(--px-space-4);
+  border-bottom: 1px solid var(--px-color-border);
+  color: var(--px-color-text-muted);
+  vertical-align: middle;
+}
+
+.px-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.px-table tbody tr:hover td {
+  background-color: var(--px-color-surface-subtle);
+}
+
+.px-table--dense tbody td,
+.px-table--dense thead th {
+  padding: var(--px-space-3);
+}
+
+.px-table--striped tbody tr:nth-child(even) td {
+  background-color: var(--px-color-surface-subtle);
+}
+
+.px-table--cards {
+  display: block;
+}
+
+.px-table__cell-title {
+  @include mixins.px-type-role('ui', 'label');
+
+  color: var(--px-color-text);
+}
+
+.px-table__cell-meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.px-table__sort:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+@media (max-width: 47.99rem) {
+  .px-table--responsive thead {
+    display: none;
+  }
+
+  .px-table--responsive,
+  .px-table--responsive tbody,
+  .px-table--responsive tr,
+  .px-table--responsive td {
+    display: block;
+    width: 100%;
+  }
+
+  .px-table--responsive tr {
+    padding: var(--px-space-3);
+    border-bottom: 1px solid var(--px-color-border);
+  }
+
+  .px-table--responsive td {
+    display: grid;
+    grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+    gap: var(--px-space-3);
+    padding: var(--px-space-2) 0;
+    border-bottom: 0;
+  }
+
+  .px-table--responsive td::before {
+    @include mixins.px-type-role('ui', 'caption');
+
+    content: attr(data-label);
+    color: var(--px-color-text-soft);
+  }
 }
