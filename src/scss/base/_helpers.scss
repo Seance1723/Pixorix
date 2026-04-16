@@ -1,0 +1,26 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders';
+
+.px-visually-hidden {
+  @extend %px-visually-hidden;
+}
+
+.px-truncate {
+  @include mixins.px-truncate;
+}
+
+.px-line-clamp-2 {
+  @include mixins.px-line-clamp(2);
+}
+
+.px-line-clamp-3 {
+  @include mixins.px-line-clamp(3);
+}
+
+.px-flow > * + * {
+  margin-block-start: var(--px-space-4);
+}
+
+.px-surface-muted {
+  background-color: var(--px-color-surface-muted);
+}

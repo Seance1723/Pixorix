@@ -2,7 +2,31 @@ img,
 picture,
 video,
 canvas,
-svg {
+svg,
+iframe {
   display: block;
   max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+img {
+  border-style: none;
+}
+
+svg {
+  fill: currentColor;
+}
+
+figure {
+  display: grid;
+  gap: var(--px-space-3);
+}
+
+figcaption {
+  font-size: var(--px-type-sm);
+  color: var(--px-color-text-soft);
 }

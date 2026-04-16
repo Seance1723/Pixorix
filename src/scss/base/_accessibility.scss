@@ -1,15 +1,29 @@
+@use '../abstracts/mixins' as mixins;
+
 :focus-visible {
-  outline: var(--px-focus-ring-width, 2px) solid var(--px-focus-ring-color, currentColor);
-  outline-offset: var(--px-focus-ring-offset, 2px);
+  @include mixins.px-focus-ring;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  color: var(--px-color-text);
+  background-color: var(--px-color-selection);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

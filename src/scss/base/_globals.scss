@@ -1,0 +1,68 @@
+@use '../abstracts/functions' as fn;
+@use '../abstracts/mixins' as mixins;
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--px-font-sans);
+  font-size: var(--px-type-md);
+  font-weight: var(--px-font-weight-regular);
+  line-height: var(--px-line-height-md);
+  letter-spacing: var(--px-letter-spacing-normal);
+  color: var(--px-color-text);
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 32rem),
+    var(--px-color-bg);
+  accent-color: var(--px-color-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body[data-px-surface='muted'] {
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.06), transparent 28rem),
+    var(--px-color-surface-subtle);
+}
+
+body[data-px-scroll='locked'] {
+  overflow: hidden;
+  touch-action: none;
+}
+
+[data-px-theme] {
+  color: var(--px-color-text);
+  background-color: var(--px-color-bg);
+}
+
+main,
+[role='main'] {
+  display: block;
+}
+
+section,
+.px-section {
+  padding-block: clamp(3rem, 2.2rem + 2vw, 5rem);
+}
+
+.px-surface {
+  background-color: var(--px-color-surface);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-lg);
+  box-shadow: var(--px-shadow-sm);
+}
+
+.px-container {
+  @include mixins.px-container(xl);
+}
+
+::selection {
+  color: var(--px-color-text);
+  background-color: var(--px-color-selection);
+}
+
+body {
+  @include mixins.px-scrollbar;
+}
