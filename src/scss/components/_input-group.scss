@@ -1,4 +1,48 @@
+@use '../abstracts/mixins' as mixins;
+
 .px-input-group {
   display: flex;
   align-items: stretch;
+  width: 100%;
+}
+
+.px-input-group > .px-input,
+.px-input-group > .px-select-wrap,
+.px-input-group > .px-search,
+.px-input-group > .px-date-field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.px-input-group__addon,
+.px-input-group__button {
+  @include mixins.px-type-role('ui', 'label');
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--px-field-control-height, var(--px-control-height));
+  padding-inline: var(--px-space-3);
+  border: 1px solid var(--px-field-border, var(--px-color-border));
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text-muted);
+  white-space: nowrap;
+}
+
+.px-input-group > :first-child {
+  border-start-start-radius: var(--px-field-radius, var(--px-radius-lg));
+  border-end-start-radius: var(--px-field-radius, var(--px-radius-lg));
+}
+
+.px-input-group > :last-child {
+  border-start-end-radius: var(--px-field-radius, var(--px-radius-lg));
+  border-end-end-radius: var(--px-field-radius, var(--px-radius-lg));
+}
+
+.px-input-group > :not(:first-child) {
+  margin-inline-start: -1px;
+}
+
+.px-input-group > :not(:first-child):not(:last-child) {
+  border-radius: 0;
 }

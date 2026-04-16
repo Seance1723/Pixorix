@@ -1,0 +1,117 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders';
+
+.px-input,
+.px-textarea,
+.px-search-input,
+.px-date-field,
+.px-otp {
+  @extend %px-focusable;
+
+  width: 100%;
+  min-height: var(--px-field-control-height, var(--px-control-height));
+  padding-inline: var(--px-field-padding-x, var(--px-control-padding-x));
+  border: 1px solid var(--px-field-border, var(--px-color-border));
+  border-radius: var(--px-field-radius, var(--px-radius-lg));
+  background-color: var(--px-field-bg, var(--px-color-surface));
+  color: var(--px-field-color, var(--px-color-text));
+  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgba(2, 6, 23, 0.04));
+  transition:
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-input::placeholder,
+.px-textarea::placeholder,
+.px-search-input::placeholder,
+.px-date-field::placeholder {
+  color: var(--px-field-placeholder, var(--px-color-text-soft));
+}
+
+.px-input:hover,
+.px-textarea:hover,
+.px-search-input:hover,
+.px-date-field:hover {
+  border-color: var(--px-field-border-hover, var(--px-color-border-strong));
+}
+
+.px-input:focus-visible,
+.px-textarea:focus-visible,
+.px-search-input:focus-visible,
+.px-date-field:focus-visible {
+  @include mixins.px-focus-ring;
+
+  border-color: var(--px-field-border-focus, var(--px-color-primary));
+}
+
+.px-textarea {
+  min-height: 7.5rem;
+  padding-block: var(--px-space-3);
+  resize: vertical;
+}
+
+.px-input--readonly,
+.px-input[readonly],
+.px-textarea[readonly],
+.px-date-field[readonly] {
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text-muted);
+}
+
+.px-search {
+  position: relative;
+}
+
+.px-search__icon {
+  position: absolute;
+  inset-inline-start: var(--px-space-3);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  color: var(--px-color-text-soft);
+  pointer-events: none;
+}
+
+.px-search-input {
+  padding-inline-start: calc(var(--px-field-padding-x, var(--px-control-padding-x)) + 1.5rem);
+  -webkit-appearance: textfield;
+}
+
+::-webkit-search-decoration,
+::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.px-otp {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--px-space-2);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.px-otp__slot {
+  @include mixins.px-type-role('data', 'data-value');
+
+  display: grid;
+  place-items: center;
+  min-height: var(--px-field-control-height, var(--px-control-height));
+  border: 1px solid var(--px-field-border, var(--px-color-border));
+  border-radius: var(--px-field-radius, var(--px-radius-lg));
+  background-color: var(--px-field-bg, var(--px-color-surface));
+  color: var(--px-field-color, var(--px-color-text));
+  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgba(2, 6, 23, 0.04));
+}
+
+.px-date-field {
+  min-height: var(--px-field-control-height, var(--px-control-height));
+}
+
+@media (max-width: 47.99rem) {
+  .px-otp {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

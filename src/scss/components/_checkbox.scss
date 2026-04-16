@@ -1,0 +1,39 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-check {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--px-space-3);
+  align-items: start;
+}
+
+.px-check__input {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  margin: 0;
+  border: 1px solid var(--px-color-border-strong);
+  border-radius: var(--px-radius-sm);
+  accent-color: var(--px-color-primary);
+  box-shadow: none;
+}
+
+.px-check__input:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-check__body {
+  display: grid;
+  gap: var(--px-space-1);
+}
+
+.px-check__label {
+  @include mixins.px-type-role('ui', 'label');
+
+  color: var(--px-color-text);
+}
+
+.px-check__hint {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}

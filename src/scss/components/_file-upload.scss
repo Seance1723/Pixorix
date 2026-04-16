@@ -1,0 +1,46 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-file-upload {
+  display: grid;
+  gap: var(--px-space-3);
+}
+
+.px-file-upload__dropzone {
+  display: grid;
+  justify-items: center;
+  gap: var(--px-space-3);
+  padding: var(--px-space-6);
+  border: 1px dashed var(--px-color-border-strong);
+  border-radius: var(--px-radius-xl);
+  background-color: var(--px-color-surface-subtle);
+  text-align: center;
+}
+
+.px-file-upload__dropzone:hover {
+  border-color: var(--px-color-primary);
+  background-color: var(--px-color-surface-muted);
+}
+
+.px-file-upload__dropzone:focus-within {
+  @include mixins.px-focus-ring;
+}
+
+.px-file-upload__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  color: var(--px-color-text);
+}
+
+.px-file-upload__meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-file-upload__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

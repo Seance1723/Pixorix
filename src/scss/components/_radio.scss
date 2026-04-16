@@ -1,0 +1,37 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-radio {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--px-space-3);
+  align-items: start;
+}
+
+.px-radio__input {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  margin: 0;
+  accent-color: var(--px-color-primary);
+  box-shadow: none;
+}
+
+.px-radio__input:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-radio__body {
+  display: grid;
+  gap: var(--px-space-1);
+}
+
+.px-radio__label {
+  @include mixins.px-type-role('ui', 'label');
+
+  color: var(--px-color-text);
+}
+
+.px-radio__hint {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
+}

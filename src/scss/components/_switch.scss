@@ -1,0 +1,51 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-switch {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--px-space-3);
+  align-items: center;
+}
+
+.px-switch__input {
+  position: relative;
+  inline-size: 2.875rem;
+  block-size: 1.625rem;
+  margin: 0;
+  border: 0;
+  border-radius: var(--px-radius-round);
+  background-color: var(--px-color-border-strong);
+  appearance: none;
+  transition: background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-switch__input::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 0.1875rem;
+  inset-inline-start: 0.1875rem;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--px-radius-round);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.18);
+  transition: transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-switch__input:checked {
+  background-color: var(--px-color-primary);
+}
+
+.px-switch__input:checked::after {
+  transform: translateX(1.25rem);
+}
+
+.px-switch__input:focus-visible {
+  @include mixins.px-focus-ring;
+}
+
+.px-switch__label {
+  @include mixins.px-type-role('ui', 'label');
+
+  color: var(--px-color-text);
+}

@@ -1,0 +1,38 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-floating-label {
+  position: relative;
+}
+
+.px-floating-label > .px-input,
+.px-floating-label > .px-textarea,
+.px-floating-label > .px-select {
+  padding-block-start: calc(var(--px-space-4) + 0.45rem);
+  padding-block-end: var(--px-space-2);
+}
+
+.px-floating-label__label {
+  @include mixins.px-type-role('ui', 'helper');
+
+  position: absolute;
+  inset-inline-start: var(--px-field-padding-x, var(--px-control-padding-x));
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  color: var(--px-color-text-soft);
+  pointer-events: none;
+  transition:
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    inset var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-floating-label > .px-input:focus + .px-floating-label__label,
+.px-floating-label > .px-input:not(:placeholder-shown) + .px-floating-label__label,
+.px-floating-label > .px-textarea:focus + .px-floating-label__label,
+.px-floating-label > .px-textarea:not(:placeholder-shown) + .px-floating-label__label,
+.px-floating-label > .px-select:focus + .px-floating-label__label,
+.px-floating-label.is-filled > .px-floating-label__label {
+  inset-block-start: var(--px-space-3);
+  transform: translateY(0);
+  color: var(--px-color-primary);
+}
