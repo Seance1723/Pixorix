@@ -1,4 +1,6 @@
+@use 'sass:list';
 @use 'sass:map';
+@use 'sass:meta';
 
 @use 'functions' as fn;
 @use '../tokens' as tokens;
@@ -19,45 +21,226 @@
   }
 }
 
-@mixin px-fluid-type($token) {
-  font-size: fn.px-type-size($token);
+@mixin px-media-between($from, $until) {
+  $from-value: fn.px-breakpoint($from);
+  $until-value: fn.px-breakpoint($until);
+
+  @media (min-width: $from-value) and (max-width: $until-value) {
+    @content;
+  }
 }
 
-@mixin px-focus-ring($offset: 2px) {
-  outline: 2px solid var(--px-focus-ring-color, #{fn.px-color('focus-ring')});
-  outline-offset: $offset;
+@mixin px-media-only($breakpoint) {
+  $breakpoint-keys: map.keys(tokens.$px-breakpoints);
+  $index: list.index($breakpoint-keys, $breakpoint);
+
+  @if $index == null {
+    @error 'Unknown Pixorix breakpoint: #{$breakpoint}.';
+  }
+
+  $current: fn.px-breakpoint($breakpoint);
+
+  @if $index == list.length($breakpoint-keys) {
+    @media (min-width: $current) {
+      @content;
+    }
+  } @else {
+    $next: list.nth($breakpoint-keys, $index + 1);
+    $next-value: fn.px-breakpoint($next);
+
+    @media (min-width: $current) and (max-width: $next-value) {
+      @content;
+    }
+  }
 }
 
-@mixin px-surface($background: 'surface', $border: 'border', $shadow: 'sm') {
-  background-color: fn.px-css-var('color-#{$background}', fn.px-color($background));
-  border: 1px solid fn.px-css-var('color-#{$border}', fn.px-color($border));
-  box-shadow: fn.px-css-var('shadow-#{$shadow}', fn.px-shadow($shadow));
+@mixin px-fluid-type($min, $preferred: null, $max: null) {
+  @if $preferred == null and $max == null {
+    font-size: fn.px-css-var('type-#{$min}', fn.px-token('typography-size', $min));
+  } @else {
+    font-size: fn.px-fluid($min, $preferred, $max);
+  }
 }
 
-@mixin px-scrollbar($thumb: 'border-strong', $track: 'surface-muted') {
-  scrollbar-color: fn.px-color($thumb) fn.px-color($track);
+@mixin px-focus-ring($offset: null, $width: null, $color: null) {
+  $resolved-width: if($width == null, fn.px-css-var('focus-ring-width', 2px), $width);
+  $resolved-offset: if($offset == null, fn.px-css-var('focus-ring-offset', 2px), $offset);
+  $resolved-color: if($color == null, fn.px-css-var('focus-ring-color', fn.px-color('focus-ring')), $color);
+
+  outline: #{$resolved-width} solid #{$resolved-color};
+  outline-offset: $resolved-offset;
+}
+
+@mixin px-flex-center($direction: row, $gap: null) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+@mixin px-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin px-line-clamp($lines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+@mixin px-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin px-elevation($level: sm) {
+  box-shadow: fn.px-css-var('shadow-#{$level}', fn.px-shadow($level));
+}
+
+@mixin px-scrollbar($thumb: 'border-strong', $track: 'surface-muted', $size: 0.75rem) {
+  scrollbar-color:
+    fn.px-css-var('color-#{$thumb}', fn.px-color($thumb))
+    fn.px-css-var('color-#{$track}', fn.px-color($track));
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: $size;
+    height: $size;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: fn.px-color($thumb);
-    border: 2px solid fn.px-color($track);
-    border-radius: fn.px-radius('pill');
+    background-color: fn.px-css-var('color-#{$thumb}', fn.px-color($thumb));
+    border: 2px solid fn.px-css-var('color-#{$track}', fn.px-color($track));
+    border-radius: fn.px-css-var('radius-round', fn.px-radius('round'));
   }
 
   &::-webkit-scrollbar-track {
-    background-color: fn.px-color($track);
+    background-color: fn.px-css-var('color-#{$track}', fn.px-color($track));
+  }
+}
+
+@mixin px-container($size: xl, $gutter: 4) {
+  width: min(100% - (#{fn.px-space($gutter)} * 2), #{fn.px-container-width($size, 100%)});
+  margin-inline: auto;
+}
+
+@mixin px-interactive-states(
+  $hover-bg: null,
+  $hover-border: null,
+  $hover-color: null,
+  $active-bg: null,
+  $active-border: null,
+  $active-color: null
+) {
+  transition:
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+
+  &:hover {
+    @if $hover-bg != null {
+      background-color: $hover-bg;
+    }
+
+    @if $hover-border != null {
+      border-color: $hover-border;
+    }
+
+    @if $hover-color != null {
+      color: $hover-color;
+    }
+  }
+
+  &:active,
+  &.is-active,
+  &[aria-pressed='true'] {
+    @if $active-bg != null {
+      background-color: $active-bg;
+    }
+
+    @if $active-border != null {
+      border-color: $active-border;
+    }
+
+    @if $active-color != null {
+      color: $active-color;
+    }
+  }
+
+  &:focus-visible {
+    @include px-focus-ring;
   }
 }
 
 @mixin px-state-disabled {
-  opacity: 0.6;
+  opacity: var(--px-opacity-60, 0.6);
   cursor: not-allowed;
   pointer-events: none;
+}
+
+@mixin px-button-variant(
+  $name,
+  $bg,
+  $border: $bg,
+  $color: 'primary-contrast',
+  $hover-bg: null,
+  $hover-border: null,
+  $hover-color: null,
+  $active-bg: null,
+  $active-border: null,
+  $active-color: null
+) {
+  &--#{$name} {
+    background-color: fn.px-css-var('color-#{$bg}', fn.px-color($bg));
+    border-color: fn.px-css-var('color-#{$border}', fn.px-color($border));
+    color: fn.px-css-var('color-#{$color}', fn.px-color($color));
+
+    @include px-interactive-states(
+      if($hover-bg != null, fn.px-css-var('color-#{$hover-bg}', fn.px-color($hover-bg)), null),
+      if($hover-border != null, fn.px-css-var('color-#{$hover-border}', fn.px-color($hover-border)), null),
+      if($hover-color != null, fn.px-css-var('color-#{$hover-color}', fn.px-color($hover-color)), null),
+      if($active-bg != null, fn.px-css-var('color-#{$active-bg}', fn.px-color($active-bg)), null),
+      if($active-border != null, fn.px-css-var('color-#{$active-border}', fn.px-color($active-border)), null),
+      if($active-color != null, fn.px-css-var('color-#{$active-color}', fn.px-color($active-color)), null)
+    );
+  }
+}
+
+@mixin px-alert-variant($name, $tone, $surface-key: null) {
+  $surface-token: if($surface-key == null, '#{$tone}-surface', $surface-key);
+
+  &--#{$name} {
+    background-color: fn.px-css-var('color-#{$surface-token}', fn.px-color($surface-token));
+    border-color: fn.px-css-var('color-#{$tone}', fn.px-color($tone));
+    color: fn.px-css-var('color-#{$tone}', fn.px-color($tone));
+  }
+}
+
+@mixin px-badge-variant($name, $bg, $color, $border: null) {
+  &--#{$name} {
+    background-color: fn.px-css-var('color-#{$bg}', fn.px-color($bg));
+    color: fn.px-css-var('color-#{$color}', fn.px-color($color));
+
+    @if $border != null {
+      border-color: fn.px-css-var('color-#{$border}', fn.px-color($border));
+    }
+  }
 }
 
 @mixin px-theme-scope($theme-name) {
@@ -66,14 +249,32 @@
   }
 }
 
-@mixin px-emit-css-vars($map-value, $prefix) {
+@mixin px-theme-variable-export($map-value, $prefix) {
+  @if meta.type-of($map-value) != 'map' {
+    @error 'px-theme-variable-export expects a map.';
+  }
+
   @each $key, $value in $map-value {
     --px-#{$prefix}-#{$key}: #{$value};
   }
 }
 
-@mixin px-generate-space-utilities($property, $short) {
-  @each $key, $value in tokens.$px-spacing {
+@mixin px-emit-css-vars($map-value, $prefix) {
+  @include px-theme-variable-export($map-value, $prefix);
+}
+
+@mixin px-generate-utility($map-value, $prefix, $property, $important: true) {
+  $suffix: if($important, ' !important', '');
+
+  @each $key, $value in $map-value {
+    .#{$prefix}-#{$key} {
+      #{$property}: #{$value}#{$suffix};
+    }
+  }
+}
+
+@mixin px-generate-space-utilities($property, $short, $map-value: tokens.$px-spacing) {
+  @each $key, $value in $map-value {
     .px-#{$short}-#{$key} {
       #{$property}: #{$value} !important;
     }

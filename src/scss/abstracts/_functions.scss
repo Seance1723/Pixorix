@@ -1,44 +1,101 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
+@use 'sass:meta';
 
 @use '../tokens' as tokens;
 
-@function px-token($group, $key, $fallback: null) {
-  $token-group: null;
+@function px-map-deep-get($map-value, $keys...) {
+  $current: $map-value;
 
-  @if $group == 'breakpoints' {
-    $token-group: tokens.$px-breakpoints;
-  } @else if $group == 'containers' {
-    $token-group: tokens.$px-containers;
-  } @else if $group == 'spacing' {
-    $token-group: tokens.$px-spacing;
-  } @else if $group == 'radius' {
-    $token-group: tokens.$px-radius;
-  } @else if $group == 'motion-duration' {
-    $token-group: map.get(tokens.$px-motion, 'duration');
-  } @else if $group == 'motion-easing' {
-    $token-group: map.get(tokens.$px-motion, 'easing');
-  } @else if $group == 'motion-preset' {
-    $token-group: map.get(tokens.$px-motion, 'presets');
-  } @else if $group == 'shadow' {
-    $token-group: tokens.$px-shadows;
-  } @else if $group == 'typography-size' {
-    $token-group: map.get(tokens.$px-typography, 'size');
-  } @else if $group == 'typography-weight' {
-    $token-group: map.get(tokens.$px-typography, 'weight');
-  } @else if $group == 'line-height' {
-    $token-group: map.get(tokens.$px-typography, 'line-height');
-  } @else if $group == 'letter-spacing' {
-    $token-group: map.get(tokens.$px-typography, 'letter-spacing');
-  } @else if $group == 'font-family' {
-    $token-group: map.get(tokens.$px-typography, 'family');
-  } @else if $group == 'color' {
-    $token-group: map.get(map.get(tokens.$px-colors, 'semantic'), 'light');
+  @each $key in $keys {
+    @if meta.type-of($current) != 'map' or not map.has-key($current, $key) {
+      @return null;
+    }
+
+    $current: map.get($current, $key);
   }
 
-  @if $token-group == null {
-    @error 'Unknown Pixorix token group: #{$group}.';
+  @return $current;
+}
+
+@function px-token-group($group, $mode: light) {
+  @if $group == 'breakpoints' {
+    @return tokens.$px-breakpoints;
+  }
+
+  @if $group == 'containers' {
+    @return tokens.$px-containers;
+  }
+
+  @if $group == 'spacing' {
+    @return tokens.$px-spacing;
+  }
+
+  @if $group == 'radius' {
+    @return tokens.$px-radius;
+  }
+
+  @if $group == 'shadow' {
+    @return tokens.$px-shadows;
+  }
+
+  @if $group == 'zindex' {
+    @return tokens.$px-zindex;
+  }
+
+  @if $group == 'color' {
+    @return px-map-deep-get(tokens.$px-colors, 'semantic', $mode);
+  }
+
+  @if $group == 'raw-color' {
+    @return px-map-deep-get(tokens.$px-colors, 'raw');
+  }
+
+  @if $group == 'brand-theme' {
+    @return px-map-deep-get(tokens.$px-colors, 'brand-themes');
+  }
+
+  @if $group == 'typography-size' {
+    @return px-map-deep-get(tokens.$px-typography, 'size');
+  }
+
+  @if $group == 'font-family' {
+    @return px-map-deep-get(tokens.$px-typography, 'family');
+  }
+
+  @if $group == 'font-weight' {
+    @return px-map-deep-get(tokens.$px-typography, 'weight');
+  }
+
+  @if $group == 'line-height' {
+    @return px-map-deep-get(tokens.$px-typography, 'line-height');
+  }
+
+  @if $group == 'letter-spacing' {
+    @return px-map-deep-get(tokens.$px-typography, 'letter-spacing');
+  }
+
+  @if $group == 'motion-duration' {
+    @return px-map-deep-get(tokens.$px-motion, 'duration');
+  }
+
+  @if $group == 'motion-easing' {
+    @return px-map-deep-get(tokens.$px-motion, 'easing');
+  }
+
+  @if $group == 'motion-preset' {
+    @return px-map-deep-get(tokens.$px-motion, 'presets');
+  }
+
+  @error 'Unknown Pixorix token group: #{$group}.';
+}
+
+@function px-token($group, $key, $fallback: null, $mode: light) {
+  $token-group: px-token-group($group, $mode);
+
+  @if meta.type-of($token-group) != 'map' {
+    @error 'Pixorix token group "#{$group}" is not a map.';
   }
 
   @if map.has-key($token-group, $key) {
@@ -60,72 +117,90 @@
   @return var(--px-#{$name});
 }
 
+@function px-color($key, $fallback: null, $mode: light) {
+  @return px-token('color', $key, $fallback, $mode);
+}
+
 @function px-space($key, $fallback: null) {
   @return px-token('spacing', $key, $fallback);
 }
 
 @function px-radius($key, $fallback: null) {
+  @if $key == 'pill' {
+    $key: 'round';
+  }
+
   @return px-token('radius', $key, $fallback);
-}
-
-@function px-color($key, $fallback: null) {
-  @return px-token('color', $key, $fallback);
-}
-
-@function px-breakpoint($key, $fallback: null) {
-  @return px-token('breakpoints', $key, $fallback);
-}
-
-@function px-type-size($key, $fallback: null) {
-  @return px-token('typography-size', $key, $fallback);
 }
 
 @function px-shadow($key, $fallback: null) {
   @return px-token('shadow', $key, $fallback);
 }
 
+@function px-z-index($key, $fallback: null) {
+  @return px-token('zindex', $key, $fallback);
+}
+
 @function px-z($key, $fallback: null) {
-  @if map.has-key(tokens.$px-zindex, $key) {
-    @return map.get(tokens.$px-zindex, $key);
-  }
-
-  @if $fallback != null {
-    @return $fallback;
-  }
-
-  @error 'Unknown Pixorix z-index token: #{$key}.';
+  @return px-z-index($key, $fallback);
 }
 
-@function px-fluid($min, $preferred, $max) {
-  @return clamp(#{$min}, #{$preferred}, #{$max});
+@function px-breakpoint($key, $fallback: null) {
+  @return px-token('breakpoints', $key, $fallback);
 }
 
-@function px-map-deep-get($map-value, $keys...) {
-  $current: $map-value;
-
-  @each $key in $keys {
-    @if type-of($current) != 'map' or not map.has-key($current, $key) {
-      @return null;
-    }
-
-    $current: map.get($current, $key);
-  }
-
-  @return $current;
+@function px-container-width($key, $fallback: null) {
+  @return px-token('containers', $key, $fallback);
 }
 
 @function px-strip-unit($value) {
-  @if type-of($value) != 'number' or math.is-unitless($value) {
+  @if meta.type-of($value) != 'number' or math.is-unitless($value) {
     @return $value;
   }
 
   @return math.div($value, ($value * 0 + 1));
 }
 
-@function px-rem($value, $base: 16px) {
+@function px-to-rem($value, $base: 16px) {
+  @if meta.type-of($value) != 'number' {
+    @error 'px-to-rem expects a number.';
+  }
+
   @if math.is-unitless($value) {
     $value: $value * 1px;
   }
 
+  @if math.is-unitless($base) {
+    $base: $base * 1px;
+  }
+
   @return math.div($value, $base) * 1rem;
+}
+
+@function px-rem($value, $base: 16px) {
+  @return px-to-rem($value, $base);
+}
+
+@function rem($value, $base: 16px) {
+  @return px-to-rem($value, $base);
+}
+
+@function px-fluid($min, $preferred, $max) {
+  @return clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+@function px-font-stack($family-key, $fallback: null) {
+  $stack: px-token('font-family', $family-key, $fallback);
+
+  @if meta.type-of($stack) != 'list' {
+    @return $stack;
+  }
+
+  $result: ();
+
+  @each $font in $stack {
+    $result: list.append($result, $font, comma);
+  }
+
+  @return $result;
 }

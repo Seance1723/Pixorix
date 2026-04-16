@@ -13,6 +13,44 @@
   }
 }
 
+%px-interactive-base {
+  @extend %px-focusable;
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+%px-card-shell {
+  background-color: var(--px-color-surface);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-lg);
+  box-shadow: var(--px-shadow-sm);
+}
+
+%px-input-shell {
+  background-color: var(--px-color-surface);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-md);
+  color: var(--px-color-text);
+  min-height: var(--px-control-height);
+  padding-inline: var(--px-control-padding-x);
+}
+
+%px-overlay-shell {
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-overlay);
+  background-color: var(--px-color-overlay);
+  backdrop-filter: var(--px-backdrop-md, blur(0.875rem));
+}
+
 %px-surface {
   background-color: var(--px-color-surface);
   border: 1px solid var(--px-color-border);
