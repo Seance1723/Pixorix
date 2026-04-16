@@ -1,3 +1,29 @@
-.px-text-center {
-  text-align: center !important;
+@use 'sass:map';
+@use '../tokens' as tokens;
+@use '../abstracts/mixins' as mixins;
+
+.px-text-start { text-align: start !important; }
+.px-text-center { text-align: center !important; }
+.px-text-end { text-align: end !important; }
+.px-text-balance { text-wrap: balance !important; }
+.px-text-pretty { text-wrap: pretty !important; }
+.px-text-truncate { @include mixins.px-truncate; }
+.px-line-clamp-2 { @include mixins.px-line-clamp(2); }
+.px-line-clamp-3 { @include mixins.px-line-clamp(3); }
+
+@each $key, $value in map.get(tokens.$px-typography, size) {
+  .px-text-#{$key} {
+    font-size: var(--px-type-#{$key}, #{$value}) !important;
+  }
 }
+
+@each $key, $value in map.get(tokens.$px-typography, weight) {
+  .px-font-#{$key} {
+    font-weight: var(--px-font-weight-#{$key}, #{$value}) !important;
+  }
+}
+
+.px-leading-tight { line-height: var(--px-line-height-xs) !important; }
+.px-leading-snug { line-height: var(--px-line-height-sm) !important; }
+.px-leading-normal { line-height: var(--px-line-height-md) !important; }
+.px-leading-relaxed { line-height: var(--px-line-height-lg) !important; }

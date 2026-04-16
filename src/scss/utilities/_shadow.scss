@@ -1,0 +1,17 @@
+@use '../tokens' as tokens;
+
+.px-shadow-none { box-shadow: none !important; }
+
+@each $key, $value in tokens.$px-shadows {
+  .px-shadow-#{$key} {
+    box-shadow: var(--px-shadow-#{$key}, #{$value}) !important;
+  }
+}
+
+.px-opacity-0 { opacity: var(--px-opacity-0, 0) !important; }
+.px-opacity-10 { opacity: var(--px-opacity-10, 0.1) !important; }
+.px-opacity-20 { opacity: var(--px-opacity-20, 0.2) !important; }
+.px-opacity-40 { opacity: var(--px-opacity-40, 0.4) !important; }
+.px-opacity-60 { opacity: var(--px-opacity-60, 0.6) !important; }
+.px-opacity-80 { opacity: var(--px-opacity-80, 0.8) !important; }
+.px-opacity-100 { opacity: var(--px-opacity-100, 1) !important; }

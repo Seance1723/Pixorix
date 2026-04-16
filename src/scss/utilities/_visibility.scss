@@ -1,7 +1,23 @@
-.px-visible {
-  visibility: visible !important;
+@use '../abstracts/placeholders';
+
+.px-visible { visibility: visible !important; }
+.px-invisible { visibility: hidden !important; }
+.px-sr-only,
+.px-visually-hidden {
+  @extend %px-visually-hidden;
 }
 
-.px-invisible {
-  visibility: hidden !important;
+.px-pointer-events-none { pointer-events: none !important; }
+.px-pointer-events-auto { pointer-events: auto !important; }
+
+@media (max-width: 47.99rem) {
+  .px-hide-mobile { display: none !important; }
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .px-hide-tablet { display: none !important; }
+}
+
+@media (min-width: 64rem) {
+  .px-hide-desktop { display: none !important; }
 }

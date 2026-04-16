@@ -1,0 +1,30 @@
+@use '../tokens' as tokens;
+
+.px-w-auto { width: auto !important; }
+.px-w-full { width: 100% !important; }
+.px-w-screen { width: 100vw !important; }
+.px-w-fit { width: fit-content !important; }
+.px-min-w-0 { min-width: 0 !important; }
+.px-max-w-full { max-width: 100% !important; }
+
+.px-h-auto { height: auto !important; }
+.px-h-full { height: 100% !important; }
+.px-h-screen { height: 100dvh !important; }
+.px-min-h-0 { min-height: 0 !important; }
+.px-min-h-screen { min-height: 100dvh !important; }
+
+@each $key, $value in tokens.$px-containers {
+  .px-max-w-#{$key} {
+    max-width: var(--px-container-#{$key}, #{$value}) !important;
+  }
+}
+
+.px-aspect-auto { aspect-ratio: auto !important; }
+.px-aspect-square { aspect-ratio: 1 / 1 !important; }
+.px-aspect-video { aspect-ratio: 16 / 9 !important; }
+.px-aspect-portrait { aspect-ratio: 3 / 4 !important; }
+
+.px-object-cover { object-fit: cover !important; }
+.px-object-contain { object-fit: contain !important; }
+.px-object-fill { object-fit: fill !important; }
+.px-object-none { object-fit: none !important; }

@@ -1,0 +1,16 @@
+@use '../tokens' as tokens;
+
+.px-border-0 { border: 0 !important; }
+.px-border { border: 1px solid var(--px-color-border) !important; }
+.px-border-top { border-top: 1px solid var(--px-color-border) !important; }
+.px-border-end { border-inline-end: 1px solid var(--px-color-border) !important; }
+.px-border-bottom { border-bottom: 1px solid var(--px-color-border) !important; }
+.px-border-start { border-inline-start: 1px solid var(--px-color-border) !important; }
+.px-border-strong { border-color: var(--px-color-border-strong) !important; }
+.px-border-primary { border-color: var(--px-color-primary) !important; }
+
+@each $key, $value in tokens.$px-radius {
+  .px-radius-#{$key} {
+    border-radius: var(--px-radius-#{$key}, #{$value}) !important;
+  }
+}

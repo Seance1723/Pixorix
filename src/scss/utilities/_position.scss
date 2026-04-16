@@ -1,3 +1,18 @@
-.px-relative {
-  position: relative !important;
-}
+.px-static { position: static !important; }
+.px-relative { position: relative !important; }
+.px-absolute { position: absolute !important; }
+.px-fixed { position: fixed !important; }
+.px-sticky { position: sticky !important; }
+
+.px-top-0 { top: 0 !important; }
+.px-end-0 { inset-inline-end: 0 !important; }
+.px-bottom-0 { bottom: 0 !important; }
+.px-start-0 { inset-inline-start: 0 !important; }
+.px-inset-0 { inset: 0 !important; }
+
+.px-z-base { z-index: var(--px-z-base) !important; }
+.px-z-sticky { z-index: var(--px-z-sticky) !important; }
+.px-z-dropdown { z-index: var(--px-z-dropdown) !important; }
+.px-z-overlay { z-index: var(--px-z-overlay) !important; }
+.px-z-modal { z-index: var(--px-z-modal) !important; }
+.px-z-toast { z-index: var(--px-z-toast) !important; }

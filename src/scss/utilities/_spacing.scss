@@ -1,4 +1,26 @@
-@use '../abstracts/mixins' as mixins;
+@use '../tokens' as tokens;
 
-@include mixins.px-generate-space-utilities(margin, 'm');
-@include mixins.px-generate-space-utilities(padding, 'p');
+@each $key, $value in tokens.$px-spacing {
+  .px-m-#{$key} { margin: #{$value} !important; }
+  .px-mt-#{$key} { margin-top: #{$value} !important; }
+  .px-me-#{$key} { margin-inline-end: #{$value} !important; }
+  .px-mb-#{$key} { margin-bottom: #{$value} !important; }
+  .px-ms-#{$key} { margin-inline-start: #{$value} !important; }
+  .px-mx-#{$key} { margin-inline: #{$value} !important; }
+  .px-my-#{$key} { margin-block: #{$value} !important; }
+
+  .px-p-#{$key} { padding: #{$value} !important; }
+  .px-pt-#{$key} { padding-top: #{$value} !important; }
+  .px-pe-#{$key} { padding-inline-end: #{$value} !important; }
+  .px-pb-#{$key} { padding-bottom: #{$value} !important; }
+  .px-ps-#{$key} { padding-inline-start: #{$value} !important; }
+  .px-px-#{$key} { padding-inline: #{$value} !important; }
+  .px-py-#{$key} { padding-block: #{$value} !important; }
+
+  .px-gap-#{$key} { gap: #{$value} !important; }
+  .px-gap-x-#{$key} { column-gap: #{$value} !important; }
+  .px-gap-y-#{$key} { row-gap: #{$value} !important; }
+}
+
+.px-mx-auto { margin-inline: auto !important; }
+.px-my-auto { margin-block: auto !important; }

@@ -1,11 +1,27 @@
-.px-flex {
-  display: flex !important;
-}
+.px-flex-row { flex-direction: row !important; }
+.px-flex-column { flex-direction: column !important; }
+.px-flex-wrap { flex-wrap: wrap !important; }
+.px-flex-nowrap { flex-wrap: nowrap !important; }
 
-.px-items-center {
-  align-items: center !important;
-}
+.px-items-start { align-items: flex-start !important; }
+.px-items-center { align-items: center !important; }
+.px-items-end { align-items: flex-end !important; }
+.px-items-stretch { align-items: stretch !important; }
 
-.px-justify-between {
-  justify-content: space-between !important;
-}
+.px-justify-start { justify-content: flex-start !important; }
+.px-justify-center { justify-content: center !important; }
+.px-justify-end { justify-content: flex-end !important; }
+.px-justify-between { justify-content: space-between !important; }
+.px-justify-around { justify-content: space-around !important; }
+
+.px-self-start { align-self: flex-start !important; }
+.px-self-center { align-self: center !important; }
+.px-self-end { align-self: flex-end !important; }
+.px-self-stretch { align-self: stretch !important; }
+
+.px-order-first { order: -1 !important; }
+.px-order-last { order: 999 !important; }
+.px-order-none { order: 0 !important; }
+.px-order-1 { order: 1 !important; }
+.px-order-2 { order: 2 !important; }
+.px-order-3 { order: 3 !important; }
