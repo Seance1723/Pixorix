@@ -1,0 +1,67 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-drawer {
+  --px-drawer-width: min(100vw, 30rem);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-drawer, 780);
+  display: grid;
+  pointer-events: none;
+}
+
+.px-drawer[data-state='open'] {
+  pointer-events: auto;
+}
+
+.px-drawer--end {
+  justify-items: end;
+}
+
+.px-drawer--start {
+  justify-items: start;
+}
+
+.px-drawer__panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  inline-size: var(--px-drawer-width);
+  max-inline-size: 100vw;
+  block-size: 100dvh;
+  overflow: auto;
+  padding: var(--px-space-5);
+  border-inline-start: 1px solid var(--px-color-border);
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-xl);
+  transform: translateX(100%);
+  transition: transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard));
+}
+
+.px-drawer--start .px-drawer__panel {
+  border-inline-start: 0;
+  border-inline-end: 1px solid var(--px-color-border);
+  transform: translateX(-100%);
+}
+
+.px-drawer[data-state='open'] .px-drawer__panel {
+  transform: translateX(0);
+}
+
+.px-drawer__header,
+.px-drawer__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-3);
+}
+
+.px-drawer__title {
+  @include mixins.px-type-role('headings', 'h5');
+
+  margin: 0;
+}
+
+.px-drawer__body {
+  min-width: 0;
+  padding-block: var(--px-space-4);
+}

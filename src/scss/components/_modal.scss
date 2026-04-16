@@ -1,0 +1,107 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-overlay);
+  background-color: var(--px-color-overlay);
+  backdrop-filter: var(--px-backdrop-sm, blur(0.5rem));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard);
+}
+
+.px-overlay-backdrop[data-state='open'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.px-modal {
+  --px-modal-width: min(100%, 40rem);
+  --px-modal-padding: var(--px-space-6);
+  --px-modal-radius: var(--px-radius-2xl, var(--px-radius-xl));
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--px-z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--px-space-4);
+  pointer-events: none;
+}
+
+.px-modal[data-state='open'] {
+  pointer-events: auto;
+}
+
+.px-modal__dialog {
+  display: grid;
+  gap: var(--px-space-4);
+  inline-size: var(--px-modal-width);
+  max-inline-size: calc(100vw - 2rem);
+  max-block-size: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: var(--px-modal-padding);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-modal-radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+    var(--px-color-surface);
+  box-shadow: var(--px-shadow-xl);
+  opacity: 0;
+  transform: translateY(0.75rem) scale(0.985);
+  transition:
+    opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard));
+}
+
+.px-modal[data-state='open'] .px-modal__dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.px-modal__header,
+.px-modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.px-modal__title {
+  @include mixins.px-type-role('headings', 'h5');
+
+  margin: 0;
+  color: var(--px-color-text);
+}
+
+.px-modal__description {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  margin: 0;
+  color: var(--px-color-text-muted);
+}
+
+.px-modal__body {
+  min-width: 0;
+}
+
+.px-modal__close {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 47.99rem) {
+  .px-modal {
+    align-items: end;
+    padding: 0;
+  }
+
+  .px-modal__dialog {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    max-block-size: min(92dvh, 100%);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+}

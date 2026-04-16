@@ -1,0 +1,54 @@
+@use '../abstracts/mixins' as mixins;
+
+.px-command-palette {
+  display: grid;
+  gap: var(--px-space-3);
+  inline-size: min(100%, 44rem);
+  max-inline-size: calc(100vw - 2rem);
+  max-block-size: min(80dvh, 42rem);
+  overflow: hidden;
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-xl);
+}
+
+.px-command-palette__search {
+  padding: var(--px-space-4);
+  border-bottom: 1px solid var(--px-color-border);
+}
+
+.px-command-palette__results {
+  overflow: auto;
+  padding: var(--px-space-2);
+}
+
+.px-command-palette__group {
+  display: grid;
+  gap: var(--px-space-1);
+}
+
+.px-command-palette__label {
+  @include mixins.px-type-role('ui', 'overline');
+
+  padding: var(--px-space-2) var(--px-space-3);
+  color: var(--px-color-text-soft);
+}
+
+.px-command-palette__item {
+  @include mixins.px-type-role('ui', 'label');
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--px-space-3);
+  min-height: 2.75rem;
+  padding: 0 var(--px-space-3);
+  border-radius: var(--px-radius-lg);
+  color: var(--px-color-text);
+}
+
+.px-command-palette__item.is-active,
+.px-command-palette__item:hover {
+  background-color: var(--px-color-surface-muted);
+}

@@ -1,0 +1,45 @@
+.px-offcanvas {
+  --px-offcanvas-width: min(100vw, 22rem);
+
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: var(--px-z-drawer, 780);
+  inline-size: var(--px-offcanvas-width);
+  max-inline-size: 100vw;
+  padding: var(--px-space-4);
+  background-color: var(--px-color-surface);
+  box-shadow: var(--px-shadow-xl);
+  transform: translateX(-100%);
+  transition: transform var(--px-motion-duration-normal) var(--px-motion-easing-standard);
+}
+
+.px-offcanvas[data-state='open'] {
+  transform: translateX(0);
+}
+
+.px-offcanvas--bottom {
+  inset-inline: 0;
+  inset-block-start: auto;
+  inline-size: 100%;
+  transform: translateY(100%);
+}
+
+.px-offcanvas--bottom[data-state='open'] {
+  transform: translateY(0);
+}
+
+.px-sticky-action-bar {
+  position: sticky;
+  inset-block-end: 0;
+  z-index: var(--px-z-sticky);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--px-space-4);
+  border-top: 1px solid var(--px-color-border);
+  background-color: var(--px-color-bg-elevated);
+  backdrop-filter: var(--px-backdrop-sm, blur(0.5rem));
+}
