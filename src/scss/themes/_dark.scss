@@ -1,10 +1,25 @@
+@use './theme-api' as theme;
+
+@include theme.px-theme-scope('dark', theme.$px-theme-dark, dark);
+
 [data-px-theme='dark'] {
-  color-scheme: dark;
-  --px-color-bg: #0f1724;
-  --px-color-surface: #162133;
-  --px-color-surface-muted: #1c2a40;
-  --px-color-text: #edf2fb;
-  --px-color-text-muted: #b7c2d4;
-  --px-color-border: #314158;
-  --px-color-border-strong: #465a77;
+  --px-theme-name: 'dark';
+  --px-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.32);
+  --px-shadow-md: 0 10px 28px rgba(0, 0, 0, 0.38);
+  --px-shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.44);
+}
+
+[data-px-theme='dark'] .px-card,
+[data-px-theme='dark'] .px-modal__dialog,
+[data-px-theme='dark'] .px-drawer__panel,
+[data-px-theme='dark'] .px-offcanvas__panel,
+[data-px-theme='dark'] .px-command-palette,
+[data-px-theme='dark'] .px-notification-panel {
+  @include theme.px-component-theme-vars(
+    'surface',
+    (
+      highlight: rgba(255, 255, 255, 0.06),
+      overlay-border: rgba(255, 255, 255, 0.08)
+    )
+  );
 }

@@ -1,0 +1,28 @@
+@use './theme-api' as theme;
+
+@include theme.px-contrast-scope('high', theme.$px-theme-contrast);
+
+[data-px-contrast='high'] {
+  color-scheme: light;
+  --px-theme-contrast: 'high';
+  --px-focus-ring-width: 3px;
+  --px-focus-ring-offset: 3px;
+  --px-shadow-sm: none;
+  --px-shadow-md: none;
+  --px-shadow-lg: none;
+}
+
+[data-px-contrast='high'] .px-button,
+[data-px-contrast='high'] .px-card,
+[data-px-contrast='high'] .px-table,
+[data-px-contrast='high'] .px-field__control,
+[data-px-contrast='high'] .px-modal__dialog,
+[data-px-contrast='high'] .px-drawer__panel {
+  border-width: 2px;
+}
+
+@media (forced-colors: active) {
+  [data-px-contrast='high'] {
+    forced-color-adjust: auto;
+  }
+}

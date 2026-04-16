@@ -1,0 +1,24 @@
+@use './theme-api' as theme;
+
+:root,
+[data-px-theme='light'] {
+  color-scheme: light;
+  @include theme.px-export-theme(theme.$px-theme-default);
+
+  --px-theme-name: 'light';
+}
+
+[data-px-theme='light'] .px-card,
+[data-px-theme='light'] .px-modal__dialog,
+[data-px-theme='light'] .px-drawer__panel,
+[data-px-theme='light'] .px-offcanvas__panel,
+[data-px-theme='light'] .px-command-palette,
+[data-px-theme='light'] .px-notification-panel {
+  @include theme.px-component-theme-vars(
+    'surface',
+    (
+      highlight: rgba(255, 255, 255, 0.3),
+      overlay-border: rgba(255, 255, 255, 0.5)
+    )
+  );
+}
