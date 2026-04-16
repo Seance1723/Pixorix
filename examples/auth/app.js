@@ -1,0 +1,1 @@
+// Auth example script entry.

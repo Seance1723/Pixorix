@@ -1,0 +1,1 @@
+// Admin example script entry.
