@@ -1,3 +1,9 @@
+/*!
+ * Pixorix
+ * Full framework bundle
+ * Import order is intentional: tools -> tokens -> rendered layers -> themes -> vendors.
+ */
+
 @forward 'abstracts';
 @forward 'tokens';
 

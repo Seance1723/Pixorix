@@ -1,0 +1,43 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders';
+
+.px-button {
+  @extend %px-focusable;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--px-space-2);
+  min-height: var(--px-control-height);
+  padding-inline: var(--px-control-padding-x);
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-md);
+  background-color: var(--px-color-surface);
+  color: var(--px-color-text);
+  text-decoration: none;
+  transition:
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+
+  &--primary {
+    background-color: var(--px-color-primary);
+    border-color: var(--px-color-primary);
+    color: var(--px-color-primary-contrast);
+  }
+
+  &--sm {
+    min-height: 2.25rem;
+    padding-inline: var(--px-space-3);
+  }
+
+  &--lg {
+    min-height: 3rem;
+    padding-inline: var(--px-space-5);
+  }
+
+  &:disabled,
+  &.is-disabled {
+    @include mixins.px-state-disabled;
+  }
+}

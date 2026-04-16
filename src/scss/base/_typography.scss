@@ -1,0 +1,10 @@
+@use '../abstracts/functions' as fn;
+
+body {
+  margin: 0;
+  font-family: var(--px-font-sans, system-ui, sans-serif);
+  font-size: fn.px-type-size('md');
+  line-height: 1.5;
+  color: var(--px-color-text);
+  background-color: var(--px-color-bg);
+}

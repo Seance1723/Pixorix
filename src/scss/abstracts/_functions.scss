@@ -1,0 +1,117 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+@use '../tokens' as tokens;
+
+@function px-token($group, $key, $fallback: null) {
+  $token-group: null;
+
+  @if $group == 'breakpoints' {
+    $token-group: tokens.$px-breakpoints;
+  } @else if $group == 'spacing' {
+    $token-group: tokens.$px-spacing-scale;
+  } @else if $group == 'radii' {
+    $token-group: tokens.$px-radii;
+  } @else if $group == 'motion-duration' {
+    $token-group: map.get(tokens.$px-motion, 'duration');
+  } @else if $group == 'motion-easing' {
+    $token-group: map.get(tokens.$px-motion, 'easing');
+  } @else if $group == 'elevation' {
+    $token-group: tokens.$px-elevation;
+  } @else if $group == 'typography-size' {
+    $token-group: map.get(tokens.$px-typography, 'size');
+  } @else if $group == 'typography-weight' {
+    $token-group: map.get(tokens.$px-typography, 'weight');
+  } @else if $group == 'color' {
+    $token-group: map.get(tokens.$px-colors, 'semantic');
+  }
+
+  @if $token-group == null {
+    @error 'Unknown Pixorix token group: #{$group}.';
+  }
+
+  @if map.has-key($token-group, $key) {
+    @return map.get($token-group, $key);
+  }
+
+  @if $fallback != null {
+    @return $fallback;
+  }
+
+  @error 'Unknown Pixorix token "#{$key}" in group "#{$group}".';
+}
+
+@function px-css-var($name, $fallback: null) {
+  @if $fallback != null {
+    @return var(--px-#{$name}, #{$fallback});
+  }
+
+  @return var(--px-#{$name});
+}
+
+@function px-space($key, $fallback: null) {
+  @return px-token('spacing', $key, $fallback);
+}
+
+@function px-radius($key, $fallback: null) {
+  @return px-token('radii', $key, $fallback);
+}
+
+@function px-color($key, $fallback: null) {
+  @return px-token('color', $key, $fallback);
+}
+
+@function px-breakpoint($key, $fallback: null) {
+  @return px-token('breakpoints', $key, $fallback);
+}
+
+@function px-type-size($key, $fallback: null) {
+  @return px-token('typography-size', $key, $fallback);
+}
+
+@function px-z($key, $fallback: null) {
+  @if map.has-key(tokens.$px-z-index, $key) {
+    @return map.get(tokens.$px-z-index, $key);
+  }
+
+  @if $fallback != null {
+    @return $fallback;
+  }
+
+  @error 'Unknown Pixorix z-index token: #{$key}.';
+}
+
+@function px-fluid($min, $preferred, $max) {
+  @return clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+@function px-map-deep-get($map-value, $keys...) {
+  $current: $map-value;
+
+  @each $key in $keys {
+    @if type-of($current) != 'map' or not map.has-key($current, $key) {
+      @return null;
+    }
+
+    $current: map.get($current, $key);
+  }
+
+  @return $current;
+}
+
+@function px-strip-unit($value) {
+  @if type-of($value) != 'number' or math.is-unitless($value) {
+    @return $value;
+  }
+
+  @return math.div($value, ($value * 0 + 1));
+}
+
+@function px-rem($value, $base: 16px) {
+  @if math.is-unitless($value) {
+    $value: $value * 1px;
+  }
+
+  @return math.div($value, $base) * 1rem;
+}

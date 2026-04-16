@@ -1,0 +1,8 @@
+.px-grid {
+  --px-grid-columns: 1;
+  --px-grid-gap: var(--px-space-6);
+
+  display: grid;
+  grid-template-columns: repeat(var(--px-grid-columns), minmax(0, 1fr));
+  gap: var(--px-grid-gap);
+}

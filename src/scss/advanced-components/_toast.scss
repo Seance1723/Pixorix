@@ -1,0 +1,7 @@
+.px-toast-stack {
+  position: fixed;
+  inset-inline-end: var(--px-space-4);
+  inset-block-end: var(--px-space-4);
+  display: grid;
+  gap: var(--px-space-3);
+}

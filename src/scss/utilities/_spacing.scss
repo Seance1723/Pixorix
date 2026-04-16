@@ -1,0 +1,4 @@
+@use '../abstracts/mixins' as mixins;
+
+@include mixins.px-generate-space-utilities(margin, 'm');
+@include mixins.px-generate-space-utilities(padding, 'p');

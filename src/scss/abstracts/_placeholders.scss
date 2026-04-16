@@ -1,0 +1,32 @@
+%px-control-reset {
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+}
+
+%px-focusable {
+  &:focus-visible {
+    outline: 2px solid var(--px-focus-ring, currentColor);
+    outline-offset: 2px;
+  }
+}
+
+%px-surface {
+  background-color: var(--px-color-surface);
+  border: 1px solid var(--px-color-border);
+  box-shadow: var(--px-shadow-sm);
+}
+
+%px-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

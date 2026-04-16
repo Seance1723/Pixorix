@@ -1,0 +1,7 @@
+.px-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--px-space-6);
+}

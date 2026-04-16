@@ -1,0 +1,22 @@
+$px-typography: (
+  size: (
+    xs: clamp(0.75rem, 0.73rem + 0.08vw, 0.8125rem),
+    sm: clamp(0.875rem, 0.84rem + 0.12vw, 0.9375rem),
+    md: clamp(1rem, 0.96rem + 0.16vw, 1.0625rem),
+    lg: clamp(1.125rem, 1.06rem + 0.24vw, 1.25rem),
+    xl: clamp(1.25rem, 1.14rem + 0.4vw, 1.5rem),
+    2xl: clamp(1.5rem, 1.32rem + 0.72vw, 2rem),
+    3xl: clamp(1.875rem, 1.6rem + 1vw, 2.5rem)
+  ),
+  weight: (
+    regular: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700
+  ),
+  line-height: (
+    tight: 1.2,
+    normal: 1.5,
+    relaxed: 1.7
+  )
+) !default;

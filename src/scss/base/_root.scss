@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+@use '../abstracts/mixins' as mixins;
+@use '../tokens' as tokens;
+
+:root,
+[data-px-theme='light'] {
+  @include mixins.px-emit-css-vars(map.get(tokens.$px-colors, 'semantic'), 'color');
+  @include mixins.px-emit-css-vars(tokens.$px-spacing-scale, 'space');
+  @include mixins.px-emit-css-vars(tokens.$px-radii, 'radius');
+  @include mixins.px-emit-css-vars(tokens.$px-elevation, 'shadow');
+  @include mixins.px-emit-css-vars(map.get(tokens.$px-motion, 'duration'), 'motion-duration');
+  @include mixins.px-emit-css-vars(map.get(tokens.$px-motion, 'easing'), 'motion-easing');
+  @include mixins.px-emit-css-vars(map.get(tokens.$px-typography, 'size'), 'type');
+
+  --px-control-height: #{map.get(map.get(tokens.$px-density, 'default'), 'control-height')};
+  --px-control-padding-x: #{map.get(map.get(tokens.$px-density, 'default'), 'control-padding-x')};
+}

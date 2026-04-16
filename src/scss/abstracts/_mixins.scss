@@ -1,0 +1,81 @@
+@use 'sass:map';
+
+@use 'functions' as fn;
+@use '../tokens' as tokens;
+
+@mixin px-media-up($breakpoint) {
+  $value: fn.px-breakpoint($breakpoint);
+
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin px-media-down($breakpoint) {
+  $value: fn.px-breakpoint($breakpoint);
+
+  @media (max-width: $value) {
+    @content;
+  }
+}
+
+@mixin px-fluid-type($token) {
+  font-size: fn.px-type-size($token);
+}
+
+@mixin px-focus-ring($offset: 2px) {
+  outline: 2px solid fn.px-css-var('focus-ring', fn.px-color('focus-ring'));
+  outline-offset: $offset;
+}
+
+@mixin px-surface($background: 'surface', $border: 'border', $shadow: 'sm') {
+  background-color: fn.px-css-var('color-#{$background}', fn.px-color($background));
+  border: 1px solid fn.px-css-var('color-#{$border}', fn.px-color($border));
+  box-shadow: fn.px-css-var('shadow-#{$shadow}', fn.px-token('elevation', $shadow));
+}
+
+@mixin px-scrollbar($thumb: 'border-strong', $track: 'surface-muted') {
+  scrollbar-color: fn.px-color($thumb) fn.px-color($track);
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: fn.px-color($thumb);
+    border: 2px solid fn.px-color($track);
+    border-radius: fn.px-radius('pill');
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: fn.px-color($track);
+  }
+}
+
+@mixin px-state-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@mixin px-theme-scope($theme-name) {
+  [data-px-theme='#{$theme-name}'] & {
+    @content;
+  }
+}
+
+@mixin px-emit-css-vars($map-value, $prefix) {
+  @each $key, $value in $map-value {
+    --px-#{$prefix}-#{$key}: #{$value};
+  }
+}
+
+@mixin px-generate-space-utilities($property, $short) {
+  @each $key, $value in tokens.$px-spacing-scale {
+    .px-#{$short}-#{$key} {
+      #{$property}: #{$value} !important;
+    }
+  }
+}
