@@ -1,0 +1,133 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.themes-docs-page {
+  display: grid;
+  gap: 2rem;
+}
+
+.themes-docs-intro {
+  padding: 1rem 1.1rem;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.84);
+  color: $color-text-muted;
+}
+
+.theme-doc-section {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(217, 226, 239, 0.85);
+}
+
+.theme-doc-section__header {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 52rem;
+}
+
+.theme-doc-section__header p:not(.eyebrow) {
+  color: $color-text-muted;
+}
+
+.theme-preview__tokens,
+.theme-preview__vars,
+.theme-preview__surface-grid,
+.theme-preview__semantic,
+.theme-preview__branding {
+  width: 100%;
+}
+
+.theme-preview__tokens,
+.theme-preview__vars,
+.theme-preview__surface-grid,
+.theme-preview__semantic,
+.theme-preview__branding {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.theme-preview__tokens,
+.theme-preview__vars,
+.theme-preview__semantic,
+.theme-preview__branding {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.theme-preview__token-card,
+.theme-preview__panel,
+.theme-preview__swatch,
+.theme-preview__brand {
+  @include panel;
+  display: grid;
+  place-items: center;
+  min-height: 5rem;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.theme-preview__token-card span,
+.theme-preview__panel span,
+.theme-preview__brand span {
+  color: $color-text-muted;
+}
+
+.theme-preview__swatch--accent {
+  background: linear-gradient(135deg, $color-accent, $color-accent-strong);
+  color: #fff;
+}
+
+.theme-preview__swatch--surface {
+  background: $color-surface-muted;
+}
+
+.theme-preview__swatch--border {
+  background: rgba(217, 226, 239, 0.85);
+}
+
+.theme-preview__panel--brand {
+  background: linear-gradient(135deg, #ff6b35, #f97316);
+  color: #fff;
+}
+
+.theme-preview__panel--dark {
+  background: linear-gradient(180deg, #112034, #0b1625);
+  color: #f8fbff;
+}
+
+.theme-preview__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding-inline: 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.theme-preview__badge--info {
+  background: rgba(37, 99, 235, 0.14);
+  color: #1d4ed8;
+}
+
+.theme-preview__badge--success {
+  background: rgba(13, 148, 136, 0.14);
+  color: $color-accent-strong;
+}
+
+.theme-preview__badge--warning {
+  background: rgba(234, 88, 12, 0.14);
+  color: #c2410c;
+}
+
+.theme-preview__brand--default {
+  background: linear-gradient(135deg, $color-accent, $color-accent-strong);
+  color: #fff;
+}
+
+.theme-preview__brand--custom {
+  background: linear-gradient(135deg, #ff6b35, #f97316);
+  color: #fff;
+}
