@@ -1,0 +1,135 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.motion-docs-page {
+  display: grid;
+  gap: 2rem;
+}
+
+.motion-docs-intro {
+  padding: 1rem 1.1rem;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.84);
+  color: $color-text-muted;
+}
+
+.motion-doc-section {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(217, 226, 239, 0.85);
+}
+
+.motion-doc-section__header {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 52rem;
+}
+
+.motion-doc-section__header p:not(.eyebrow) {
+  color: $color-text-muted;
+}
+
+.motion-preview,
+.motion-preview--reveal,
+.motion-preview--cards,
+.motion-preview--button,
+.motion-preview--section {
+  width: 100%;
+}
+
+.motion-preview {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.motion-preview__surface,
+.motion-preview__card,
+.motion-preview__section-block,
+.motion-preview__static {
+  @include panel;
+}
+
+.motion-preview__surface,
+.motion-preview__static {
+  display: grid;
+  place-items: center;
+  min-height: 4.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.motion-preview__static {
+  min-height: 7rem;
+  color: $color-text-muted;
+}
+
+.motion-preview--cards {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.motion-preview__card {
+  display: grid;
+  gap: 0.65rem;
+  min-height: 11rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  outline: none;
+}
+
+.motion-preview__card p:not(.eyebrow) {
+  color: $color-text-muted;
+}
+
+.motion-preview--button {
+  display: grid;
+  place-items: center;
+  min-height: 12rem;
+}
+
+.motion-preview__button {
+  min-height: 3rem;
+  padding-inline: 1.35rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, $color-accent, $color-accent-strong);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 18px 34px -22px rgba(13, 148, 136, 0.65);
+}
+
+.motion-preview--section {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.motion-preview__section-block {
+  min-height: 5.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.motion-preview__section-block--hero {
+  min-height: 7rem;
+  background:
+    radial-gradient(circle at top right, rgba(13, 148, 136, 0.14), transparent 30%),
+    rgba(255, 255, 255, 0.94);
+}
+
+@media (max-width: 900px) {
+  .motion-preview--cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-preview__card,
+  .motion-preview__button {
+    transition: none;
+  }
+}
