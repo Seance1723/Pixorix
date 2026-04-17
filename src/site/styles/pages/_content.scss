@@ -1,0 +1,69 @@
+.content-page,
+.doc-page,
+.not-found-page {
+  display: grid;
+  gap: 2rem;
+}
+
+.page-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid var(--site-border);
+}
+
+.page-hero__copy p {
+  max-width: 48rem;
+  color: var(--site-text-muted);
+}
+
+.page-hero__meta {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.page-hero__meta article {
+  min-width: 12rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--site-radius-md);
+  border: 1px solid var(--site-border);
+  background: #f8f9fa;
+}
+
+.page-hero__meta strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.filter-chip {
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--site-border);
+  background: transparent;
+  color: inherit;
+}
+
+.filter-chip.is-active {
+  background: var(--site-accent-soft);
+  border-color: #b6d4fe;
+  color: var(--site-accent-strong);
+}
+
+.not-found-page {
+  min-height: 60vh;
+  align-content: center;
+}
+
+@media (max-width: 960px) {
+  .page-hero {
+    grid-template-columns: 1fr;
+  }
+}

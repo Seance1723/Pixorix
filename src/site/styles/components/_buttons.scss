@@ -1,0 +1,32 @@
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.site-button:hover {
+  transform: translateY(-1px);
+}
+
+.site-button--primary {
+  background: linear-gradient(135deg, var(--site-accent) 0%, var(--site-accent-strong) 100%);
+  color: #03111f;
+}
+
+.site-button--secondary {
+  background: transparent;
+  color: var(--site-text);
+  border-color: var(--site-border-strong);
+}
+
+.site-button--ghost {
+  background: var(--site-accent-soft);
+  color: var(--site-text);
+  border-color: transparent;
+}

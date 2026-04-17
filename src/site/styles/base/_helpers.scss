@@ -1,0 +1,76 @@
+.site-main,
+.site-header__inner,
+.site-footer__top,
+.site-footer__bottom,
+.site-section,
+.page-hero,
+.content-page,
+.hero-section,
+.not-found-page {
+  width: var(--site-container);
+  margin-inline: auto;
+}
+
+.site-shell {
+  min-height: 100vh;
+}
+
+.site-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 90;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: var(--site-accent-strong);
+  color: #fff;
+}
+
+.site-skip-link:focus {
+  top: 1rem;
+}
+
+.site-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--site-accent);
+  font-weight: 600;
+}
+
+.site-eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.prose-block,
+.content-card,
+.doc-summary-card,
+.highlight-block,
+.feature-card,
+.example-card,
+.preview-frame,
+.code-block,
+.comparison-block__row,
+.cta-block,
+.doc-pagination__card,
+.doc-callout,
+.hero-metric,
+.hero-frame,
+.docs-sidebar,
+.docs-toc {
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  box-shadow: var(--site-shadow);
+}
+
+:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+}

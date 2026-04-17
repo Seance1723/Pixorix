@@ -1,0 +1,140 @@
+.site-main {
+  padding-block: 1.5rem 4rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  border-bottom: 1px solid var(--site-border);
+  background: #fff;
+}
+
+.site-header__inner,
+.site-footer__top,
+.site-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.site-header__inner {
+  min-height: 3.75rem;
+}
+
+.site-brand,
+.site-brand__copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.site-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  background: var(--site-accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.site-brand__copy {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.site-brand__copy small {
+  color: var(--site-text-soft);
+}
+
+.site-header__nav,
+.site-header__actions,
+.mobile-nav__actions,
+.page-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-footer {
+  padding-block: 2rem 3rem;
+  border-top: 1px solid var(--site-border);
+  background: #f8f9fa;
+}
+
+.site-footer__top {
+  align-items: flex-start;
+  padding-block: 1.5rem;
+}
+
+.site-footer__intro {
+  max-width: 26rem;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.site-footer__grid h3 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.site-footer__grid ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.mobile-nav {
+  display: none;
+  border-top: 1px solid var(--site-border);
+}
+
+@media (max-width: 960px) {
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-footer__top,
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .mobile-nav {
+    display: none;
+    width: var(--site-container);
+    margin-inline: auto;
+    padding-bottom: 1.2rem;
+  }
+
+  .mobile-nav.is-open {
+    display: grid;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header__actions .site-button,
+  .site-header__actions .px-button {
+    display: none;
+  }
+
+  .site-header__inner {
+    min-height: 4.8rem;
+  }
+}

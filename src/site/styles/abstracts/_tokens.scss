@@ -1,0 +1,24 @@
+:root {
+  --site-bg: #fff;
+  --site-bg-light: #fff;
+  --site-surface: #fff;
+  --site-surface-strong: #f8f9fa;
+  --site-surface-soft: #f8f9fa;
+  --site-border: #dee2e6;
+  --site-border-strong: #cbd3da;
+  --site-text: #212529;
+  --site-text-muted: #495057;
+  --site-text-soft: #6c757d;
+  --site-accent: #0d6efd;
+  --site-accent-strong: #0a58ca;
+  --site-accent-soft: rgba(13, 110, 253, 0.08);
+  --site-success: #48d5a6;
+  --site-warning: #ffca5c;
+  --site-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.04);
+  --site-radius-lg: 1rem;
+  --site-radius-md: 0.75rem;
+  --site-radius-sm: 0.5rem;
+  --site-container: min(1140px, calc(100vw - 2rem));
+  --site-docs-container: min(1320px, calc(100vw - 2rem));
+  --site-space-section: clamp(2.5rem, 4vw, 4.5rem);
+}

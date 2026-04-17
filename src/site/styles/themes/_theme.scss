@@ -1,0 +1,8 @@
+body.menu-open,
+body.drawer-open {
+  overflow: hidden;
+}
+
+[data-reveal] {
+  will-change: transform, opacity;
+}
