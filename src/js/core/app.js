@@ -5,6 +5,7 @@ import { createResizablePanels } from '../advanced-components/resizable-panels.j
 import { createSegmentedControl } from '../advanced-components/segmented-control.js';
 import { createTestimonialSlider } from '../advanced-components/testimonial-slider.js';
 import { createWizard } from '../advanced-components/wizard.js';
+import { createButton } from '../components/button.js';
 import { createDrawer } from '../components/drawer.js';
 import { createModal } from '../components/modal.js';
 import { initHoverEffects } from '../motion/hover-effects.js';
@@ -27,6 +28,10 @@ function createDefaultRegistry() {
   const registry = createComponentRegistry();
 
   registry
+    .register('button', {
+      selector: '[data-px-button-split]',
+      init: createButton
+    })
     .register('modal', {
       selector: '[data-px-modal], .px-modal[data-px-component="modal"]',
       init: createModal

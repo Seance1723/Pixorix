@@ -1,0 +1,47 @@
+export function createComponentName(element, context = {}) {
+  if (!element) {
+    return null;
+  }
+
+  const root = element;
+  const triggers = [...root.querySelectorAll('[data-px-trigger]')];
+  const targetSelector = root.dataset.pxTarget || null;
+  const target = targetSelector ? document.querySelector(targetSelector) : null;
+  let destroyed = false;
+
+  function setState(nextState) {
+    root.dataset.state = nextState;
+
+    if (target) {
+      target.dataset.state = nextState;
+    }
+  }
+
+  function onTriggerClick() {
+    if (destroyed) {
+      return;
+    }
+
+    const nextState = root.dataset.state === 'open' ? 'closed' : 'open';
+    setState(nextState);
+    root.dispatchEvent(
+      new CustomEvent('px:component-name:toggle', {
+        bubbles: true,
+        detail: {
+          state: nextState,
+          context
+        }
+      })
+    );
+  }
+
+  triggers.forEach((trigger) => trigger.addEventListener('click', onTriggerClick));
+
+  return {
+    setState,
+    destroy() {
+      destroyed = true;
+      triggers.forEach((trigger) => trigger.removeEventListener('click', onTriggerClick));
+    }
+  };
+}

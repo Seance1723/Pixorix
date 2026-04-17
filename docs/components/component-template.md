@@ -1,101 +1,199 @@
 # Pixorix Component Doc Template
 
-## Title
+Use this file as the required structure for every public Pixorix component doc.
+
+## 1. Title
+
+`Component name`
 
 One-line purpose statement.
 
-## Preview
+## 2. Purpose
+
+- What the component is for
+- Where it belongs in product UI
+- What it should not be used for
+
+## 3. UX Goal
+
+- What user outcome the component supports
+- How it should feel in use
+- Why this component exists instead of a simpler primitive
+
+## 4. Preview
 
 Show:
+
 - default example
 - realistic product example
+- variant gallery if needed
 
-## When To Use
-
-- use case 1
-- use case 2
-- avoid when ...
-
-## Structure
+## 5. Structure
 
 Document:
+
 - root class
-- child elements
+- public child elements
 - required wrappers
+- optional child elements
 - semantic HTML recommendation
 
-## Usage
-
-```html
-<!-- minimal recommended example -->
-```
-
-## Variants
+## 6. Visual Variants
 
 - default
-- semantic variants
-- variant purpose guidance
+- supported visual variants
+- when each variant should be used
 
-## Sizes
+## 7. Semantic Variants
 
-- supported sizes
+- success if relevant
+- warning if relevant
+- danger if relevant
+- info if relevant
+
+If not relevant, explicitly say so.
+
+## 8. Sizes
+
+- `xs` if relevant
+- `sm`
+- default
+- `lg`
+- `xl` if relevant
 - density notes
 
-## States
+## 9. States
 
 - default
 - hover
 - focus-visible
 - active
 - selected if relevant
+- expanded or open if relevant
 - disabled
 - loading if relevant
-- error/success if relevant
+- empty if relevant
+- error, success, warning if relevant
 
-## Responsive Behavior
+## 10. Responsive Behavior
 
 - mobile behavior
 - tablet behavior
 - desktop behavior
-- odd/even layout notes if relevant
+- overflow behavior if relevant
+- layout adaptation notes
 
-## Accessibility
+## 11. Dark Mode Behavior
+
+- token inheritance
+- component-specific compensation if any
+- contrast notes
+
+## 12. Accessibility Requirements
 
 - required semantic structure
 - ARIA requirements
 - keyboard rules
 - screen-reader notes
+- hit area notes if relevant
 
-## Theming
+### Accessibility Checklist
 
-- CSS variables used
-- component hooks
-- dark mode notes
-- contrast notes
+- [ ] Uses correct semantic HTML for the component role
+- [ ] Keyboard interaction is fully supported
+- [ ] `:focus-visible` state is obvious and meets contrast expectations
+- [ ] Interactive targets meet practical hit-area sizing
+- [ ] Labels, descriptions, and status text are programmatically associated
+- [ ] ARIA is used only where native semantics are insufficient
+- [ ] State changes are exposed through native or ARIA attributes
+- [ ] Disabled, loading, success, warning, and error states are perceivable beyond color alone
+- [ ] Motion honors `prefers-reduced-motion`
+- [ ] Screen-reader output is correct for dynamic behavior
 
-## JS Behavior
+## 13. Cross-Browser Considerations
+
+- browser-sensitive CSS
+- browser-sensitive JS
+- fallback notes
+
+### Cross-Browser Checklist
+
+- [ ] Chrome and Edge layout verified
+- [ ] Firefox spacing and focus rendering verified
+- [ ] Safari and iOS Safari overflow, sticky, and transform behavior verified
+- [ ] Form-control appearance tested where native UI is involved
+- [ ] Touch interaction verified on mobile browsers
+- [ ] Reduced-motion fallback verified without GSAP enhancement
+- [ ] No component behavior depends on unsupported selectors or APIs without fallback
+- [ ] Visual regressions checked with dark mode enabled
+
+## 14. HTML Usage
+
+```html
+<!-- minimal recommended example -->
+```
+
+## 15. React Usage
+
+```jsx
+// className and data-px-* hooks should mirror the HTML API
+```
+
+## 16. Angular Usage
+
+```html
+<!-- Angular template example using the same class and data hook contract -->
+```
+
+## 17. Vue Usage
+
+```vue
+<!-- Vue template example using the same class and data hook contract -->
+```
+
+## 18. SCSS Architecture
+
+Document:
+
+- imported abstracts
+- local CSS variables
+- variants
+- sizes
+- states
+- responsive overrides
+- dark theme compensation if any
+
+## 19. JS Architecture
 
 - JS required or optional
 - data attribute API
 - lifecycle hooks
+- emitted events
 - destroy and re-init notes
 
-## Motion Notes
+## 20. GSAP Enhancement Hooks
 
 - supported presets
+- target hooks
 - reduced-motion fallback
 
-## Browser Notes
+If not relevant, explicitly say the component ships without GSAP enhancement.
 
-- supported behavior
-- caveats
-
-## Customization Hooks
+## 21. Developer Customization Hooks
 
 - local CSS variables
 - modifier classes
+- data attributes
+- utility pairing guidance
 
-## Related Components
+## 22. Lightweight Optimization Notes
+
+- import guidance
+- variant cost notes
+- JS payload notes
+- bloat avoidance notes
+
+## 23. Related Components
 
 - related component 1
 - related component 2

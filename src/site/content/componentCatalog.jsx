@@ -3,15 +3,34 @@ import { useState } from 'react';
 function ButtonsPreview() {
   return (
     <div className="demo-stack">
-      <div className="px-button-group">
-        <button className="px-button px-button--primary" type="button">Primary</button>
-        <button className="px-button px-button--secondary" type="button">Secondary</button>
-        <button className="px-button px-button--soft" type="button">Soft</button>
-        <button className="px-button px-button--ghost" type="button">Ghost</button>
+      <div className="px-button-group px-button-group--responsive">
+        <button className="px-button px-button--primary px-button--gradient" type="button">
+          <span className="px-button__icon" aria-hidden="true">+</span>
+          <span className="px-button__label">Create</span>
+        </button>
+        <button className="px-button px-button--secondary px-button--outline" type="button">Secondary</button>
+        <button className="px-button px-button--success px-button--soft" type="button">Success</button>
+        <button className="px-button px-button--neutral px-button--ghost" type="button">Ghost</button>
       </div>
       <div className="px-button-group">
-        <button className="px-button px-button--danger px-button--sm" type="button">Delete</button>
-        <button className="px-button px-button--primary px-button--lg" type="button">Launch workspace</button>
+        <div className="px-split-button" data-px-button-split data-state="closed">
+          <button className="px-button px-button--dark px-button--elevated" type="button">Publish</button>
+          <button
+            className="px-button px-button--dark px-button--elevated px-split-button__toggle px-button--icon-only"
+            type="button"
+            data-px-button-toggle
+            aria-label="Open publish options"
+            aria-controls="catalog-publish-menu"
+            aria-expanded="false"
+          >
+            <span className="px-button__icon" aria-hidden="true">▾</span>
+          </button>
+          <div id="catalog-publish-menu" hidden />
+        </div>
+        <button className="px-button px-button--danger px-button--soft px-button--sm" type="button">Delete</button>
+        <button className="px-button px-button--primary px-button--pill px-fab px-button--icon-only" type="button" aria-label="Quick add">
+          <span className="px-button__icon" aria-hidden="true">+</span>
+        </button>
       </div>
     </div>
   );
@@ -297,10 +316,15 @@ function OverlayPreview() {
   );
 }
 
-const buttonsCode = `<div class="px-button-group">
-  <button class="px-button px-button--primary">Primary</button>
-  <button class="px-button px-button--secondary">Secondary</button>
-  <button class="px-button px-button--soft">Soft</button>
+const buttonsCode = `<div class="px-button-group px-button-group--responsive">
+  <button class="px-button px-button--primary px-button--gradient" type="button">
+    <span class="px-button__icon" aria-hidden="true">+</span>
+    <span class="px-button__label">Create</span>
+  </button>
+  <button class="px-button px-button--secondary px-button--outline" type="button">Secondary</button>
+  <button class="px-button px-button--neutral px-button--ghost px-button--icon-only" type="button" aria-label="Open filters">
+    <span class="px-button__icon" aria-hidden="true">≡</span>
+  </button>
 </div>`;
 
 const cardsCode = `<article class="px-card px-card--interactive">
@@ -329,10 +353,10 @@ export const componentCatalogSections = [
         slug: 'buttons',
         category: 'Actions',
         title: 'Buttons',
-        description: 'Primary, secondary, soft, ghost, and danger actions with size variants.',
-        review: 'Strong defaults and sizing make Pixorix buttons suitable for both dense tools and marketing surfaces.',
-        notes: ['Use primary for one dominant action per region.', 'Secondary and ghost variants work best for supporting actions.', 'Block and size modifiers help in mobile or utility-heavy contexts.'],
-        accessibility: 'Use real button elements for actions, preserve visible labels, and avoid icon-only buttons without accessible naming.',
+        description: 'Tone, appearance, size, shape, split, loading, and floating action patterns built on one token-driven button contract.',
+        review: 'The system is stronger now because tone and appearance are composable, which expands coverage without turning the button layer into a pile of one-off variants.',
+        notes: ['Use one dominant tone in each action cluster.', 'Compose tone with appearance classes instead of inventing custom button copies.', 'Use icon-only, split, and FAB shells only when their interaction cost is justified.'],
+        accessibility: 'Use real button elements for actions, keep icon-only buttons labelled, and expose loading or split-toggle state with the relevant ARIA attributes.',
         code: buttonsCode,
         preview: ButtonsPreview
       },

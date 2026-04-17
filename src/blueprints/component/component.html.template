@@ -1,0 +1,24 @@
+<article
+  class="px-component-name px-component-name--primary"
+  data-px-component="component-name"
+  data-state="idle"
+>
+  <div class="px-component-name__media" aria-hidden="true">
+    <!-- icon, avatar, image, or status -->
+  </div>
+
+  <div class="px-component-name__body">
+    <h3 class="px-component-name__title">Component title</h3>
+    <p class="px-component-name__meta">Supporting text or component metadata.</p>
+  </div>
+
+  <button
+    type="button"
+    class="px-button px-button--soft px-button--sm"
+    data-px-trigger
+    aria-controls="component-panel"
+    aria-expanded="false"
+  >
+    Action
+  </button>
+</article>

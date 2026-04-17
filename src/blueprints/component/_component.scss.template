@@ -1,0 +1,110 @@
+@use '../../scss/abstracts/functions' as fn;
+@use '../../scss/abstracts/mixins';
+@use '../../scss/abstracts/placeholders';
+
+.px-component-name {
+  --px-component-bg: var(--px-color-surface);
+  --px-component-border: var(--px-color-border);
+  --px-component-color: var(--px-color-text);
+  --px-component-radius: var(--px-radius-lg);
+  --px-component-padding-x: var(--px-space-4);
+  --px-component-padding-y: var(--px-space-3);
+  --px-component-gap: var(--px-space-2);
+  --px-component-shadow: var(--px-shadow-sm);
+
+  @include mixins.px-type-role('ui', 'body');
+
+  display: flex;
+  align-items: center;
+  gap: var(--px-component-gap);
+  padding-block: var(--px-component-padding-y);
+  padding-inline: var(--px-component-padding-x);
+  border: 1px solid var(--px-component-border);
+  border-radius: var(--px-component-radius);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0))
+    var(--px-component-bg);
+  box-shadow: var(--px-component-shadow);
+  color: var(--px-component-color);
+
+  @include mixins.px-interactive-states(
+    var(--px-component-bg),
+    var(--px-component-border),
+    var(--px-component-color),
+    var(--px-component-bg),
+    var(--px-component-border),
+    var(--px-component-color)
+  );
+
+  &__media {
+    flex: 0 0 auto;
+  }
+
+  &__body {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  &__title {
+    @include mixins.px-type-role('ui', 'label-strong');
+    margin: 0;
+  }
+
+  &__meta {
+    @include mixins.px-type-role('ui', 'caption');
+    margin: 0;
+    color: var(--px-color-text-muted);
+  }
+
+  &--primary {
+    --px-component-bg: var(--px-color-primary);
+    --px-component-border: var(--px-color-primary);
+    --px-component-color: var(--px-color-primary-contrast);
+  }
+
+  &--soft {
+    --px-component-bg: var(--px-color-surface-muted);
+    --px-component-border: transparent;
+    --px-component-shadow: none;
+  }
+
+  &--danger {
+    --px-component-bg: var(--px-color-danger);
+    --px-component-border: var(--px-color-danger);
+    --px-component-color: var(--px-color-primary-contrast);
+  }
+
+  &--sm {
+    --px-component-padding-x: var(--px-space-3);
+    --px-component-padding-y: var(--px-space-2);
+    --px-component-gap: var(--px-space-1_5);
+    --px-component-radius: var(--px-radius-md);
+  }
+
+  &--lg {
+    --px-component-padding-x: var(--px-space-5);
+    --px-component-padding-y: var(--px-space-4);
+    --px-component-gap: var(--px-space-3);
+    --px-component-radius: var(--px-radius-xl);
+  }
+
+  &.is-loading,
+  &[data-state='loading'] {
+    cursor: progress;
+  }
+
+  &.is-disabled,
+  &:disabled,
+  &[aria-disabled='true'] {
+    @include mixins.px-state-disabled;
+    box-shadow: none;
+  }
+
+  @include mixins.px-theme-scope('dark') {
+    --px-component-shadow: var(--px-shadow-xs);
+  }
+
+  @include mixins.px-media-up(md) {
+    --px-component-padding-x: var(--px-space-5);
+  }
+}

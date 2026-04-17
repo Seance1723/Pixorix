@@ -10,7 +10,7 @@ export const componentInventoryGroups = [
       { name: 'Avatars', classes: '.px-avatar', code: html(`<span class="px-avatar">PX</span>`) },
       { name: 'Badges', classes: '.px-badge, .px-chip, .px-tag', code: html(`<span class="px-badge px-badge--primary">New</span>`) },
       { name: 'Breadcrumbs', classes: '.px-breadcrumbs', code: html(`<ol class="px-breadcrumbs"><li class="px-breadcrumbs__item"><a class="px-breadcrumbs__link" href="/">Docs</a></li><li class="px-breadcrumbs__item" aria-current="page">Components</li></ol>`) },
-      { name: 'Buttons', classes: '.px-button', code: html(`<button class="px-button px-button--primary" type="button">Primary action</button>`) },
+      { name: 'Buttons', classes: '.px-button, .px-split-button, .px-button-group, .px-fab', code: html(`<button class="px-button px-button--primary px-button--gradient" type="button"><span class="px-button__icon" aria-hidden="true">+</span><span class="px-button__label">Primary action</span></button>`) },
       { name: 'Cards', classes: '.px-card', code: html(`<article class="px-card"><header class="px-card__header"><h3 class="px-card__title">Card title</h3></header><div class="px-card__body">Card content.</div></article>`) },
       { name: 'Checkbox', classes: '.px-check', code: html(`<label class="px-check"><input class="px-check__input" type="checkbox" /><span class="px-check__body"><span class="px-check__label">Enable option</span></span></label>`) },
       { name: 'Drawer', classes: '.px-drawer', code: html(`<div class="px-drawer px-drawer--end" data-state="closed"><div class="px-drawer__panel"><div class="px-drawer__header"><h3 class="px-drawer__title">Drawer</h3></div><div class="px-drawer__body">Drawer content.</div></div></div>`) },

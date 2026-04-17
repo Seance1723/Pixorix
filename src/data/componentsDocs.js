@@ -31,32 +31,74 @@ export const componentsDocSections = [
   {
     id: 'buttons',
     title: 'Buttons',
-    description: 'Buttons provide high-clarity actions for forms, page flows, and product navigation.',
-    demoDescription: 'Buttons should communicate action priority clearly without relying on framework-specific behavior.',
-    previewDescription: 'A starter button set showing primary, secondary, and ghost actions.',
+    description: 'Buttons provide a token-driven action system for standard, icon-only, grouped, split, loading, floating, and social-shell patterns.',
+    demoDescription: 'Pixorix buttons separate tone, appearance, size, and shape so teams can scale variants without bloating CSS or markup.',
+    previewDescription: 'A framework-ready button set showing tone, appearance, size, and shell composition patterns.',
     preview: { type: 'buttons' },
-    variants: ['Primary', 'Secondary', 'Ghost', 'Destructive'],
-    sizes: ['Small', 'Default', 'Large'],
-    states: ['Default', 'Hover', 'Focus-visible', 'Disabled', 'Loading'],
+    variants: ['Primary', 'Secondary', 'Success', 'Warning', 'Danger', 'Neutral', 'Dark', 'Light', 'Solid', 'Soft', 'Outline', 'Ghost', 'Text', 'Glass', 'Gradient', 'Elevated', 'Pill', 'Square'],
+    sizes: ['XS', 'SM', 'MD', 'LG', 'XL', 'Compact'],
+    states: ['Default', 'Hover', 'Focus-visible', 'Active', 'Disabled', 'Loading'],
     accessibilityNotes: [
-      'Use real button elements for in-page actions.',
-      'Ensure visible focus styles remain intact.',
-      'Provide accessible names that describe the action clearly.'
+      'Use real button elements for in-page actions and add `aria-label` for icon-only usage.',
+      'Expose loading with `aria-busy="true"` when an async action is in progress.',
+      'Split-button toggles should reflect `aria-expanded` and `aria-controls` correctly.'
     ],
     browserNotes: [
-      'Button styling should be normalized across Chrome, Edge, Firefox, Safari, Opera, and mobile browsers.',
-      'Avoid removing native button semantics while styling.'
+      'Glass buttons degrade safely when `backdrop-filter` support differs across browsers.',
+      'Verify floating action button placement, blur, and focus rendering in Safari and iOS Safari.'
     ],
     responsiveNotes: [
-      'Allow buttons to wrap or stack in narrow layouts.',
-      'Preserve a minimum tap target size on touch devices.'
+      'Use `.px-button-group--responsive` or `data-px-stack="mobile"` to stack actions on smaller screens.',
+      'Block, full-width, compact, and split-button responsive shells keep actions usable on mobile.'
     ],
     snippets: buildSnippets({
       title: 'Button',
-      html: `<button class="px-button px-button--primary">Primary</button>`,
-      react: `<button className="px-button px-button--primary">Primary</button>`,
-      angular: `<button class="px-button px-button--primary">Primary</button>`,
-      vue: `<template>\n  <button class="px-button px-button--primary">Primary</button>\n</template>`
+      html: `<div class="px-button-group px-button-group--responsive">
+  <button class="px-button px-button--primary px-button--gradient px-button--md" type="button">
+    <span class="px-button__icon" aria-hidden="true">+</span>
+    <span class="px-button__label">Create workspace</span>
+  </button>
+  <button class="px-button px-button--secondary px-button--outline px-button--md" type="button">Secondary action</button>
+  <button class="px-button px-button--neutral px-button--ghost px-button--icon-only" type="button" aria-label="Open filters">
+    <span class="px-button__icon" aria-hidden="true">≡</span>
+  </button>
+</div>`,
+      react: `<div className="px-button-group px-button-group--responsive">
+  <button className="px-button px-button--primary px-button--gradient px-button--md" type="button">
+    <span className="px-button__icon" aria-hidden="true">+</span>
+    <span className="px-button__label">Create workspace</span>
+  </button>
+  <button className="px-button px-button--secondary px-button--outline px-button--md" type="button">Secondary action</button>
+  <button
+    className="px-button px-button--neutral px-button--ghost px-button--icon-only"
+    type="button"
+    aria-label="Open filters"
+  >
+    <span className="px-button__icon" aria-hidden="true">≡</span>
+  </button>
+</div>`,
+      angular: `<div class="px-button-group px-button-group--responsive">
+  <button class="px-button px-button--primary px-button--gradient px-button--md" type="button">
+    <span class="px-button__icon" aria-hidden="true">+</span>
+    <span class="px-button__label">Create workspace</span>
+  </button>
+  <button class="px-button px-button--secondary px-button--outline px-button--md" type="button">Secondary action</button>
+  <button class="px-button px-button--neutral px-button--ghost px-button--icon-only" type="button" aria-label="Open filters">
+    <span class="px-button__icon" aria-hidden="true">≡</span>
+  </button>
+</div>`,
+      vue: `<template>
+  <div class="px-button-group px-button-group--responsive">
+    <button class="px-button px-button--primary px-button--gradient px-button--md" type="button">
+      <span class="px-button__icon" aria-hidden="true">+</span>
+      <span class="px-button__label">Create workspace</span>
+    </button>
+    <button class="px-button px-button--secondary px-button--outline px-button--md" type="button">Secondary action</button>
+    <button class="px-button px-button--neutral px-button--ghost px-button--icon-only" type="button" aria-label="Open filters">
+      <span class="px-button__icon" aria-hidden="true">≡</span>
+    </button>
+  </div>
+</template>`
     })
   },
   {
