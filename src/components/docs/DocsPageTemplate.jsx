@@ -1,14 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
+import { DocsContentWrapper } from './DocsContentWrapper';
+import { getDocBreadcrumbs } from '@/data/docsNavigation';
 
 export function DocsPageTemplate({ page }) {
-  return (
-    <article className="content-panel docs-page">
-      <header className="docs-page__header">
-        <p className="eyebrow">{page.category}</p>
-        <h1>{page.title}</h1>
-        <p>{page.description}</p>
-      </header>
+  const { currentDoc, adjacentDocs } = useOutletContext();
 
+  return (
+    <DocsContentWrapper
+      title={page.title}
+      description={page.description}
+      category={page.category}
+      breadcrumbs={getDocBreadcrumbs(currentDoc)}
+      previousPage={adjacentDocs?.previousPage}
+      nextPage={adjacentDocs?.nextPage}
+    >
       <section className="docs-page__section">
         <h2>Planned coverage</h2>
         <ul className="docs-page__list">
@@ -33,6 +38,6 @@ export function DocsPageTemplate({ page }) {
           ))}
         </div>
       </section>
-    </article>
+    </DocsContentWrapper>
   );
 }

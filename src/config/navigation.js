@@ -9,34 +9,6 @@ export const primaryNavigation = [
   { label: 'Themes', href: '/docs/themes', match: ['/docs/themes'] }
 ];
 
-export const docsNavigation = [
-  {
-    label: 'Components',
-    href: '/docs/components',
-    description: 'Core UI building blocks'
-  },
-  {
-    label: 'Layout',
-    href: '/docs/layout',
-    description: 'Containers, grids, and shells'
-  },
-  {
-    label: 'Utilities',
-    href: '/docs/utilities',
-    description: 'Single-purpose helper classes'
-  },
-  {
-    label: 'Themes',
-    href: '/docs/themes',
-    description: 'Tokens, schemes, and branding'
-  },
-  {
-    label: 'Motion',
-    href: '/docs/motion',
-    description: 'Animation guidance and reduced motion'
-  }
-];
-
 export const headerMeta = {
   version: 'v0.1.0',
   githubHref: 'https://github.com/pixorix/pixorix'
