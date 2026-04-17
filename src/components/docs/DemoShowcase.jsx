@@ -11,6 +11,7 @@ export function DemoShowcase({
   title,
   description,
   code,
+  codePanel,
   language = 'html',
   filename,
   caption,
@@ -99,13 +100,15 @@ export function DemoShowcase({
             hidden={activeTab !== 'code'}
             className="demo-showcase__tabpanel"
           >
-            <CodeBlock
-              code={code}
-              language={language}
-              title={title}
-              filename={filename}
-              caption={caption}
-            />
+            {codePanel ?? (
+              <CodeBlock
+                code={code}
+                language={language}
+                title={title}
+                filename={filename}
+                caption={caption}
+              />
+            )}
           </div>
         </>
       ) : (
@@ -118,13 +121,15 @@ export function DemoShowcase({
             {children}
           </PreviewBlock>
 
-          <CodeBlock
-            code={code}
-            language={language}
-            title={title}
-            filename={filename}
-            caption={caption}
-          />
+          {codePanel ?? (
+            <CodeBlock
+              code={code}
+              language={language}
+              title={title}
+              filename={filename}
+              caption={caption}
+            />
+          )}
         </div>
       )}
     </section>
