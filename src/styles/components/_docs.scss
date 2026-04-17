@@ -1,0 +1,80 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.docs-shell {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, $sidebar-width) minmax(0, 1fr);
+  align-items: start;
+}
+
+.docs-sidebar {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.docs-sidebar__panel {
+  @include panel;
+  padding: 1rem;
+}
+
+.docs-sidebar__nav {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.docs-sidebar__link {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.9rem;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+}
+
+.docs-sidebar__link small {
+  color: inherit;
+}
+
+.docs-sidebar__link:hover,
+.docs-sidebar__link:focus-visible,
+.docs-sidebar__link--active {
+  color: $color-text;
+  background: $color-surface-muted;
+  outline: none;
+}
+
+.docs-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.docs-page__header {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.docs-page__section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.docs-page__list {
+  padding-left: 1.25rem;
+}
+
+.docs-page__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 960px) {
+  .docs-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-sidebar {
+    position: static;
+  }
+}

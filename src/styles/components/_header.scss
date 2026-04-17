@@ -1,0 +1,22 @@
+@use '../abstracts/tokens' as *;
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.site-nav__link {
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  color: $color-text-muted;
+  font-weight: 600;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus-visible,
+.site-nav__link--active {
+  color: $color-text;
+  background: rgba(13, 148, 136, 0.12);
+  outline: none;
+}

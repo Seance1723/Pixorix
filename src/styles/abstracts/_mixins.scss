@@ -1,0 +1,13 @@
+@use './tokens' as *;
+
+@mixin container {
+  width: min(calc(100% - 2rem), $container-max);
+  margin-inline: auto;
+}
+
+@mixin panel {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+}

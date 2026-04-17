@@ -1,0 +1,79 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+:root {
+  font-family:
+    Inter,
+    'Segoe UI',
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: $color-text;
+  background:
+    radial-gradient(circle at top, rgba(13, 148, 136, 0.12), transparent 30%),
+    linear-gradient(180deg, #fbfdff 0%, $color-background 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.site-main,
+.site-header__inner,
+.site-footer__inner {
+  @include container;
+}
+
+.eyebrow {
+  color: $color-accent-strong;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 60ch;
+  color: $color-text-muted;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem);
+}
+
+.content-panel {
+  @include panel;
+  padding: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+}
+
+.page-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.content-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.inline-link {
+  color: $color-accent-strong;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
