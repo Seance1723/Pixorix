@@ -5,45 +5,132 @@
 .px-textarea,
 .px-search-input,
 .px-date-field,
-.px-otp {
+.px-autocomplete__input,
+.px-multiselect__input,
+.px-token-input__input,
+.px-segmented-input__input,
+.px-otp__input {
   @extend %px-focusable;
+  @include mixins.px-type-role('body', 'body-sm');
 
   width: 100%;
+  min-width: 0;
   min-height: var(--px-field-control-height, var(--px-control-height));
   padding-inline: var(--px-field-padding-x, var(--px-control-padding-x));
   border: 1px solid var(--px-field-border, var(--px-color-border));
   border-radius: var(--px-field-radius, var(--px-radius-lg));
   background-color: var(--px-field-bg, var(--px-color-surface));
   color: var(--px-field-color, var(--px-color-text));
-  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgba(2, 6, 23, 0.04));
+  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgb(2 6 23 / 4%));
   transition:
     border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
     box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
     background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
-    color var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
 }
 
 .px-input::placeholder,
 .px-textarea::placeholder,
 .px-search-input::placeholder,
-.px-date-field::placeholder {
+.px-date-field::placeholder,
+.px-autocomplete__input::placeholder,
+.px-multiselect__input::placeholder,
+.px-token-input__input::placeholder {
   color: var(--px-field-placeholder, var(--px-color-text-soft));
 }
 
 .px-input:hover,
 .px-textarea:hover,
 .px-search-input:hover,
-.px-date-field:hover {
+.px-date-field:hover,
+.px-autocomplete__input:hover,
+.px-multiselect__input:hover,
+.px-token-input__input:hover {
   border-color: var(--px-field-border-hover, var(--px-color-border-strong));
 }
 
 .px-input:focus-visible,
 .px-textarea:focus-visible,
 .px-search-input:focus-visible,
-.px-date-field:focus-visible {
+.px-date-field:focus-visible,
+.px-autocomplete__input:focus-visible,
+.px-multiselect__input:focus-visible,
+.px-token-input__input:focus-visible,
+.px-segmented-input__input:focus-visible,
+.px-otp__input:focus-visible {
   @include mixins.px-focus-ring;
 
   border-color: var(--px-field-border-focus, var(--px-color-primary));
+}
+
+.px-field__shell > .px-input,
+.px-field__shell > .px-textarea,
+.px-field__shell > .px-search,
+.px-field__shell > .px-date-field-wrap,
+.px-field__shell > .px-select-wrap,
+.px-field__shell > .px-autocomplete,
+.px-field__shell > .px-multiselect,
+.px-field__shell > .px-token-input,
+.px-field__shell > .px-segmented-input,
+.px-field__shell > .px-otp,
+.px-control-shell > .px-input,
+.px-control-shell > .px-textarea,
+.px-control-shell > .px-search,
+.px-control-shell > .px-date-field-wrap,
+.px-control-shell > .px-select-wrap,
+.px-control-shell > .px-autocomplete,
+.px-control-shell > .px-multiselect,
+.px-control-shell > .px-token-input,
+.px-control-shell > .px-segmented-input,
+.px-control-shell > .px-otp {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.px-field__shell > .px-input,
+.px-field__shell > .px-textarea,
+.px-field__shell .px-search-input,
+.px-field__shell .px-date-field,
+.px-field__shell .px-select,
+.px-field__shell .px-autocomplete__input,
+.px-field__shell .px-multiselect__input,
+.px-field__shell .px-token-input__input,
+.px-control-shell > .px-input,
+.px-control-shell > .px-textarea,
+.px-control-shell .px-search-input,
+.px-control-shell .px-date-field,
+.px-control-shell .px-select,
+.px-control-shell .px-autocomplete__input,
+.px-control-shell .px-multiselect__input,
+.px-control-shell .px-token-input__input {
+  min-height: calc(var(--px-field-control-height, var(--px-control-height)) - 2px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.px-input[readonly],
+.px-textarea[readonly],
+.px-date-field[readonly],
+.px-autocomplete__input[readonly],
+.px-token-input__input[readonly] {
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text-muted);
+}
+
+.px-input:disabled,
+.px-textarea:disabled,
+.px-search-input:disabled,
+.px-date-field:disabled,
+.px-select:disabled,
+.px-autocomplete__input:disabled,
+.px-multiselect__input:disabled,
+.px-token-input__input:disabled,
+.px-segmented-input__input:disabled,
+.px-otp__input:disabled {
+  cursor: not-allowed;
 }
 
 .px-textarea {
@@ -52,29 +139,35 @@
   resize: vertical;
 }
 
-.px-input--readonly,
-.px-input[readonly],
-.px-textarea[readonly],
-.px-date-field[readonly] {
-  background-color: var(--px-color-surface-muted);
-  color: var(--px-color-text-muted);
-}
-
-.px-search {
+.px-search,
+.px-date-field-wrap {
   position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
 }
 
-.px-search__icon {
-  position: absolute;
-  inset-inline-start: var(--px-space-3);
-  inset-block-start: 50%;
-  transform: translateY(-50%);
+.px-search__icon,
+.px-date-field__icon {
   color: var(--px-color-text-soft);
   pointer-events: none;
 }
 
+.px-date-field__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  margin-inline-end: var(--px-space-1);
+  border: 0;
+  border-radius: var(--px-radius-md);
+  background: transparent;
+  color: var(--px-color-text-soft);
+}
+
 .px-search-input {
-  padding-inline-start: calc(var(--px-field-padding-x, var(--px-control-padding-x)) + 1.5rem);
   -webkit-appearance: textfield;
 }
 
@@ -83,35 +176,125 @@
   -webkit-appearance: none;
 }
 
-.px-otp {
+.px-otp,
+.px-segmented-input {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--px-segment-count, 6), minmax(0, 1fr));
   gap: var(--px-space-2);
-  padding: 0;
+  min-width: 0;
+}
+
+.px-segmented-input {
+  --px-segment-count: 4;
+}
+
+.px-otp__input,
+.px-segmented-input__input {
+  @include mixins.px-type-role('data', 'data-value');
+
+  padding-inline: 0;
+  text-align: center;
+}
+
+.px-otp__input {
+  --px-segment-count: 6;
+}
+
+.px-autocomplete,
+.px-multiselect,
+.px-token-input {
+  position: relative;
+  display: grid;
+  gap: var(--px-space-2);
+  min-width: 0;
+}
+
+.px-autocomplete__menu,
+.px-multiselect__menu {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + var(--px-space-2));
+  z-index: 20;
+  display: grid;
+  gap: var(--px-space-1);
+  padding: var(--px-space-2);
+  border: 1px solid var(--px-field-border, var(--px-color-border));
+  border-radius: var(--px-radius-lg);
+  background: var(--px-color-surface);
+  box-shadow: var(--px-shadow-lg);
+}
+
+.px-autocomplete__menu[hidden],
+.px-multiselect__menu[hidden] {
+  display: none;
+}
+
+.px-autocomplete__option,
+.px-multiselect__option {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  width: 100%;
+  padding: var(--px-space-2) var(--px-space-3);
+  border: 0;
+  border-radius: var(--px-radius-md);
+  background: transparent;
+  color: var(--px-color-text);
+  text-align: start;
+}
+
+.px-autocomplete__option:hover,
+.px-autocomplete__option.is-active,
+.px-multiselect__option:hover,
+.px-multiselect__option.is-active {
+  background-color: var(--px-color-surface-muted);
+}
+
+.px-token-input__tokens,
+.px-multiselect__tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-space-2);
+}
+
+.px-token-input__surface,
+.px-multiselect__surface {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--px-space-2);
+  min-height: var(--px-field-control-height, var(--px-control-height));
+  padding: var(--px-space-2);
+  border: 1px solid var(--px-field-border, var(--px-color-border));
+  border-radius: var(--px-field-radius, var(--px-radius-lg));
+  background-color: var(--px-field-bg, var(--px-color-surface));
+  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgb(2 6 23 / 4%));
+}
+
+.px-token-input__surface:focus-within,
+.px-multiselect__surface:focus-within {
+  border-color: var(--px-field-border-focus, var(--px-color-primary));
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--px-field-border-focus, var(--px-color-primary)) 18%, transparent),
+    var(--px-field-shadow, inset 0 1px 2px rgb(2 6 23 / 4%));
+}
+
+.px-token-input__input,
+.px-multiselect__input {
+  flex: 1 1 8rem;
+  min-width: 6rem;
+  min-height: auto;
+  padding-inline: 0;
   border: 0;
   background: transparent;
   box-shadow: none;
 }
 
-.px-otp__slot {
-  @include mixins.px-type-role('data', 'data-value');
-
-  display: grid;
-  place-items: center;
-  min-height: var(--px-field-control-height, var(--px-control-height));
-  border: 1px solid var(--px-field-border, var(--px-color-border));
-  border-radius: var(--px-field-radius, var(--px-radius-lg));
-  background-color: var(--px-field-bg, var(--px-color-surface));
-  color: var(--px-field-color, var(--px-color-text));
-  box-shadow: var(--px-field-shadow, inset 0 1px 2px rgba(2, 6, 23, 0.04));
-}
-
-.px-date-field {
-  min-height: var(--px-field-control-height, var(--px-control-height));
-}
-
 @media (max-width: 47.99rem) {
-  .px-otp {
+  .px-otp,
+  .px-segmented-input {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

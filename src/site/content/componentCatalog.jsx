@@ -304,24 +304,36 @@ function FormFieldsPreview() {
   return (
     <form className="px-form px-form--compact">
       <div className="px-form-grid px-form-grid--2">
-        <label className="px-field">
-          <span className="px-label">Project name</span>
-          <input className="px-input" type="text" placeholder="Pixorix docs" />
-        </label>
-        <label className="px-field">
-          <span className="px-label">Theme mode</span>
+        <div className="px-field px-field--outline">
+          <label className="px-label">Project name</label>
+          <div className="px-field__shell">
+            <span className="px-field__icon" aria-hidden="true">#</span>
+            <input className="px-input" type="text" placeholder="Pixorix docs" />
+          </div>
+        </div>
+        <div className="px-field px-field--filled">
+          <label className="px-label">Theme mode</label>
           <span className="px-select-wrap">
             <select className="px-select" defaultValue="light">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
             </select>
           </span>
-        </label>
+        </div>
       </div>
-      <label className="px-field">
-        <span className="px-label">Notes</span>
+      <div className="px-field px-field--soft is-warning">
+        <label className="px-label">Notes</label>
         <textarea className="px-textarea" placeholder="Add implementation notes for your team." />
-      </label>
+        <p className="px-validation px-validation--warning">Keep release notes concise for docs pages.</p>
+      </div>
+      <div className="px-file-upload" data-px-file-upload>
+        <label className="px-file-upload__dropzone">
+          <input className="px-file-upload__input" type="file" multiple />
+          <span className="px-file-upload__title">Upload attachments</span>
+          <span className="px-file-upload__meta">Drag files here or browse from your device.</span>
+        </label>
+        <ul className="px-file-upload__list" />
+      </div>
     </form>
   );
 }
@@ -565,12 +577,12 @@ export const componentCatalogSections = [
       {
         slug: 'form-fields',
         category: 'Forms',
-        title: 'Inputs, select, and textarea',
-        description: 'Structured field wrappers for common forms, settings pages, and content entry flows.',
-        review: 'The field system is strong because labels, helpers, and control sizing already line up cleanly without custom hacks.',
-        notes: ['Always keep visible labels.', 'Use select wrappers for native selects.', 'Reserve inline field layouts for wider screens only.'],
-        accessibility: 'Labels and helper text should stay programmatically associated and visible at all sizes.',
-        code: `<label class="px-field"><span class="px-label">Project name</span><input class="px-input" type="text" /></label>`,
+        title: 'Forms and fields',
+        description: 'Unified wrappers for text controls, select, textarea, grouped validation, uploads, and advanced entry shells.',
+        review: 'The system is materially better when every control inherits one field contract for spacing, tone, size, and validation instead of each input type drifting into its own rules.',
+        notes: ['Apply size, appearance, and status at the field level first.', 'Use shell slots for icons, prefixes, and suffixes instead of custom control padding.', 'Reserve advanced shells such as token input and multiselect for cases where native controls are not enough.'],
+        accessibility: 'Labels, helper text, validation text, and grouped controls should remain explicitly associated and keyboard reachable.',
+        code: `<div class="px-field px-field--outline"><label class="px-label">Project name</label><div class="px-field__shell"><span class="px-field__icon" aria-hidden="true">#</span><input class="px-input" type="text" placeholder="Pixorix docs" /></div></div>`,
         preview: FormFieldsPreview
       },
       {

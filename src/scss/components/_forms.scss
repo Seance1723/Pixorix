@@ -6,6 +6,27 @@
   min-width: 0;
 }
 
+.px-form--stacked {
+  gap: var(--px-space-5);
+}
+
+.px-form--inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--px-space-4);
+}
+
+.px-form--inline > .px-field,
+.px-form--inline > .px-input-group,
+.px-form--inline > .px-file-upload,
+.px-form--inline > .px-token-input,
+.px-form--inline > .px-autocomplete,
+.px-form--inline > .px-multiselect {
+  flex: 1 1 15rem;
+  min-width: 0;
+}
+
 .px-form--compact {
   gap: var(--px-space-4);
 }
@@ -39,6 +60,65 @@
   color: var(--px-color-text-soft);
 }
 
+.px-form__row,
+.px-field-row {
+  display: grid;
+  gap: var(--px-space-4);
+  min-width: 0;
+}
+
+.px-form-grid {
+  display: grid;
+  gap: var(--px-space-4);
+  min-width: 0;
+}
+
+.px-form-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.px-form-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.px-form-grid--responsive {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.px-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--px-space-3);
+}
+
+.px-fieldset {
+  display: grid;
+  gap: var(--px-space-3);
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.px-legend {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  margin: 0;
+  color: var(--px-color-text);
+}
+
+.px-choice-group {
+  display: grid;
+  gap: var(--px-space-3);
+}
+
+.px-choice-group--inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--px-space-4);
+}
+
 .px-field {
   --px-field-gap: var(--px-space-2);
   --px-field-control-height: var(--px-control-height);
@@ -50,7 +130,13 @@
   --px-field-border-focus: var(--px-color-primary);
   --px-field-color: var(--px-color-text);
   --px-field-placeholder: var(--px-color-text-soft);
-  --px-field-shadow: inset 0 1px 2px rgba(2, 6, 23, 0.04);
+  --px-field-shadow: inset 0 1px 2px rgb(2 6 23 / 4%);
+  --px-field-shell-shadow: var(--px-field-shadow);
+  --px-field-surface-padding: 0;
+  --px-field-addon-bg: color-mix(in srgb, var(--px-field-bg) 82%, var(--px-color-surface-muted));
+  --px-field-addon-color: var(--px-color-text-muted);
+  --px-field-status-color: var(--px-color-text-soft);
+  --px-field-backdrop: none;
 
   display: grid;
   gap: var(--px-field-gap);
@@ -69,29 +155,208 @@
   --px-field-radius: var(--px-radius-md);
 }
 
+.px-field--md {
+  --px-field-control-height: var(--px-control-height);
+}
+
 .px-field--lg {
   --px-field-control-height: 3.125rem;
   --px-field-padding-x: var(--px-space-5);
   --px-field-radius: var(--px-radius-xl);
 }
 
-.px-field__head {
-  display: grid;
-  gap: var(--px-space-1);
+.px-field--filled {
+  --px-field-bg: var(--px-color-surface-muted);
+  --px-field-border: transparent;
+  --px-field-border-hover: var(--px-color-border-strong);
+  --px-field-shadow: none;
+  --px-field-shell-shadow: none;
 }
 
-.px-label {
+.px-field--outline {
+  --px-field-bg: transparent;
+  --px-field-border: var(--px-color-border-strong);
+  --px-field-shadow: none;
+  --px-field-shell-shadow: none;
+}
+
+.px-field--soft {
+  --px-field-bg: color-mix(in srgb, var(--px-color-surface-muted) 92%, transparent);
+  --px-field-border: color-mix(in srgb, var(--px-color-border) 60%, transparent);
+  --px-field-shadow: none;
+  --px-field-shell-shadow: none;
+}
+
+.px-field--glass {
+  --px-field-bg: rgb(255 255 255 / 55%);
+  --px-field-border: rgb(255 255 255 / 42%);
+  --px-field-border-hover: rgb(255 255 255 / 64%);
+  --px-field-shadow: 0 18px 36px rgb(15 23 42 / 10%);
+  --px-field-shell-shadow: var(--px-field-shadow);
+  --px-field-backdrop: saturate(145%) blur(18px);
+}
+
+.px-field.is-disabled,
+.px-field--disabled {
+  opacity: 0.72;
+}
+
+.px-field.is-readonly,
+.px-field--readonly {
+  --px-field-bg: var(--px-color-surface-muted);
+  --px-field-color: var(--px-color-text-muted);
+}
+
+.px-field.is-valid,
+.px-field.is-success,
+.px-field--valid,
+.px-field--success {
+  --px-field-border: var(--px-color-success);
+  --px-field-border-hover: var(--px-color-success);
+  --px-field-border-focus: var(--px-color-success);
+  --px-field-status-color: var(--px-color-success);
+}
+
+.px-field.is-warning,
+.px-field--warning {
+  --px-field-border: var(--px-color-warning);
+  --px-field-border-hover: var(--px-color-warning);
+  --px-field-border-focus: var(--px-color-warning);
+  --px-field-status-color: var(--px-color-warning);
+}
+
+.px-field.is-invalid,
+.px-field.is-error,
+.px-field--invalid,
+.px-field--error {
+  --px-field-border: var(--px-color-danger);
+  --px-field-border-hover: var(--px-color-danger);
+  --px-field-border-focus: var(--px-color-danger);
+  --px-field-status-color: var(--px-color-danger);
+}
+
+.px-field__head,
+.px-field__body,
+.px-field__footer,
+.px-field__meta {
+  display: grid;
+  gap: var(--px-space-1);
+  min-width: 0;
+}
+
+.px-field__body {
+  gap: var(--px-space-2);
+}
+
+.px-field__control {
+  position: relative;
+  display: grid;
+  gap: var(--px-space-2);
+  min-width: 0;
+}
+
+.px-field__shell,
+.px-control-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--px-space-2);
+  min-height: var(--px-field-control-height);
+  padding-inline: var(--px-field-surface-padding);
+  border: 1px solid var(--px-field-border);
+  border-radius: var(--px-field-radius);
+  background-color: var(--px-field-bg);
+  color: var(--px-field-color);
+  box-shadow: var(--px-field-shell-shadow);
+  backdrop-filter: var(--px-field-backdrop);
+  -webkit-backdrop-filter: var(--px-field-backdrop);
+  transition:
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-field__shell:hover,
+.px-control-shell:hover {
+  border-color: var(--px-field-border-hover);
+}
+
+.px-field__shell:focus-within,
+.px-control-shell:focus-within {
+  border-color: var(--px-field-border-focus);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--px-field-border-focus) 18%, transparent),
+    var(--px-field-shell-shadow);
+}
+
+.px-field__icon,
+.px-field__prefix,
+.px-field__suffix,
+.px-control-shell__icon,
+.px-control-shell__prefix,
+.px-control-shell__suffix {
   @include mixins.px-type-role('ui', 'label');
 
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  align-self: stretch;
   gap: var(--px-space-2);
+  padding-inline: var(--px-space-3);
+  color: var(--px-field-addon-color);
+  white-space: nowrap;
+}
+
+.px-field__prefix,
+.px-field__suffix,
+.px-control-shell__prefix,
+.px-control-shell__suffix {
+  background-color: var(--px-field-addon-bg);
+}
+
+.px-field__prefix,
+.px-control-shell__prefix {
+  border-inline-end: 1px solid color-mix(in srgb, var(--px-field-border) 86%, transparent);
+  border-start-start-radius: calc(var(--px-field-radius) - 1px);
+  border-end-start-radius: calc(var(--px-field-radius) - 1px);
+}
+
+.px-field__suffix,
+.px-control-shell__suffix {
+  border-inline-start: 1px solid color-mix(in srgb, var(--px-field-border) 86%, transparent);
+  border-start-end-radius: calc(var(--px-field-radius) - 1px);
+  border-end-end-radius: calc(var(--px-field-radius) - 1px);
+}
+
+.px-field__icon,
+.px-control-shell__icon {
+  pointer-events: none;
+}
+
+.px-field__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  margin-inline-end: var(--px-space-1);
+  border: 0;
+  border-radius: var(--px-radius-md);
+  background: transparent;
+  color: var(--px-field-addon-color);
+}
+
+.px-field__action:hover {
+  background-color: color-mix(in srgb, var(--px-color-surface-muted) 80%, transparent);
   color: var(--px-color-text);
 }
 
-.px-label--required::after {
-  content: '*';
-  color: var(--px-color-danger);
+.px-field__validation-group,
+.px-validation-group {
+  display: grid;
+  gap: var(--px-space-1);
 }
 
 .px-helper-text {
@@ -101,56 +366,8 @@
   color: var(--px-color-text-soft);
 }
 
-.px-field__body {
-  display: grid;
-  gap: var(--px-space-2);
-  min-width: 0;
-}
-
-.px-field__control {
-  position: relative;
-  min-width: 0;
-}
-
-.px-field__footer {
-  display: grid;
-  gap: var(--px-space-1);
-}
-
-.px-fieldset {
-  display: grid;
-  gap: var(--px-space-3);
-  min-width: 0;
-  padding: 0;
-  border: 0;
-}
-
-.px-legend {
-  @include mixins.px-type-role('ui', 'label-strong');
-
-  margin: 0;
-  color: var(--px-color-text);
-}
-
-.px-form-grid {
-  display: grid;
-  gap: var(--px-space-4);
-  min-width: 0;
-}
-
-.px-form-grid--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.px-form-grid--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.px-form-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--px-space-3);
-  align-items: center;
+.px-form-actions .px-helper-text {
+  margin-inline-end: auto;
 }
 
 @media (max-width: 63.99rem) {
@@ -166,6 +383,8 @@
 }
 
 @media (max-width: 47.99rem) {
+  .px-form--inline,
+  .px-choice-group--inline,
   .px-form-actions {
     flex-direction: column;
     align-items: stretch;

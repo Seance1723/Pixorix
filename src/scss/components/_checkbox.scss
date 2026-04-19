@@ -1,6 +1,8 @@
 @use '../abstracts/mixins' as mixins;
 
 .px-check {
+  --px-choice-accent: var(--px-color-primary);
+
   display: inline-grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--px-space-3);
@@ -13,7 +15,7 @@
   margin: 0;
   border: 1px solid var(--px-color-border-strong);
   border-radius: var(--px-radius-sm);
-  accent-color: var(--px-color-primary);
+  accent-color: var(--px-choice-accent);
   box-shadow: none;
 }
 
@@ -36,4 +38,26 @@
   @include mixins.px-type-role('ui', 'helper');
 
   color: var(--px-color-text-soft);
+}
+
+.px-check--sm {
+  gap: var(--px-space-2);
+}
+
+.px-check--lg .px-check__input {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.px-check.is-success {
+  --px-choice-accent: var(--px-color-success);
+}
+
+.px-check.is-warning {
+  --px-choice-accent: var(--px-color-warning);
+}
+
+.px-check.is-error,
+.px-check.is-invalid {
+  --px-choice-accent: var(--px-color-danger);
 }

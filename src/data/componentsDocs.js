@@ -349,31 +349,102 @@ export const componentsDocSections = [
   {
     id: 'forms',
     title: 'Forms',
-    description: 'Form controls should provide clear labels, comfortable input spacing, and stable validation patterns.',
-    demoDescription: 'Pixorix form fields are designed for onboarding flows, account settings, and product forms.',
-    previewDescription: 'A simple stacked field preview for email and project naming inputs.',
+    description: 'Forms provide one field contract for text controls, choices, uploads, validation messaging, grouped layout, and advanced entry shells.',
+    demoDescription: 'Pixorix forms separate field shell, visual treatment, size, and semantic status so product teams can scale complex forms without rewriting control styles.',
+    previewDescription: 'A framework-ready field system showing shell variants, validation, and grouped form layout.',
     preview: { type: 'form' },
-    variants: ['Default field', 'Filled field', 'Validation states'],
-    sizes: ['Small', 'Default', 'Large'],
-    states: ['Resting', 'Focus', 'Error', 'Disabled', 'Read-only'],
+    variants: ['Default', 'Filled', 'Outline', 'Soft', 'Glass', 'With icon', 'Prefix', 'Suffix'],
+    sizes: ['SM', 'MD', 'LG'],
+    states: ['Default', 'Focus-visible', 'Disabled', 'Read-only', 'Valid', 'Invalid', 'Success', 'Error', 'Warning'],
     accessibilityNotes: [
-      'Always pair inputs with visible labels.',
-      'Use helper text and error text that can be announced by assistive technologies.'
+      'Always pair controls with visible labels and programmatically associated helper or validation text.',
+      'Use `aria-invalid` for invalid states and preserve native control behavior where reliability matters.',
+      'Advanced shells such as OTP, token input, and upload still need a clear overall label and keyboard path.'
     ],
     browserNotes: [
-      'Native form controls vary slightly across browsers; preserve usability over pixel-perfect sameness.',
-      'Do not remove platform-specific focus behavior without replacing it accessibly.'
+      'Preserve native behavior for select, range, file, and date controls instead of over-normalizing them.',
+      'Verify Safari and Firefox for range styling, date input behavior, blur treatments, and overflow shells.'
     ],
     responsiveNotes: [
-      'Fields should stretch to container width cleanly.',
-      'Multi-column forms should collapse gracefully on smaller screens.'
+      'Use `.px-form-grid--responsive` for adaptive layout without page-only media queries.',
+      'Inline forms and grouped actions stack automatically on smaller screens.'
     ],
     snippets: buildSnippets({
       title: 'Form Input',
-      html: `<label class="px-field">\n  <span>Email address</span>\n  <input type="email" placeholder="team@pixorix.dev" />\n</label>`,
-      react: `<label className="px-field">\n  <span>Email address</span>\n  <input type="email" placeholder="team@pixorix.dev" />\n</label>`,
-      angular: `<label class="px-field">\n  <span>Email address</span>\n  <input type="email" placeholder="team@pixorix.dev" />\n</label>`,
-      vue: `<template>\n  <label class="px-field">\n    <span>Email address</span>\n    <input type="email" placeholder="team@pixorix.dev" />\n  </label>\n</template>`
+      html: `<form class="px-form px-form--stacked">
+  <div class="px-form-grid px-form-grid--2">
+    <div class="px-field px-field--outline">
+      <label class="px-label" for="form-email">Email address</label>
+      <div class="px-field__shell">
+        <span class="px-field__icon" aria-hidden="true">@</span>
+        <input id="form-email" class="px-input" type="email" placeholder="team@pixorix.dev" />
+      </div>
+    </div>
+    <div class="px-field px-field--filled is-error">
+      <label class="px-label" for="form-name">Project name</label>
+      <div class="px-field__shell">
+        <input id="form-name" class="px-input" type="text" aria-invalid="true" placeholder="Pixorix docs" />
+      </div>
+      <p class="px-validation px-validation--error">Project name is required.</p>
+    </div>
+  </div>
+</form>`,
+      react: `<form className="px-form px-form--stacked">
+  <div className="px-form-grid px-form-grid--2">
+    <div className="px-field px-field--outline">
+      <label className="px-label" htmlFor="form-email">Email address</label>
+      <div className="px-field__shell">
+        <span className="px-field__icon" aria-hidden="true">@</span>
+        <input id="form-email" className="px-input" type="email" placeholder="team@pixorix.dev" />
+      </div>
+    </div>
+    <div className="px-field px-field--filled is-error">
+      <label className="px-label" htmlFor="form-name">Project name</label>
+      <div className="px-field__shell">
+        <input id="form-name" className="px-input" type="text" aria-invalid="true" placeholder="Pixorix docs" />
+      </div>
+      <p className="px-validation px-validation--error">Project name is required.</p>
+    </div>
+  </div>
+</form>`,
+      angular: `<form class="px-form px-form--stacked">
+  <div class="px-form-grid px-form-grid--2">
+    <div class="px-field px-field--outline">
+      <label class="px-label" for="form-email">Email address</label>
+      <div class="px-field__shell">
+        <span class="px-field__icon" aria-hidden="true">@</span>
+        <input id="form-email" class="px-input" type="email" placeholder="team@pixorix.dev" />
+      </div>
+    </div>
+    <div class="px-field px-field--filled is-error">
+      <label class="px-label" for="form-name">Project name</label>
+      <div class="px-field__shell">
+        <input id="form-name" class="px-input" type="text" aria-invalid="true" placeholder="Pixorix docs" />
+      </div>
+      <p class="px-validation px-validation--error">Project name is required.</p>
+    </div>
+  </div>
+</form>`,
+      vue: `<template>
+  <form class="px-form px-form--stacked">
+    <div class="px-form-grid px-form-grid--2">
+      <div class="px-field px-field--outline">
+        <label class="px-label" for="form-email">Email address</label>
+        <div class="px-field__shell">
+          <span class="px-field__icon" aria-hidden="true">@</span>
+          <input id="form-email" class="px-input" type="email" placeholder="team@pixorix.dev" />
+        </div>
+      </div>
+      <div class="px-field px-field--filled is-error">
+        <label class="px-label" for="form-name">Project name</label>
+        <div class="px-field__shell">
+          <input id="form-name" class="px-input" type="text" aria-invalid="true" placeholder="Pixorix docs" />
+        </div>
+        <p class="px-validation px-validation--error">Project name is required.</p>
+      </div>
+    </div>
+  </form>
+</template>`
     })
   },
   {

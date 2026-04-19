@@ -1,6 +1,9 @@
 @use '../abstracts/mixins' as mixins;
 
 .px-range {
+  --px-range-fill: var(--px-color-primary);
+  --px-range-track: var(--px-color-surface-muted);
+
   display: grid;
   gap: var(--px-space-2);
 }
@@ -18,7 +21,7 @@
 .px-range__input::-webkit-slider-runnable-track {
   height: 0.4rem;
   border-radius: var(--px-radius-round);
-  background-color: var(--px-color-surface-muted);
+  background-color: var(--px-range-track);
 }
 
 .px-range__input::-webkit-slider-thumb {
@@ -28,14 +31,14 @@
   margin-top: -0.3rem;
   border: 0;
   border-radius: var(--px-radius-round);
-  background-color: var(--px-color-primary);
+  background-color: var(--px-range-fill);
   box-shadow: 0 3px 10px rgba(37, 99, 235, 0.22);
 }
 
 .px-range__input::-moz-range-track {
   height: 0.4rem;
   border-radius: var(--px-radius-round);
-  background-color: var(--px-color-surface-muted);
+  background-color: var(--px-range-track);
 }
 
 .px-range__input::-moz-range-thumb {
@@ -43,7 +46,7 @@
   height: 1rem;
   border: 0;
   border-radius: var(--px-radius-round);
-  background-color: var(--px-color-primary);
+  background-color: var(--px-range-fill);
   box-shadow: 0 3px 10px rgba(37, 99, 235, 0.22);
 }
 
@@ -54,4 +57,17 @@
   justify-content: space-between;
   gap: var(--px-space-2);
   color: var(--px-color-text-soft);
+}
+
+.px-range.is-success {
+  --px-range-fill: var(--px-color-success);
+}
+
+.px-range.is-warning {
+  --px-range-fill: var(--px-color-warning);
+}
+
+.px-range.is-error,
+.px-range.is-invalid {
+  --px-range-fill: var(--px-color-danger);
 }

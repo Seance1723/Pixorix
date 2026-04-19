@@ -56,15 +56,21 @@ export function ComponentPreviewCanvas({ preview }) {
 
     case 'form':
       return (
-        <form className="component-preview__form">
-          <label className="component-preview__field">
-            <span>Email address</span>
-            <input type="email" placeholder="team@pixorix.dev" />
-          </label>
-          <label className="component-preview__field">
-            <span>Project name</span>
-            <input type="text" placeholder="Pixorix starter" />
-          </label>
+        <form className="px-form px-form--compact">
+          <div className="px-field px-field--outline px-field--sm">
+            <label className="px-label" htmlFor="preview-email">Email address</label>
+            <div className="px-field__shell">
+              <span className="px-field__icon" aria-hidden="true">@</span>
+              <input id="preview-email" className="px-input" type="email" placeholder="team@pixorix.dev" />
+            </div>
+          </div>
+          <div className="px-field px-field--filled px-field--sm is-error">
+            <label className="px-label" htmlFor="preview-name">Project name</label>
+            <div className="px-field__shell">
+              <input id="preview-name" className="px-input" type="text" aria-invalid="true" placeholder="Pixorix starter" />
+            </div>
+            <p className="px-validation px-validation--error">Required field.</p>
+          </div>
         </form>
       );
 

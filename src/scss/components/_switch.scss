@@ -1,6 +1,8 @@
 @use '../abstracts/mixins' as mixins;
 
 .px-switch {
+  --px-switch-accent: var(--px-color-primary);
+
   display: inline-grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--px-space-3);
@@ -33,7 +35,7 @@
 }
 
 .px-switch__input:checked {
-  background-color: var(--px-color-primary);
+  background-color: var(--px-switch-accent);
 }
 
 .px-switch__input:checked::after {
@@ -48,4 +50,17 @@
   @include mixins.px-type-role('ui', 'label');
 
   color: var(--px-color-text);
+}
+
+.px-switch.is-success {
+  --px-switch-accent: var(--px-color-success);
+}
+
+.px-switch.is-warning {
+  --px-switch-accent: var(--px-color-warning);
+}
+
+.px-switch.is-error,
+.px-switch.is-invalid {
+  --px-switch-accent: var(--px-color-danger);
 }

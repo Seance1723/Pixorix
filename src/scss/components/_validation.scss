@@ -6,7 +6,8 @@
   display: inline-flex;
   align-items: start;
   gap: var(--px-space-2);
-  color: var(--px-color-text-soft);
+  margin: 0;
+  color: var(--px-field-status-color, var(--px-color-text-soft));
 }
 
 .px-validation--success {
@@ -17,24 +18,7 @@
   color: var(--px-color-warning);
 }
 
-.px-validation--error {
+.px-validation--error,
+.px-validation--invalid {
   color: var(--px-color-danger);
-}
-
-.px-field.is-success {
-  --px-field-border: var(--px-color-success);
-  --px-field-border-hover: var(--px-color-success);
-  --px-field-border-focus: var(--px-color-success);
-}
-
-.px-field.is-warning {
-  --px-field-border: var(--px-color-warning);
-  --px-field-border-hover: var(--px-color-warning);
-  --px-field-border-focus: var(--px-color-warning);
-}
-
-.px-field.is-error {
-  --px-field-border: var(--px-color-danger);
-  --px-field-border-hover: var(--px-color-danger);
-  --px-field-border-focus: var(--px-color-danger);
 }

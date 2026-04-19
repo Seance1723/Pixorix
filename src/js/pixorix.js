@@ -2,6 +2,7 @@ export { createPixorixApp, initPixorix, registerPixorixComponent } from './core/
 export * from './components/alert.js';
 export * from './components/badge.js';
 export * from './components/button.js';
+export * from './components/form.js';
 export * from './core/dom.js';
 export * from './core/events.js';
 export * from './core/state.js';

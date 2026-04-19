@@ -9,6 +9,7 @@ import { createAlert } from '../components/alert.js';
 import { createBadge } from '../components/badge.js';
 import { createButton } from '../components/button.js';
 import { createDrawer } from '../components/drawer.js';
+import { createForm } from '../components/form.js';
 import { createModal } from '../components/modal.js';
 import { initHoverEffects } from '../motion/hover-effects.js';
 import { initPageTransition } from '../motion/page-transition.js';
@@ -49,6 +50,10 @@ function createDefaultRegistry() {
     .register('drawer', {
       selector: '[data-px-drawer], .px-drawer[data-px-component="drawer"]',
       init: createDrawer
+    })
+    .register('form', {
+      selector: '[data-px-file-upload], [data-px-otp], [data-px-segmented-input], [data-px-token-input], [data-px-autocomplete], [data-px-multiselect]',
+      init: createForm
     })
     .register('command-palette', {
       selector: '[data-px-command-palette]',
