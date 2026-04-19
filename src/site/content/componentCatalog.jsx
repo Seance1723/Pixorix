@@ -114,17 +114,25 @@ function AlertsPreview() {
 
 function CardsPreview() {
   return (
-    <article className="px-card px-card--interactive">
+    <article className="px-card px-card--elevated px-card--interactive px-card--hover-lift">
       <header className="px-card__header">
         <span className="px-card__eyebrow">Analytics kit</span>
         <h3 className="px-card__title">Product metrics card</h3>
         <p className="px-card__subtitle">Designed for dashboards, docs examples, and admin surfaces.</p>
       </header>
+      <div className="px-card__media">
+        <div style={{ aspectRatio: '16 / 9', background: 'linear-gradient(135deg, rgba(37,99,235,.22), rgba(14,165,233,.08), rgba(244,114,182,.18))' }} />
+      </div>
       <div className="px-card__body">
         Mix descriptive content, badges, and actions without losing vertical rhythm or surface hierarchy.
       </div>
+      <div className="px-card__meta">
+        <span className="px-badge px-badge--primary px-badge--soft">
+          <span className="px-badge__label">Responsive</span>
+        </span>
+        <span>Updated 2 hours ago</span>
+      </div>
       <footer className="px-card__footer">
-        <span className="px-badge px-badge--primary">Responsive</span>
         <div className="px-card__actions">
           <button className="px-button px-button--secondary px-button--sm" type="button">Inspect</button>
           <button className="px-button px-button--primary px-button--sm" type="button">Use card</button>
@@ -369,10 +377,11 @@ const buttonsCode = `<div class="px-button-group px-button-group--responsive">
   </button>
 </div>`;
 
-const cardsCode = `<article class="px-card px-card--interactive">
+const cardsCode = `<article class="px-card px-card--elevated px-card--interactive px-card--hover-lift">
   <header class="px-card__header">
     <span class="px-card__eyebrow">Analytics kit</span>
     <h3 class="px-card__title">Product metrics card</h3>
+    <p class="px-card__subtitle">Designed for dashboards and product surfaces.</p>
   </header>
   <div class="px-card__body">Mix content and actions cleanly.</div>
 </article>`;
@@ -434,9 +443,9 @@ export const componentCatalogSections = [
         slug: 'cards',
         category: 'Layout',
         title: 'Cards',
-        description: 'Content grouping surfaces with headers, body content, and action or footer zones.',
+        description: 'Reusable surface containers for feature, media, profile, KPI, pricing, testimonial, and spotlight content.',
         review: 'Cards are one of the framework’s strongest primitives because the spacing, border, and action regions are already disciplined.',
-        notes: ['Use interactive cards only when the whole surface is a meaningful tap target.', 'Prefer header and footer sub-elements over ad hoc wrappers.', 'Use raised variants sparingly to preserve hierarchy.'],
+        notes: ['Use interactive cards only when the whole surface is a meaningful tap target.', 'Prefer header, media, meta, actions, and footer sub-elements over ad hoc wrappers.', 'Use elevated and spotlight treatments sparingly to preserve hierarchy.'],
         accessibility: 'Keep nested interactive elements clear and do not make the whole card clickable if it contains several independent controls.',
         code: cardsCode,
         preview: CardsPreview

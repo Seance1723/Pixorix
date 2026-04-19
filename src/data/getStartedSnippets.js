@@ -143,38 +143,58 @@ export const cardExampleSnippets = {
   html: {
     language: 'html',
     filename: 'card.html',
-    code: `<article class="px-card px-stack-md">
-  <p class="px-eyebrow">Starter card</p>
-  <h3>Token-driven surface</h3>
-  <p>Use cards to group content and actions with consistent spacing.</p>
+    code: `<article class="px-card px-card--elevated">
+  <header class="px-card__header">
+    <p class="px-card__eyebrow">Starter card</p>
+    <h3 class="px-card__title">Token-driven surface</h3>
+    <p class="px-card__subtitle">Use cards to group content and actions with consistent spacing.</p>
+  </header>
+  <div class="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
 </article>`
   },
   react: {
     language: 'jsx',
     filename: 'CardExample.jsx',
-    code: `<article className="px-card px-stack-md">
-  <p className="px-eyebrow">Starter card</p>
-  <h3>Token-driven surface</h3>
-  <p>Use cards to group content and actions with consistent spacing.</p>
+    code: `<article className="px-card px-card--elevated">
+  <header className="px-card__header">
+    <p className="px-card__eyebrow">Starter card</p>
+    <h3 className="px-card__title">Token-driven surface</h3>
+    <p className="px-card__subtitle">Use cards to group content and actions with consistent spacing.</p>
+  </header>
+  <div className="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
 </article>`
   },
   angular: {
     language: 'html',
     filename: 'card-example.component.html',
-    code: `<article class="px-card px-stack-md">
-  <p class="px-eyebrow">Starter card</p>
-  <h3>Token-driven surface</h3>
-  <p>Use cards to group content and actions with consistent spacing.</p>
+    code: `<article class="px-card px-card--elevated">
+  <header class="px-card__header">
+    <p class="px-card__eyebrow">Starter card</p>
+    <h3 class="px-card__title">Token-driven surface</h3>
+    <p class="px-card__subtitle">Use cards to group content and actions with consistent spacing.</p>
+  </header>
+  <div class="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
 </article>`
   },
   vue: {
     language: 'vue',
     filename: 'CardExample.vue',
     code: `<template>
-  <article class="px-card px-stack-md">
-    <p class="px-eyebrow">Starter card</p>
-    <h3>Token-driven surface</h3>
-    <p>Use cards to group content and actions with consistent spacing.</p>
+  <article class="px-card px-card--elevated">
+    <header class="px-card__header">
+      <p class="px-card__eyebrow">Starter card</p>
+      <h3 class="px-card__title">Token-driven surface</h3>
+      <p class="px-card__subtitle">Use cards to group content and actions with consistent spacing.</p>
+    </header>
+    <div class="px-card__body">
+      Balanced spacing, rounded surfaces, and stable content rhythm.
+    </div>
   </article>
 </template>`
   }

@@ -104,31 +104,69 @@ export const componentsDocSections = [
   {
     id: 'cards',
     title: 'Cards',
-    description: 'Cards group related content, metadata, and actions inside a stable surface.',
-    demoDescription: 'Use cards when content needs a distinct container with hierarchy and spacing.',
-    previewDescription: 'A starter card surface for marketing and product content.',
+    description: 'Cards provide a reusable surface system for content grouping, metrics, pricing, testimonials, media, and spotlight layouts.',
+    demoDescription: 'Pixorix cards use one token-driven structure with stable areas for header, body, meta, actions, and footer so teams can scale variants without reinventing layout shells.',
+    previewDescription: 'A framework-ready card surface showing premium grouping, media, meta, and action handling.',
     preview: { type: 'card' },
-    variants: ['Default', 'Elevated', 'Outlined', 'Feature'],
-    sizes: ['Compact', 'Default', 'Expanded'],
-    states: ['Resting', 'Hover', 'Selected', 'Interactive'],
+    variants: ['Basic', 'Elevated', 'Outlined', 'Soft', 'Glass', 'Feature', 'Media', 'Profile', 'Stats', 'KPI', 'Pricing', 'Testimonial', 'Spotlight', 'Gradient border', 'Interactive'],
+    sizes: ['Default', 'Dense content', 'Expanded feature'],
+    states: ['Default', 'Hover-lift', 'Selected', 'Clickable', 'Loading', 'Skeleton-ready', 'Disabled'],
     accessibilityNotes: [
       'Keep semantic headings and content order intact within the card.',
-      'Only add interactive semantics when the full card is clickable.'
+      'Only make a whole card clickable when the entire surface represents one action target.'
     ],
     browserNotes: [
-      'Shadows and borders should degrade gracefully where backdrop or blur effects differ.',
-      'Use clear borders so the surface remains readable in lower-contrast environments.'
+      'Glass and gradient-border treatments should degrade cleanly where blur or compositing differs.',
+      'Overflow clipping and footer wrapping need verification in Safari and Firefox.'
     ],
     responsiveNotes: [
       'Cards should expand naturally within grid layouts.',
-      'Long text should wrap without collapsing internal spacing.'
+      'Footer actions stack on smaller screens instead of collapsing into cramped rows.'
     ],
     snippets: buildSnippets({
       title: 'Card',
-      html: `<article class="px-card">\n  <p class="px-eyebrow">Starter card</p>\n  <h3>Card title</h3>\n  <p>Use cards to group content and actions.</p>\n</article>`,
-      react: `<article className="px-card">\n  <p className="px-eyebrow">Starter card</p>\n  <h3>Card title</h3>\n  <p>Use cards to group content and actions.</p>\n</article>`,
-      angular: `<article class="px-card">\n  <p class="px-eyebrow">Starter card</p>\n  <h3>Card title</h3>\n  <p>Use cards to group content and actions.</p>\n</article>`,
-      vue: `<template>\n  <article class="px-card">\n    <p class="px-eyebrow">Starter card</p>\n    <h3>Card title</h3>\n    <p>Use cards to group content and actions.</p>\n  </article>\n</template>`
+      html: `<article class="px-card px-card--elevated">
+  <header class="px-card__header">
+    <p class="px-card__eyebrow">Starter card</p>
+    <h3 class="px-card__title">Product metrics card</h3>
+    <p class="px-card__subtitle">Use cards to group content, media, and actions cleanly.</p>
+  </header>
+  <div class="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
+</article>`,
+      react: `<article className="px-card px-card--elevated">
+  <header className="px-card__header">
+    <p className="px-card__eyebrow">Starter card</p>
+    <h3 className="px-card__title">Product metrics card</h3>
+    <p className="px-card__subtitle">Use cards to group content, media, and actions cleanly.</p>
+  </header>
+  <div className="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
+</article>`,
+      angular: `<article class="px-card px-card--elevated">
+  <header class="px-card__header">
+    <p class="px-card__eyebrow">Starter card</p>
+    <h3 class="px-card__title">Product metrics card</h3>
+    <p class="px-card__subtitle">Use cards to group content, media, and actions cleanly.</p>
+  </header>
+  <div class="px-card__body">
+    Balanced spacing, rounded surfaces, and stable content rhythm.
+  </div>
+</article>`,
+      vue: `<template>
+  <article class="px-card px-card--elevated">
+    <header class="px-card__header">
+      <p class="px-card__eyebrow">Starter card</p>
+      <h3 class="px-card__title">Product metrics card</h3>
+      <p class="px-card__subtitle">Use cards to group content, media, and actions cleanly.</p>
+    </header>
+    <div class="px-card__body">
+      Balanced spacing, rounded surfaces, and stable content rhythm.
+    </div>
+  </article>
+</template>`
     })
   },
   {
