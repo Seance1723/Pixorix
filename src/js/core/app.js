@@ -6,6 +6,7 @@ import { createSegmentedControl } from '../advanced-components/segmented-control
 import { createTestimonialSlider } from '../advanced-components/testimonial-slider.js';
 import { createWizard } from '../advanced-components/wizard.js';
 import { createAlert } from '../components/alert.js';
+import { createBadge } from '../components/badge.js';
 import { createButton } from '../components/button.js';
 import { createDrawer } from '../components/drawer.js';
 import { createModal } from '../components/modal.js';
@@ -32,6 +33,10 @@ function createDefaultRegistry() {
     .register('alert', {
       selector: '[data-px-alert], .px-alert[data-px-component="alert"], .px-banner[data-px-component="alert"], .px-form-notice[data-px-component="alert"], .px-page-notice[data-px-component="alert"]',
       init: createAlert
+    })
+    .register('badge', {
+      selector: '[data-px-chip], [data-px-filter-chip], .px-chip[data-px-component="chip"], .px-tag[data-px-component="tag"]',
+      init: createBadge
     })
     .register('button', {
       selector: '[data-px-button-split]',

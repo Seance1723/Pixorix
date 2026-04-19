@@ -184,23 +184,31 @@ export const badgeExampleSnippets = {
   html: {
     language: 'html',
     filename: 'badge.html',
-    code: `<span class="px-badge px-badge--success">Stable</span>`
+    code: `<span class="px-badge px-badge--success px-badge--soft">
+  <span class="px-badge__label">Stable</span>
+</span>`
   },
   react: {
     language: 'jsx',
     filename: 'BadgeExample.jsx',
-    code: `<span className="px-badge px-badge--success">Stable</span>`
+    code: `<span className="px-badge px-badge--success px-badge--soft">
+  <span className="px-badge__label">Stable</span>
+</span>`
   },
   angular: {
     language: 'html',
     filename: 'badge-example.component.html',
-    code: `<span class="px-badge px-badge--success">Stable</span>`
+    code: `<span class="px-badge px-badge--success px-badge--soft">
+  <span class="px-badge__label">Stable</span>
+</span>`
   },
   vue: {
     language: 'vue',
     filename: 'BadgeExample.vue',
     code: `<template>
-  <span class="px-badge px-badge--success">Stable</span>
+  <span class="px-badge px-badge--success px-badge--soft">
+    <span class="px-badge__label">Stable</span>
+  </span>
 </template>`
   }
 };

@@ -134,31 +134,65 @@ export const componentsDocSections = [
   {
     id: 'badges',
     title: 'Badges',
-    description: 'Badges highlight compact status, state, or categorization information.',
-    demoDescription: 'Badges are best kept short, semantic, and visually restrained.',
-    previewDescription: 'A compact set of badges for success, information, and beta states.',
+    description: 'Badges, chips, and tags provide compact status, metadata, selection, filtering, counters, and notification patterns.',
+    demoDescription: 'Pixorix badges separate static labeling from lightweight chip interaction while still sharing one token-driven contract.',
+    previewDescription: 'A compact framework-ready set of badges, chips, tags, counters, and notification markers.',
     preview: { type: 'badge' },
-    variants: ['Neutral', 'Success', 'Info', 'Warning'],
-    sizes: ['Small', 'Default'],
-    states: ['Static', 'Emphasized', 'Muted'],
+    variants: ['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Danger', 'Neutral', 'Solid', 'Soft', 'Outline', 'Glass', 'Tonal'],
+    sizes: ['XS', 'SM', 'MD', 'LG'],
+    states: ['Default', 'Hover', 'Active', 'Selected', 'Removable', 'Disabled'],
     accessibilityNotes: [
       'Do not rely on color alone to communicate badge meaning.',
-      'Keep badge text concise and understandable in isolation.'
+      'Interactive chips should use button semantics and expose selected state through ARIA.'
     ],
     browserNotes: [
-      'Rounded pill shapes should render consistently across modern browsers.',
-      'Spacing should remain readable even with system font substitution.'
+      'Glass badges should degrade safely when backdrop blur support differs across browsers.',
+      'Wrapping and truncation need verification in Safari and Firefox.'
     ],
     responsiveNotes: [
-      'Badges can wrap inside dense layouts without losing legibility.',
-      'Use compact spacing when multiple badges appear in one row.'
+      'Badge, chip, and tag groups should wrap instead of forcing overflow by default.',
+      'Notification badges should stay compact and attached to a relatively positioned parent.'
     ],
     snippets: buildSnippets({
       title: 'Badge',
-      html: `<span class="px-badge px-badge--success">Stable</span>`,
-      react: `<span className="px-badge px-badge--success">Stable</span>`,
-      angular: `<span class="px-badge px-badge--success">Stable</span>`,
-      vue: `<template>\n  <span class="px-badge px-badge--success">Stable</span>\n</template>`
+      html: `<div class="px-badge-group">
+  <span class="px-badge px-badge--success px-badge--soft">
+    <span class="px-badge__icon" aria-hidden="true">+</span>
+    <span class="px-badge__label">Stable</span>
+  </span>
+  <button class="px-chip px-chip--primary px-chip--outline" type="button" data-px-chip data-px-selectable aria-pressed="false">
+    <span class="px-chip__label">Filter chip</span>
+  </button>
+</div>`,
+      react: `<div className="px-badge-group">
+  <span className="px-badge px-badge--success px-badge--soft">
+    <span className="px-badge__icon" aria-hidden="true">+</span>
+    <span className="px-badge__label">Stable</span>
+  </span>
+  <button className="px-chip px-chip--primary px-chip--outline" type="button" data-px-chip data-px-selectable aria-pressed="false">
+    <span className="px-chip__label">Filter chip</span>
+  </button>
+</div>`,
+      angular: `<div class="px-badge-group">
+  <span class="px-badge px-badge--success px-badge--soft">
+    <span class="px-badge__icon" aria-hidden="true">+</span>
+    <span class="px-badge__label">Stable</span>
+  </span>
+  <button class="px-chip px-chip--primary px-chip--outline" type="button" data-px-chip data-px-selectable aria-pressed="false">
+    <span class="px-chip__label">Filter chip</span>
+  </button>
+</div>`,
+      vue: `<template>
+  <div class="px-badge-group">
+    <span class="px-badge px-badge--success px-badge--soft">
+      <span class="px-badge__icon" aria-hidden="true">+</span>
+      <span class="px-badge__label">Stable</span>
+    </span>
+    <button class="px-chip px-chip--primary px-chip--outline" type="button" data-px-chip data-px-selectable aria-pressed="false">
+      <span class="px-chip__label">Filter chip</span>
+    </button>
+  </div>
+</template>`
     })
   },
   {

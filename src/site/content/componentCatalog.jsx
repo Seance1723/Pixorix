@@ -38,12 +38,41 @@ function ButtonsPreview() {
 
 function BadgesPreview() {
   return (
-    <div className="demo-inline">
-      <span className="px-badge px-badge--primary">New</span>
-      <span className="px-badge px-badge--success">Stable</span>
-      <span className="px-badge px-badge--warning">Beta</span>
-      <span className="px-badge px-badge--outline">Outline</span>
-      <button className="px-chip px-chip--interactive" type="button">Themeable</button>
+    <div className="demo-stack">
+      <div className="px-badge-group">
+        <span className="px-badge px-badge--primary px-badge--soft">New</span>
+        <span className="px-badge px-badge--success px-badge--solid">
+          <span className="px-badge__icon" aria-hidden="true">+</span>
+          <span className="px-badge__label">Stable</span>
+        </span>
+        <span className="px-badge px-badge--warning px-badge--outline px-badge--dot">
+          <span className="px-badge__dot" aria-hidden="true" />
+          <span className="px-badge__label">Beta</span>
+        </span>
+        <span className="px-badge px-badge--danger px-badge--solid px-badge--counter">12</span>
+      </div>
+      <div className="px-chip-group">
+        <button className="px-chip px-chip--primary px-chip--outline" type="button" data-px-chip data-px-selectable aria-pressed="false">
+          <span className="px-chip__label">Selectable</span>
+        </button>
+        <button className="px-chip px-chip--info px-chip--tonal" type="button" data-px-chip data-px-filter-chip aria-pressed="true">
+          <span className="px-chip__icon" aria-hidden="true">#</span>
+          <span className="px-chip__label">Filter chip</span>
+        </button>
+        <button className="px-chip px-chip--neutral px-chip--soft" type="button" data-px-chip>
+          <span className="px-chip__label">Removable</span>
+          <span className="px-chip__remove" data-px-chip-remove aria-label="Remove chip">x</span>
+        </button>
+        <span className="px-tag px-tag--secondary px-tag--glass">
+          <span className="px-tag__label">Metadata tag</span>
+        </span>
+        <span style={{ position: 'relative', display: 'inline-flex' }}>
+          <button className="px-button px-button--secondary px-button--outline px-button--icon-only px-button--sm" type="button" aria-label="Notifications">
+            <span className="px-button__icon" aria-hidden="true">*</span>
+          </button>
+          <span className="px-badge px-badge--danger px-badge--solid px-badge--notification">3</span>
+        </span>
+      </div>
     </div>
   );
 }
@@ -377,11 +406,11 @@ export const componentCatalogSections = [
         slug: 'badges',
         category: 'Status',
         title: 'Badges and chips',
-        description: 'Compact labels for status, taxonomy, and lightweight interaction.',
-        review: 'These work well for status communication and faceted UI without overwhelming nearby content.',
-        notes: ['Prefer badges for status and chips for light interaction.', 'Keep wording short.', 'Avoid using color as the only status signal.'],
-        accessibility: 'Ensure badge meaning is readable as text and do not rely solely on color tone for meaning.',
-        code: `<span class="px-badge px-badge--success">Stable</span>`,
+        description: 'Compact status, tag, counter, notification, and lightweight selection patterns.',
+        review: 'The system is more scalable when badges, chips, and tags share one token contract instead of being treated as unrelated micro-components.',
+        notes: ['Use badges for passive status.', 'Use chips for selection or filter interaction.', 'Use tags for compact metadata grouping.'],
+        accessibility: 'Ensure color is never the only signal, and expose interactive chip state through button semantics and ARIA.',
+        code: `<span class="px-badge px-badge--success px-badge--soft"><span class="px-badge__label">Stable</span></span>`,
         preview: BadgesPreview
       },
       {
