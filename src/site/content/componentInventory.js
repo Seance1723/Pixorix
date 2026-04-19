@@ -6,7 +6,7 @@ export const componentInventoryGroups = [
     description: 'All first-party UI components available in the main Pixorix component layer.',
     items: [
       { name: 'Accordion', classes: '.px-accordion', code: html(`<div class="px-accordion"><div class="px-accordion__item"><button class="px-accordion__trigger" aria-expanded="false">Section</button><div class="px-accordion__panel" hidden>Content</div></div></div>`) },
-      { name: 'Alerts', classes: '.px-alert, .px-banner', code: html(`<div class="px-alert px-alert--info"><div class="px-alert__body"><strong class="px-alert__title">Info</strong><p class="px-alert__text">Alert content.</p></div></div>`) },
+      { name: 'Alerts', classes: '.px-alert, .px-banner, .px-form-notice, .px-page-notice', code: html(`<div class="px-alert px-alert--info px-alert--soft"><div class="px-alert__icon" aria-hidden="true">i</div><div class="px-alert__body"><strong class="px-alert__title">Info</strong><p class="px-alert__text">Alert content.</p></div></div>`) },
       { name: 'Avatars', classes: '.px-avatar', code: html(`<span class="px-avatar">PX</span>`) },
       { name: 'Badges', classes: '.px-badge, .px-chip, .px-tag', code: html(`<span class="px-badge px-badge--primary">New</span>`) },
       { name: 'Breadcrumbs', classes: '.px-breadcrumbs', code: html(`<ol class="px-breadcrumbs"><li class="px-breadcrumbs__item"><a class="px-breadcrumbs__link" href="/">Docs</a></li><li class="px-breadcrumbs__item" aria-current="page">Components</li></ol>`) },

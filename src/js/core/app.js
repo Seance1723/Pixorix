@@ -5,6 +5,7 @@ import { createResizablePanels } from '../advanced-components/resizable-panels.j
 import { createSegmentedControl } from '../advanced-components/segmented-control.js';
 import { createTestimonialSlider } from '../advanced-components/testimonial-slider.js';
 import { createWizard } from '../advanced-components/wizard.js';
+import { createAlert } from '../components/alert.js';
 import { createButton } from '../components/button.js';
 import { createDrawer } from '../components/drawer.js';
 import { createModal } from '../components/modal.js';
@@ -28,6 +29,10 @@ function createDefaultRegistry() {
   const registry = createComponentRegistry();
 
   registry
+    .register('alert', {
+      selector: '[data-px-alert], .px-alert[data-px-component="alert"], .px-banner[data-px-component="alert"], .px-form-notice[data-px-component="alert"], .px-page-notice[data-px-component="alert"]',
+      init: createAlert
+    })
     .register('button', {
       selector: '[data-px-button-split]',
       init: createButton

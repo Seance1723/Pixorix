@@ -209,34 +209,46 @@ export const alertExampleSnippets = {
   html: {
     language: 'html',
     filename: 'alert.html',
-    code: `<div class="px-alert px-alert--success" role="status">
-  <strong>Deployment ready</strong>
-  <p>Your Pixorix starter tokens and shell are wired correctly.</p>
+    code: `<div class="px-alert px-alert--success px-alert--soft" role="status">
+  <div class="px-alert__icon" aria-hidden="true">✓</div>
+  <div class="px-alert__body">
+    <p class="px-alert__title">Deployment ready</p>
+    <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
 </div>`
   },
   react: {
     language: 'jsx',
     filename: 'AlertExample.jsx',
-    code: `<div className="px-alert px-alert--success" role="status">
-  <strong>Deployment ready</strong>
-  <p>Your Pixorix starter tokens and shell are wired correctly.</p>
+    code: `<div className="px-alert px-alert--success px-alert--soft" role="status">
+  <div className="px-alert__icon" aria-hidden="true">✓</div>
+  <div className="px-alert__body">
+    <p className="px-alert__title">Deployment ready</p>
+    <p className="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
 </div>`
   },
   angular: {
     language: 'html',
     filename: 'alert-example.component.html',
-    code: `<div class="px-alert px-alert--success" role="status">
-  <strong>Deployment ready</strong>
-  <p>Your Pixorix starter tokens and shell are wired correctly.</p>
+    code: `<div class="px-alert px-alert--success px-alert--soft" role="status">
+  <div class="px-alert__icon" aria-hidden="true">✓</div>
+  <div class="px-alert__body">
+    <p class="px-alert__title">Deployment ready</p>
+    <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
 </div>`
   },
   vue: {
     language: 'vue',
     filename: 'AlertExample.vue',
     code: `<template>
-  <div class="px-alert px-alert--success" role="status">
-    <strong>Deployment ready</strong>
-    <p>Your Pixorix starter tokens and shell are wired correctly.</p>
+  <div class="px-alert px-alert--success px-alert--soft" role="status">
+    <div class="px-alert__icon" aria-hidden="true">✓</div>
+    <div class="px-alert__body">
+      <p class="px-alert__title">Deployment ready</p>
+      <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+    </div>
   </div>
 </template>`
   }

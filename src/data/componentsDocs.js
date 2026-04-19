@@ -164,31 +164,57 @@ export const componentsDocSections = [
   {
     id: 'alerts',
     title: 'Alerts',
-    description: 'Alerts provide contextual feedback for updates, warnings, and system status.',
-    demoDescription: 'Use alerts to surface important information inline without interrupting the entire workflow.',
-    previewDescription: 'A success alert surface with heading and supporting message.',
+    description: 'Alerts and notices provide contextual feedback for inline messaging, form validation guidance, banners, stacked system notices, and page-level announcements.',
+    demoDescription: 'Pixorix alerts separate semantic tone, visual treatment, and shell layout so teams can scale notices without duplicating styles or markup.',
+    previewDescription: 'A framework-ready notice system showing inline alerts, banners, form notices, and stacked messaging.',
     preview: { type: 'alert' },
-    variants: ['Info', 'Success', 'Warning', 'Critical'],
+    variants: ['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Danger', 'Neutral', 'Solid', 'Soft', 'Outline', 'Glass', 'Elevated', 'Minimal'],
     sizes: ['Compact', 'Default'],
-    states: ['Inline', 'Dismissible', 'Persistent'],
+    states: ['Open', 'Closing', 'Closed', 'Dismissible', 'Animated', 'Static'],
     accessibilityNotes: [
-      'Use appropriate live region semantics for dynamic alerts.',
-      'Critical content should not disappear before assistive tech can announce it.'
+      'Use `role="status"` for passive updates and `role="alert"` only for urgent messaging.',
+      'Dismiss controls should be clearly labeled and should not remove critical content before users can understand it.'
     ],
     browserNotes: [
-      'Avoid depending on unsupported animation behavior for visibility.',
-      'Maintain readable color contrast across browser color rendering differences.'
+      'Glass notices degrade safely when `backdrop-filter` support differs across browsers.',
+      'Dismissal behavior must continue working when animation or transition behavior varies across browsers.'
     ],
     responsiveNotes: [
-      'Stack alert content vertically on smaller screens.',
-      'Keep dismiss controls easy to reach on touch devices.'
+      'Banners and page notices wrap actions cleanly on smaller screens.',
+      'Alert stacks preserve rhythm without requiring manual margins.'
     ],
     snippets: buildSnippets({
       title: 'Alert',
-      html: `<div class="px-alert px-alert--success" role="status">\n  <strong>Deployment ready</strong>\n  <p>Your Pixorix starter tokens are loaded.</p>\n</div>`,
-      react: `<div className="px-alert px-alert--success" role="status">\n  <strong>Deployment ready</strong>\n  <p>Your Pixorix starter tokens are loaded.</p>\n</div>`,
-      angular: `<div class="px-alert px-alert--success" role="status">\n  <strong>Deployment ready</strong>\n  <p>Your Pixorix starter tokens are loaded.</p>\n</div>`,
-      vue: `<template>\n  <div class="px-alert px-alert--success" role="status">\n    <strong>Deployment ready</strong>\n    <p>Your Pixorix starter tokens are loaded.</p>\n  </div>\n</template>`
+      html: `<div class="px-alert px-alert--success px-alert--soft" role="status">
+  <div class="px-alert__icon" aria-hidden="true">✓</div>
+  <div class="px-alert__body">
+    <p class="px-alert__title">Deployment ready</p>
+    <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
+</div>`,
+      react: `<div className="px-alert px-alert--success px-alert--soft" role="status">
+  <div className="px-alert__icon" aria-hidden="true">✓</div>
+  <div className="px-alert__body">
+    <p className="px-alert__title">Deployment ready</p>
+    <p className="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
+</div>`,
+      angular: `<div class="px-alert px-alert--success px-alert--soft" role="status">
+  <div class="px-alert__icon" aria-hidden="true">✓</div>
+  <div class="px-alert__body">
+    <p class="px-alert__title">Deployment ready</p>
+    <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+  </div>
+</div>`,
+      vue: `<template>
+  <div class="px-alert px-alert--success px-alert--soft" role="status">
+    <div class="px-alert__icon" aria-hidden="true">✓</div>
+    <div class="px-alert__body">
+      <p class="px-alert__title">Deployment ready</p>
+      <p class="px-alert__text">Your Pixorix starter tokens and shell are wired correctly.</p>
+    </div>
+  </div>
+</template>`
     })
   },
   {

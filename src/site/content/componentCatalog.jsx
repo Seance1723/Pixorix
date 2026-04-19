@@ -51,19 +51,32 @@ function BadgesPreview() {
 function AlertsPreview() {
   return (
     <div className="demo-stack">
-      <div className="px-alert px-alert--info">
+      <div className="px-alert px-alert--info px-alert--soft" role="status">
+        <div className="px-alert__icon" aria-hidden="true">i</div>
         <div className="px-alert__body">
           <strong className="px-alert__title">Docs-first release</strong>
           <p className="px-alert__text">Pixorix now documents live component previews alongside implementation notes.</p>
+          <div className="px-alert__actions">
+            <button className="px-button px-button--info px-button--soft px-button--sm" type="button">Review changes</button>
+          </div>
         </div>
       </div>
-      <div className="px-banner px-banner--success">
+      <div className="px-banner px-banner--success px-banner--glass px-banner--elevated px-banner--animated" data-px-alert data-px-component="alert" role="status">
+        <div className="px-banner__icon" aria-hidden="true">✓</div>
         <div className="px-banner__body">
           <strong className="px-banner__title">Build verified</strong>
           <p className="px-banner__text">Framework classes are being used directly inside the documentation previews.</p>
         </div>
-        <div className="px-banner__aside">
-          <button className="px-button px-button--primary px-button--sm" type="button">Review docs</button>
+        <div className="px-banner__actions">
+          <button className="px-button px-button--light px-button--soft px-button--sm" type="button">Review docs</button>
+          <button className="px-banner__dismiss" type="button" data-px-alert-close aria-label="Dismiss alert">×</button>
+        </div>
+      </div>
+      <div className="px-form-notice px-form-notice--warning px-form-notice--minimal" role="alert">
+        <div className="px-form-notice__icon" aria-hidden="true">!</div>
+        <div className="px-form-notice__body">
+          <strong className="px-form-notice__title">Workspace name is required</strong>
+          <p className="px-form-notice__text">Provide a project name before generating your starter files.</p>
         </div>
       </div>
     </div>
@@ -376,10 +389,10 @@ export const componentCatalogSections = [
         category: 'Feedback',
         title: 'Alerts and banners',
         description: 'Inline and wide-message feedback for system state, warnings, and confirmations.',
-        review: 'Pixorix alerts are useful because they stay calm and readable instead of visually screaming at every message.',
-        notes: ['Use alerts inline within content areas.', 'Use banners for broader system state or announcements.', 'Pair alert tone with a concise action when needed.'],
-        accessibility: 'Important messages should use appropriate live-region strategy when inserted dynamically.',
-        code: `<div class="px-alert px-alert--info"><div class="px-alert__body"><strong class="px-alert__title">Docs-first release</strong></div></div>`,
+        review: 'The notice layer is stronger when alerts, banners, page notices, and form notices share one contract instead of drifting into unrelated one-off styles.',
+        notes: ['Use inline alerts for contextual feedback.', 'Use banners and page notices for wider system messaging.', 'Use form notices for validation and field-adjacent guidance.'],
+        accessibility: 'Important messages should use the correct live-region role, and dismiss controls should be clearly labelled and optional.',
+        code: `<div class="px-alert px-alert--info px-alert--soft" role="status"><div class="px-alert__icon" aria-hidden="true">i</div><div class="px-alert__body"><strong class="px-alert__title">Docs-first release</strong><p class="px-alert__text">Pixorix now documents live component previews alongside implementation notes.</p></div></div>`,
         preview: AlertsPreview
       }
     ]
