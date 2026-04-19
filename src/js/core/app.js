@@ -8,10 +8,9 @@ import { createWizard } from '../advanced-components/wizard.js';
 import { createAlert } from '../components/alert.js';
 import { createBadge } from '../components/badge.js';
 import { createButton } from '../components/button.js';
-import { createDrawer } from '../components/drawer.js';
 import { createForm } from '../components/form.js';
-import { createModal } from '../components/modal.js';
 import { createNavigation } from '../components/navigation.js';
+import { createOverlay } from '../components/overlay.js';
 import { initHoverEffects } from '../motion/hover-effects.js';
 import { initPageTransition } from '../motion/page-transition.js';
 import { initReveal } from '../motion/reveal.js';
@@ -44,13 +43,9 @@ function createDefaultRegistry() {
       selector: '[data-px-button-split]',
       init: createButton
     })
-    .register('modal', {
-      selector: '[data-px-modal], .px-modal[data-px-component="modal"]',
-      init: createModal
-    })
-    .register('drawer', {
-      selector: '[data-px-drawer], .px-drawer[data-px-component="drawer"]',
-      init: createDrawer
+    .register('overlay', {
+      selector: '[data-px-modal], .px-modal[data-px-component="modal"], [data-px-drawer], .px-drawer[data-px-component="drawer"], [data-px-offcanvas], .px-offcanvas[data-px-component="overlay"], [data-px-popover], [data-px-tooltip], [data-px-bottom-sheet], [data-px-action-sheet], [data-px-notification-panel], [data-px-search-overlay], [data-px-lightbox], [data-px-fullscreen-overlay]',
+      init: createOverlay
     })
     .register('navigation', {
       selector: '[data-px-nav-collapse], [data-px-tabs], [data-px-tab-pills], [data-px-dropdown], [data-px-mega-menu], [data-px-context-menu], [data-px-sidebar-nav]',

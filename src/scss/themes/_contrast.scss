@@ -17,7 +17,14 @@
 [data-px-contrast='high'] .px-table,
 [data-px-contrast='high'] .px-field__control,
 [data-px-contrast='high'] .px-modal__dialog,
-[data-px-contrast='high'] .px-drawer__panel {
+[data-px-contrast='high'] .px-search-overlay__dialog,
+[data-px-contrast='high'] .px-lightbox__dialog,
+[data-px-contrast='high'] .px-fullscreen-overlay__dialog,
+[data-px-contrast='high'] .px-drawer__panel,
+[data-px-contrast='high'] .px-offcanvas__panel,
+[data-px-contrast='high'] .px-popover,
+[data-px-contrast='high'] .px-bottom-sheet__panel,
+[data-px-contrast='high'] .px-action-sheet__panel {
   border-width: 2px;
 }
 

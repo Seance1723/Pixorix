@@ -1,14 +1,18 @@
 @use '../abstracts/mixins' as mixins;
+@use '../abstracts/placeholders' as *;
 
 .px-overlay-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: var(--px-z-overlay);
-  background-color: var(--px-color-overlay);
-  backdrop-filter: var(--px-backdrop-sm, blur(0.5rem));
+  @extend %px-overlay-shell;
+
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard);
+  transition:
+    opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard),
+    backdrop-filter var(--px-motion-duration-normal) var(--px-motion-easing-standard);
+}
+
+.px-overlay-backdrop--no-blur {
+  backdrop-filter: none;
 }
 
 .px-overlay-backdrop[data-state='open'] {
@@ -16,52 +20,118 @@
   pointer-events: auto;
 }
 
-.px-modal {
-  --px-modal-width: min(100%, 40rem);
-  --px-modal-padding: var(--px-space-6);
-  --px-modal-radius: var(--px-radius-2xl, var(--px-radius-xl));
+.px-modal,
+.px-search-overlay,
+.px-lightbox,
+.px-fullscreen-overlay {
+  --px-overlay-width: min(100%, 40rem);
+  --px-overlay-padding: var(--px-space-6);
+  --px-overlay-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  --px-overlay-shell-padding: var(--px-space-4);
 
   position: fixed;
   inset: 0;
   z-index: var(--px-z-modal);
   display: grid;
   place-items: center;
-  padding: var(--px-space-4);
+  padding: var(--px-overlay-shell-padding);
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard);
 }
 
-.px-modal[data-state='open'] {
+.px-modal[data-state='open'],
+.px-search-overlay[data-state='open'],
+.px-lightbox[data-state='open'],
+.px-fullscreen-overlay[data-state='open'] {
+  opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-.px-modal__dialog {
+.px-modal__dialog,
+.px-search-overlay__dialog,
+.px-lightbox__dialog,
+.px-fullscreen-overlay__dialog {
   display: grid;
   gap: var(--px-space-4);
-  inline-size: var(--px-modal-width);
+  inline-size: var(--px-overlay-width);
   max-inline-size: calc(100vw - 2rem);
   max-block-size: calc(100dvh - 2rem);
   overflow: auto;
-  padding: var(--px-modal-padding);
+  padding: var(--px-overlay-padding);
   border: 1px solid var(--px-color-border);
-  border-radius: var(--px-modal-radius);
+  border-radius: var(--px-overlay-radius);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, var(--px-color-surface-highlight, rgba(255, 255, 255, 0.18)), rgba(255, 255, 255, 0)),
     var(--px-color-surface);
   box-shadow: var(--px-shadow-xl);
   opacity: 0;
-  transform: translateY(0.75rem) scale(0.985);
+  transform: translateY(0.875rem) scale(0.985);
   transition:
     opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard),
-    transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard));
+    transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard)),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard);
 }
 
-.px-modal[data-state='open'] .px-modal__dialog {
+.px-modal[data-state='open'] .px-modal__dialog,
+.px-search-overlay[data-state='open'] .px-search-overlay__dialog,
+.px-lightbox[data-state='open'] .px-lightbox__dialog,
+.px-fullscreen-overlay[data-state='open'] .px-fullscreen-overlay__dialog {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
+.px-modal--compact,
+.px-search-overlay--compact,
+.px-lightbox--compact {
+  --px-overlay-width: min(100%, 30rem);
+  --px-overlay-padding: var(--px-space-5);
+}
+
+.px-modal--large,
+.px-search-overlay--large,
+.px-lightbox--large {
+  --px-overlay-width: min(100%, 64rem);
+}
+
+.px-modal--fullscreen,
+.px-fullscreen-overlay,
+.px-search-overlay--fullscreen,
+.px-lightbox--fullscreen {
+  --px-overlay-width: min(100%, 100vw);
+  --px-overlay-padding: var(--px-space-5);
+  --px-overlay-radius: 0;
+  --px-overlay-shell-padding: 0;
+}
+
+.px-modal--glass .px-modal__dialog,
+.px-search-overlay--glass .px-search-overlay__dialog,
+.px-lightbox--glass .px-lightbox__dialog,
+.px-fullscreen-overlay--glass .px-fullscreen-overlay__dialog {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+    color-mix(in srgb, var(--px-color-surface) 82%, transparent);
+  backdrop-filter: var(--px-backdrop-md, blur(0.875rem));
+}
+
+.px-modal--elevated .px-modal__dialog,
+.px-search-overlay--elevated .px-search-overlay__dialog,
+.px-lightbox--elevated .px-lightbox__dialog,
+.px-fullscreen-overlay--elevated .px-fullscreen-overlay__dialog {
+  box-shadow: var(--px-shadow-xl), 0 0 0 1px var(--px-color-overlay-border, rgba(255, 255, 255, 0.08));
+}
+
 .px-modal__header,
-.px-modal__footer {
+.px-modal__footer,
+.px-search-overlay__header,
+.px-search-overlay__footer,
+.px-lightbox__header,
+.px-lightbox__footer,
+.px-fullscreen-overlay__header,
+.px-fullscreen-overlay__footer {
   display: flex;
   flex-wrap: wrap;
   gap: var(--px-space-3);
@@ -69,39 +139,134 @@
   justify-content: space-between;
 }
 
-.px-modal__title {
+.px-modal__title,
+.px-search-overlay__title,
+.px-lightbox__title,
+.px-fullscreen-overlay__title {
   @include mixins.px-type-role('headings', 'h5');
 
   margin: 0;
   color: var(--px-color-text);
 }
 
-.px-modal__description {
+.px-modal__description,
+.px-search-overlay__description,
+.px-lightbox__description,
+.px-fullscreen-overlay__description {
   @include mixins.px-type-role('body', 'body-sm');
 
   margin: 0;
   color: var(--px-color-text-muted);
 }
 
-.px-modal__body {
+.px-modal__body,
+.px-search-overlay__body,
+.px-lightbox__body,
+.px-fullscreen-overlay__body {
   min-width: 0;
 }
 
-.px-modal__close {
+.px-modal__footer,
+.px-search-overlay__footer,
+.px-fullscreen-overlay__footer {
+  padding-top: var(--px-space-1);
+  border-top: 1px solid color-mix(in srgb, var(--px-color-border) 86%, transparent);
+}
+
+.px-modal__close,
+.px-search-overlay__close,
+.px-lightbox__close,
+.px-fullscreen-overlay__close {
   flex: 0 0 auto;
 }
 
+.px-modal[data-state='loading'] .px-modal__dialog,
+.px-search-overlay[data-state='loading'] .px-search-overlay__dialog,
+.px-lightbox[data-state='loading'] .px-lightbox__dialog,
+.px-fullscreen-overlay[data-state='loading'] .px-fullscreen-overlay__dialog {
+  opacity: 0.78;
+}
+
+.px-modal--action-focused .px-modal__footer,
+.px-search-overlay--action-focused .px-search-overlay__footer,
+.px-fullscreen-overlay--action-focused .px-fullscreen-overlay__footer {
+  justify-content: flex-end;
+}
+
+.px-search-overlay__dialog {
+  --px-overlay-width: min(100%, 52rem);
+}
+
+.px-lightbox {
+  --px-overlay-width: min(100%, 72rem);
+}
+
+.px-lightbox__dialog {
+  justify-items: stretch;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)),
+    color-mix(in srgb, var(--px-color-surface) 72%, rgba(2, 6, 23, 0.24));
+}
+
+.px-lightbox__media {
+  overflow: hidden;
+  border-radius: var(--px-radius-xl);
+  background: color-mix(in srgb, var(--px-color-surface-muted) 78%, transparent);
+}
+
+.px-lightbox__media > img,
+.px-lightbox__media > video {
+  display: block;
+  inline-size: 100%;
+  max-block-size: min(70dvh, 46rem);
+  object-fit: contain;
+}
+
+.px-fullscreen-overlay {
+  --px-overlay-padding: clamp(1.25rem, 0.8rem + 1vw, 2rem);
+}
+
+.px-fullscreen-overlay__dialog {
+  inline-size: 100vw;
+  max-inline-size: 100vw;
+  max-block-size: 100dvh;
+  min-block-size: 100dvh;
+}
+
 @media (max-width: 47.99rem) {
-  .px-modal {
+  .px-modal,
+  .px-search-overlay,
+  .px-lightbox {
     align-items: end;
     padding: 0;
   }
 
-  .px-modal__dialog {
+  .px-modal__dialog,
+  .px-search-overlay__dialog,
+  .px-lightbox__dialog {
     inline-size: 100%;
     max-inline-size: 100%;
-    max-block-size: min(92dvh, 100%);
+    max-block-size: min(94dvh, 100%);
     border-end-start-radius: 0;
     border-end-end-radius: 0;
+  }
+
+  .px-lightbox__media > img,
+  .px-lightbox__media > video {
+    max-block-size: min(54dvh, 28rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-overlay-backdrop,
+  .px-modal,
+  .px-search-overlay,
+  .px-lightbox,
+  .px-fullscreen-overlay,
+  .px-modal__dialog,
+  .px-search-overlay__dialog,
+  .px-lightbox__dialog,
+  .px-fullscreen-overlay__dialog {
+    transition: none;
   }
 }

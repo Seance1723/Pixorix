@@ -1,15 +1,73 @@
 @use '../abstracts/mixins' as mixins;
 
+.px-popover-shell {
+  position: relative;
+  display: inline-flex;
+}
+
 .px-popover {
+  --px-popover-offset: 0.75rem;
+
+  position: absolute;
+  inset-block-start: calc(100% + var(--px-popover-offset));
+  inset-inline-start: 0;
+  z-index: var(--px-z-modal);
   display: grid;
   gap: var(--px-space-3);
-  min-width: min(22rem, calc(100vw - 2rem));
-  max-width: 28rem;
+  min-width: min(20rem, calc(100vw - 2rem));
+  max-width: min(28rem, calc(100vw - 2rem));
   padding: var(--px-space-4);
   border: 1px solid var(--px-color-border);
   border-radius: var(--px-radius-xl);
-  background-color: var(--px-color-surface);
+  background:
+    linear-gradient(180deg, var(--px-color-surface-highlight, rgba(255, 255, 255, 0.16)), rgba(255, 255, 255, 0)),
+    var(--px-color-surface);
   box-shadow: var(--px-shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem) scale(0.985);
+  transition:
+    opacity var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-popover[data-state='open'],
+.px-popover-shell[data-state='open'] .px-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.px-popover--top {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + var(--px-popover-offset));
+  transform: translateY(-0.5rem) scale(0.985);
+}
+
+.px-popover--end {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+.px-popover--compact {
+  min-width: min(16rem, calc(100vw - 2rem));
+  padding: var(--px-space-3);
+}
+
+.px-popover--large {
+  min-width: min(26rem, calc(100vw - 2rem));
+  max-width: min(34rem, calc(100vw - 2rem));
+}
+
+.px-popover--glass {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+    color-mix(in srgb, var(--px-color-surface) 84%, transparent);
+  backdrop-filter: var(--px-backdrop-md, blur(0.875rem));
+}
+
+.px-popover--elevated {
+  box-shadow: var(--px-shadow-xl);
 }
 
 .px-popover__title {
@@ -24,8 +82,15 @@
   color: var(--px-color-text-muted);
 }
 
+.px-popover__footer,
 .px-popover__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--px-space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-popover {
+    transition: none;
+  }
 }

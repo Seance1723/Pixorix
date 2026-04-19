@@ -1,16 +1,58 @@
 @use '../abstracts/mixins' as mixins;
 
+.px-tooltip-shell {
+  position: relative;
+  display: inline-flex;
+}
+
 .px-tooltip {
   @include mixins.px-type-role('ui', 'helper');
 
+  position: absolute;
+  inset-block-end: calc(100% + 0.5rem);
+  inset-inline-start: 50%;
+  z-index: var(--px-z-modal);
   max-width: 18rem;
   padding: var(--px-space-2) var(--px-space-3);
+  border: 1px solid color-mix(in srgb, var(--px-color-border) 70%, transparent);
   border-radius: var(--px-radius-md);
-  background-color: var(--px-color-text);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    color-mix(in srgb, var(--px-color-text) 90%, rgba(2, 6, 23, 0.08));
   color: var(--px-color-text-inverse);
   box-shadow: var(--px-shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  white-space: normal;
+  transform: translate(-50%, 0.35rem);
+  transition:
+    opacity var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard);
+}
+
+.px-tooltip[data-state='open'],
+.px-tooltip-shell[data-state='open'] .px-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.px-tooltip--bottom {
+  inset-block-end: auto;
+  inset-block-start: calc(100% + 0.5rem);
+  transform: translate(-50%, -0.35rem);
+}
+
+.px-tooltip--compact {
+  max-width: 14rem;
+  padding: 0.35rem 0.6rem;
 }
 
 .px-tooltip[data-state='hidden'] {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-tooltip {
+    transition: none;
+  }
 }

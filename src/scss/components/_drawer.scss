@@ -1,20 +1,29 @@
 @use '../abstracts/mixins' as mixins;
 
-.px-drawer {
+.px-drawer,
+.px-notification-panel-shell {
   --px-drawer-width: min(100vw, 30rem);
+  --px-drawer-padding: var(--px-space-5);
 
   position: fixed;
   inset: 0;
   z-index: var(--px-z-drawer, 780);
   display: grid;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard);
 }
 
-.px-drawer[data-state='open'] {
+.px-drawer[data-state='open'],
+.px-notification-panel-shell[data-state='open'] {
+  opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-.px-drawer--end {
+.px-drawer--end,
+.px-notification-panel-shell {
   justify-items: end;
 }
 
@@ -22,19 +31,25 @@
   justify-items: start;
 }
 
-.px-drawer__panel {
+.px-drawer__panel,
+.px-notification-panel {
   display: grid;
   grid-template-rows: auto 1fr auto;
   inline-size: var(--px-drawer-width);
   max-inline-size: 100vw;
   block-size: 100dvh;
   overflow: auto;
-  padding: var(--px-space-5);
+  padding: var(--px-drawer-padding);
   border-inline-start: 1px solid var(--px-color-border);
-  background-color: var(--px-color-surface);
+  background:
+    linear-gradient(180deg, var(--px-color-surface-highlight, rgba(255, 255, 255, 0.12)), rgba(255, 255, 255, 0)),
+    var(--px-color-surface);
   box-shadow: var(--px-shadow-xl);
+  opacity: 0;
   transform: translateX(100%);
-  transition: transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard));
+  transition:
+    opacity var(--px-motion-duration-normal) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-normal) var(--px-motion-easing-entrance, var(--px-motion-easing-standard));
 }
 
 .px-drawer--start .px-drawer__panel {
@@ -43,25 +58,94 @@
   transform: translateX(-100%);
 }
 
-.px-drawer[data-state='open'] .px-drawer__panel {
+.px-drawer[data-state='open'] .px-drawer__panel,
+.px-notification-panel-shell[data-state='open'] .px-notification-panel {
+  opacity: 1;
   transform: translateX(0);
 }
 
+.px-drawer--compact,
+.px-notification-panel-shell--compact {
+  --px-drawer-width: min(100vw, 22rem);
+  --px-drawer-padding: var(--px-space-4);
+}
+
+.px-drawer--large,
+.px-notification-panel-shell--large {
+  --px-drawer-width: min(100vw, 38rem);
+}
+
+.px-drawer--fullscreen,
+.px-notification-panel-shell--fullscreen {
+  --px-drawer-width: 100vw;
+}
+
+.px-drawer--glass .px-drawer__panel,
+.px-notification-panel-shell--glass .px-notification-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)),
+    color-mix(in srgb, var(--px-color-surface) 84%, transparent);
+  backdrop-filter: var(--px-backdrop-md, blur(0.875rem));
+}
+
+.px-drawer--elevated .px-drawer__panel,
+.px-notification-panel-shell--elevated .px-notification-panel {
+  box-shadow: var(--px-shadow-xl), 0 0 0 1px var(--px-color-overlay-border, rgba(255, 255, 255, 0.08));
+}
+
 .px-drawer__header,
-.px-drawer__footer {
+.px-drawer__footer,
+.px-notification-panel__header,
+.px-notification-panel__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--px-space-3);
 }
 
-.px-drawer__title {
+.px-drawer__title,
+.px-notification-panel__title {
   @include mixins.px-type-role('headings', 'h5');
 
   margin: 0;
 }
 
-.px-drawer__body {
+.px-drawer__description,
+.px-notification-panel__description {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  margin: 0;
+  color: var(--px-color-text-muted);
+}
+
+.px-drawer__body,
+.px-notification-panel__body {
   min-width: 0;
   padding-block: var(--px-space-4);
+}
+
+.px-drawer--action-focused .px-drawer__footer,
+.px-notification-panel-shell--action-focused .px-notification-panel__footer {
+  justify-content: flex-end;
+}
+
+@media (max-width: 47.99rem) {
+  .px-drawer,
+  .px-notification-panel-shell {
+    justify-items: stretch;
+  }
+
+  .px-drawer__panel,
+  .px-notification-panel {
+    inline-size: 100vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-drawer,
+  .px-notification-panel-shell,
+  .px-drawer__panel,
+  .px-notification-panel {
+    transition: none;
+  }
 }

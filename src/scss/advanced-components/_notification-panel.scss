@@ -3,13 +3,10 @@
 .px-notification-panel {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  inline-size: min(100vw, 24rem);
-  max-block-size: min(85dvh, 42rem);
+  inline-size: min(100vw, 26rem);
+  max-block-size: min(100dvh, 100%);
   overflow: hidden;
-  border: 1px solid var(--px-color-border);
-  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
-  background-color: var(--px-color-surface);
-  box-shadow: var(--px-shadow-xl);
+  border-inline-start: 1px solid var(--px-color-border);
 }
 
 .px-notification-panel__header,
@@ -37,4 +34,16 @@
 
 .px-notification-panel__item:hover {
   background-color: var(--px-color-surface-muted);
+}
+
+.px-notification-panel__eyebrow {
+  @include mixins.px-type-role('ui', 'overline');
+
+  color: var(--px-color-text-soft);
+}
+
+.px-notification-panel__meta {
+  @include mixins.px-type-role('ui', 'helper');
+
+  color: var(--px-color-text-soft);
 }

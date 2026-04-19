@@ -403,6 +403,7 @@ function OverlayPreview() {
       <div className="px-button-group">
         <button className="px-button px-button--primary" type="button" onClick={() => setOpen('modal')}>Open modal</button>
         <button className="px-button px-button--secondary" type="button" onClick={() => setOpen('drawer')}>Open drawer</button>
+        <button className="px-button px-button--soft" type="button" onClick={() => setOpen('sheet')}>Open sheet</button>
       </div>
 
       <div className="px-modal" data-state={open === 'modal' ? 'open' : 'closed'}>
@@ -429,6 +430,15 @@ function OverlayPreview() {
           </div>
         </div>
       </div>
+
+      <div className="px-bottom-sheet" data-state={open === 'sheet' ? 'open' : 'closed'}>
+        <div className="px-bottom-sheet__panel">
+          <div className="px-bottom-sheet__handle" aria-hidden="true" />
+          <h3 className="px-modal__title">Action-focused sheet</h3>
+          <p>Sheets and action surfaces reuse the same open, close, and motion contract.</p>
+          <button className="px-button px-button--primary px-button--sm" type="button" onClick={() => setOpen('')}>Done</button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -453,10 +463,12 @@ const cardsCode = `<article class="px-card px-card--elevated px-card--interactiv
   <div class="px-card__body">Mix content and actions cleanly.</div>
 </article>`;
 
-const overlayCode = `<div class="px-modal" data-state="open">
-  <div class="px-modal__dialog">
+const overlayCode = `<div class="px-overlay-backdrop" data-state="open" aria-hidden="false"></div>
+<div id="catalog-overlay" class="px-modal px-modal--glass" data-px-modal data-px-overlay="modal" data-state="open" aria-hidden="false">
+  <div class="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="catalog-overlay-title">
     <div class="px-modal__header">
-      <h3 class="px-modal__title">Component review modal</h3>
+      <h3 id="catalog-overlay-title" class="px-modal__title">Component review modal</h3>
+      <button class="px-button px-button--ghost px-button--sm" type="button" data-px-close aria-label="Close modal">Close</button>
     </div>
     <div class="px-modal__body">Focused content goes here.</div>
   </div>
@@ -648,11 +660,11 @@ export const componentCatalogSections = [
       {
         slug: 'overlay',
         category: 'Overlays',
-        title: 'Modal and drawer',
-        description: 'Focused overlay patterns for confirmation, inspection, and side-panel workflows.',
-        review: 'These are useful when you need contextual depth, but the docs should remind users not to overuse them for routine reading tasks.',
-        notes: ['Use modals for focused interruption.', 'Use drawers for contextual editing or inspection.', 'Provide explicit close controls and escape behavior.'],
-        accessibility: 'Focus management and escape handling are critical for both patterns.',
+        title: 'Overlay system',
+        description: 'One shared runtime and surface contract for modal, drawer, offcanvas, tooltip, popover, command palette, search, sheets, lightbox, and fullscreen overlays.',
+        review: 'The system is materially stronger when all overlay types reuse the same open, close, dismiss, focus, and motion rules instead of each pattern shipping its own behavior model.',
+        notes: ['Use modal-like overlays only for focused tasks or interruption.', 'Use drawers and sheets for contextual editing, inspection, or mobile actions.', 'Keep popovers and tooltips supplemental rather than critical.'],
+        accessibility: 'Dialog semantics, focus return, escape handling, and keyboard paths are required for every modal-style overlay.',
         code: overlayCode,
         preview: OverlayPreview
       }

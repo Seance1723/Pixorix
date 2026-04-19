@@ -4,6 +4,7 @@ export * from './components/badge.js';
 export * from './components/button.js';
 export * from './components/form.js';
 export * from './components/navigation.js';
+export * from './components/overlay.js';
 export * from './core/dom.js';
 export * from './core/events.js';
 export * from './core/state.js';

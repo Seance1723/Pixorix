@@ -7,10 +7,7 @@
   max-inline-size: calc(100vw - 2rem);
   max-block-size: min(80dvh, 42rem);
   overflow: hidden;
-  border: 1px solid var(--px-color-border);
-  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
-  background-color: var(--px-color-surface);
-  box-shadow: var(--px-shadow-xl);
+  border-radius: inherit;
 }
 
 .px-command-palette__search {
@@ -18,9 +15,21 @@
   border-bottom: 1px solid var(--px-color-border);
 }
 
+.px-command-palette__search .px-input,
+.px-command-palette__search input {
+  inline-size: 100%;
+}
+
 .px-command-palette__results {
   overflow: auto;
   padding: var(--px-space-2);
+}
+
+.px-command-palette__empty {
+  @include mixins.px-type-role('body', 'body-sm');
+
+  padding: var(--px-space-4);
+  color: var(--px-color-text-muted);
 }
 
 .px-command-palette__group {
@@ -42,13 +51,24 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--px-space-3);
-  min-height: 2.75rem;
+  min-height: 2.875rem;
   padding: 0 var(--px-space-3);
   border-radius: var(--px-radius-lg);
   color: var(--px-color-text);
 }
 
+.px-command-palette__item kbd {
+  @include mixins.px-type-role('ui', 'helper');
+
+  padding: 0.125rem 0.4rem;
+  border: 1px solid var(--px-color-border);
+  border-radius: var(--px-radius-sm);
+  background-color: var(--px-color-surface-muted);
+  color: var(--px-color-text-soft);
+}
+
 .px-command-palette__item.is-active,
-.px-command-palette__item:hover {
+.px-command-palette__item:hover,
+.px-command-palette__item:focus-visible {
   background-color: var(--px-color-surface-muted);
 }

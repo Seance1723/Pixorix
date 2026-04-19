@@ -10,8 +10,14 @@
 
 [data-px-theme='light'] .px-card,
 [data-px-theme='light'] .px-modal__dialog,
+[data-px-theme='light'] .px-search-overlay__dialog,
+[data-px-theme='light'] .px-lightbox__dialog,
+[data-px-theme='light'] .px-fullscreen-overlay__dialog,
 [data-px-theme='light'] .px-drawer__panel,
 [data-px-theme='light'] .px-offcanvas__panel,
+[data-px-theme='light'] .px-popover,
+[data-px-theme='light'] .px-bottom-sheet__panel,
+[data-px-theme='light'] .px-action-sheet__panel,
 [data-px-theme='light'] .px-command-palette,
 [data-px-theme='light'] .px-notification-panel {
   @include theme.px-component-theme-vars(

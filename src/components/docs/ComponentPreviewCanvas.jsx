@@ -132,6 +132,25 @@ export function ComponentPreviewCanvas({ preview }) {
         </div>
       );
 
+    case 'overlay':
+      return (
+        <div className="component-preview__surface" style={{ display: 'grid', gap: '1rem' }}>
+          <div className="component-preview__overlay">
+            <div className="component-preview__modal">
+              <p className="eyebrow">Overlay system</p>
+              <h3>Shared modal, drawer, sheet, and popover rules</h3>
+              <p>Pixorix overlays reuse one runtime for focus, dismiss, keyboard access, and motion.</p>
+            </div>
+          </div>
+          <div className="component-preview component-preview--badges">
+            <span className="component-preview__badge component-preview__badge--info">Modal</span>
+            <span className="component-preview__badge component-preview__badge--success">Drawer</span>
+            <span className="component-preview__badge component-preview__badge--warning">Popover</span>
+            <span className="component-preview__badge">Sheet</span>
+          </div>
+        </div>
+      );
+
     case 'table':
       return (
         <div className="component-preview__table-wrap">

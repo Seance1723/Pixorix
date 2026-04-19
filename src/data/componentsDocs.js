@@ -555,63 +555,78 @@ export const componentsDocSections = [
     })
   },
   {
-    id: 'modals',
-    title: 'Modals',
-    description: 'Modals temporarily interrupt the page flow for focused tasks or confirmations.',
-    demoDescription: 'Use modals sparingly for short tasks that should block the underlying context.',
-    previewDescription: 'A centered modal surface inside a dimmed overlay.',
-    preview: { type: 'modal' },
-    variants: ['Confirmation', 'Form modal', 'Information modal'],
-    sizes: ['Small', 'Default', 'Wide'],
-    states: ['Open', 'Closing', 'Blocked', 'Dismissed'],
+    id: 'overlay',
+    title: 'Overlay',
+    description: 'Overlay primitives provide one runtime and surface contract for modal, drawer, offcanvas, popover, tooltip, command, sheet, search, lightbox, and fullscreen workflows.',
+    demoDescription: 'Pixorix overlays share triggers, dismiss rules, focus management, motion, and surface vocabulary so teams can scale complex layered UI without duplicated behavior code.',
+    previewDescription: 'A framework-ready overlay system covering modal, drawer, search, popover, tooltip, and sheet patterns.',
+    preview: { type: 'overlay' },
+    variants: ['Standard', 'Compact', 'Large', 'Fullscreen', 'Glass', 'Elevated', 'Blur backdrop', 'No-blur fallback'],
+    sizes: ['Compact', 'Default', 'Large', 'Fullscreen'],
+    states: ['Open', 'Close', 'Loading', 'Dismissible', 'Non-dismissible', 'Animated', 'Reduced motion', 'Static'],
     accessibilityNotes: [
-      'Trap focus while the modal is open.',
-      'Restore focus to the trigger when the modal closes.'
+      'Modal overlays must use dialog semantics, focus management, escape close, and focus return to the trigger.',
+      'Tooltips and popovers should never be the only source of critical information.',
+      'Command palette and search overlays must remain fully keyboard navigable.'
     ],
     browserNotes: [
-      'Body scroll locking must be reliable on iOS Safari and Android browsers.',
-      'Overlay stacking should remain stable with nested app shells.'
+      'Scroll lock, drawer overflow, and bottom sheet touch behavior need verification in Safari and iOS Safari.',
+      'Blur treatments must degrade cleanly where backdrop support differs across browsers.'
     ],
     responsiveNotes: [
-      'Use smaller max-width values on mobile and allow internal scrolling.',
-      'Keep primary actions visible without forcing excessive vertical travel.'
+      'Modal-like overlays collapse into sheet-style presentations on small screens.',
+      'Anchored overlays should remain supplemental and should not carry critical mobile-only content.'
     ],
     snippets: buildSnippets({
-      title: 'Modal',
-      html: `<div class="px-modal-backdrop">\n  <div class="px-modal" role="dialog" aria-modal="true">\n    <h3>Confirm action</h3>\n    <p>Use modals for short, focused decisions.</p>\n  </div>\n</div>`,
-      react: `<div className="px-modal-backdrop">\n  <div className="px-modal" role="dialog" aria-modal="true">\n    <h3>Confirm action</h3>\n    <p>Use modals for short, focused decisions.</p>\n  </div>\n</div>`,
-      angular: `<div class="px-modal-backdrop">\n  <div class="px-modal" role="dialog" aria-modal="true">\n    <h3>Confirm action</h3>\n    <p>Use modals for short, focused decisions.</p>\n  </div>\n</div>`,
-      vue: `<template>\n  <div class="px-modal-backdrop">\n    <div class="px-modal" role="dialog" aria-modal="true">\n      <h3>Confirm action</h3>\n      <p>Use modals for short, focused decisions.</p>\n    </div>\n  </div>\n</template>`
-    })
-  },
-  {
-    id: 'drawers',
-    title: 'Drawers',
-    description: 'Drawers reveal navigation, filters, or secondary workflows without navigating away.',
-    demoDescription: 'Drawers work especially well for mobile navigation and dense app control panels.',
-    previewDescription: 'A simple side drawer pattern beside application content.',
-    preview: { type: 'drawer' },
-    variants: ['Left drawer', 'Right drawer', 'Bottom sheet'],
-    sizes: ['Narrow', 'Default', 'Wide'],
-    states: ['Closed', 'Open', 'Pinned', 'Dismissed'],
-    accessibilityNotes: [
-      'Treat modal drawers like dialogs with focus management.',
-      'Ensure the trigger and close actions are keyboard reachable.'
-    ],
-    browserNotes: [
-      'Touch scrolling and overscroll behavior need attention on mobile Safari.',
-      'Use robust stacking and backdrop handling in Chromium browsers and Firefox.'
-    ],
-    responsiveNotes: [
-      'Collapse large desktop sidebars into drawers on smaller screens.',
-      'Keep drawer width within a comfortable mobile viewport range.'
-    ],
-    snippets: buildSnippets({
-      title: 'Drawer',
-      html: `<aside class="px-drawer">\n  <h3>Navigation drawer</h3>\n  <ul>\n    <li>Overview</li>\n    <li>Components</li>\n    <li>Themes</li>\n  </ul>\n</aside>`,
-      react: `<aside className="px-drawer">\n  <h3>Navigation drawer</h3>\n  <ul>\n    <li>Overview</li>\n    <li>Components</li>\n    <li>Themes</li>\n  </ul>\n</aside>`,
-      angular: `<aside class="px-drawer">\n  <h3>Navigation drawer</h3>\n  <ul>\n    <li>Overview</li>\n    <li>Components</li>\n    <li>Themes</li>\n  </ul>\n</aside>`,
-      vue: `<template>\n  <aside class="px-drawer">\n    <h3>Navigation drawer</h3>\n    <ul>\n      <li>Overview</li>\n      <li>Components</li>\n      <li>Themes</li>\n    </ul>\n  </aside>\n</template>`
+      title: 'Overlay',
+      html: `<div class="px-overlay-backdrop" data-state="closed" aria-hidden="true"></div>
+<div id="overlay-demo-modal" class="px-modal px-modal--glass" data-px-modal data-px-overlay="modal" data-state="closed" aria-hidden="true">
+  <div class="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="overlay-demo-modal-title">
+    <div class="px-modal__header">
+      <h3 id="overlay-demo-modal-title" class="px-modal__title">Overlay system</h3>
+      <button class="px-button px-button--ghost px-button--sm" type="button" data-px-close aria-label="Close modal">Close</button>
+    </div>
+    <div class="px-modal__body">Use one shared runtime for modal, drawer, sheet, and popover behavior.</div>
+  </div>
+</div>
+<button class="px-button px-button--primary" type="button" data-px-overlay-open="overlay-demo-modal" aria-controls="overlay-demo-modal" aria-expanded="false">Open modal</button>`,
+      react: `<>
+  <div className="px-overlay-backdrop" data-state="closed" aria-hidden="true" />
+  <div id="overlay-demo-modal" className="px-modal px-modal--glass" data-px-modal data-px-overlay="modal" data-state="closed" aria-hidden="true">
+    <div className="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="overlay-demo-modal-title">
+      <div className="px-modal__header">
+        <h3 id="overlay-demo-modal-title" className="px-modal__title">Overlay system</h3>
+        <button className="px-button px-button--ghost px-button--sm" type="button" data-px-close aria-label="Close modal">Close</button>
+      </div>
+      <div className="px-modal__body">Use one shared runtime for modal, drawer, sheet, and popover behavior.</div>
+    </div>
+  </div>
+  <button className="px-button px-button--primary" type="button" data-px-overlay-open="overlay-demo-modal" aria-controls="overlay-demo-modal" aria-expanded="false">Open modal</button>
+</>`,
+      angular: `<div class="px-overlay-backdrop" data-state="closed" aria-hidden="true"></div>
+<div id="overlay-demo-modal" class="px-modal px-modal--glass" data-px-modal data-px-overlay="modal" data-state="closed" aria-hidden="true">
+  <div class="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="overlay-demo-modal-title">
+    <div class="px-modal__header">
+      <h3 id="overlay-demo-modal-title" class="px-modal__title">Overlay system</h3>
+      <button class="px-button px-button--ghost px-button--sm" type="button" data-px-close aria-label="Close modal">Close</button>
+    </div>
+    <div class="px-modal__body">Use one shared runtime for modal, drawer, sheet, and popover behavior.</div>
+  </div>
+</div>
+<button class="px-button px-button--primary" type="button" data-px-overlay-open="overlay-demo-modal" aria-controls="overlay-demo-modal" aria-expanded="false">Open modal</button>`,
+      vue: `<template>
+  <div class="px-overlay-backdrop" data-state="closed" aria-hidden="true"></div>
+  <div id="overlay-demo-modal" class="px-modal px-modal--glass" data-px-modal data-px-overlay="modal" data-state="closed" aria-hidden="true">
+    <div class="px-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="overlay-demo-modal-title">
+      <div class="px-modal__header">
+        <h3 id="overlay-demo-modal-title" class="px-modal__title">Overlay system</h3>
+        <button class="px-button px-button--ghost px-button--sm" type="button" data-px-close aria-label="Close modal">Close</button>
+      </div>
+      <div class="px-modal__body">Use one shared runtime for modal, drawer, sheet, and popover behavior.</div>
+    </div>
+  </div>
+  <button class="px-button px-button--primary" type="button" data-px-overlay-open="overlay-demo-modal" aria-controls="overlay-demo-modal" aria-expanded="false">Open modal</button>
+</template>`
     })
   },
   {

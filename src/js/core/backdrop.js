@@ -3,9 +3,11 @@ export function createBackdrop(target, onClose) {
     return null;
   }
 
-  const backdrop = target.previousElementSibling?.classList.contains('px-overlay-backdrop')
+  const previousSibling = target.previousElementSibling?.classList.contains('px-overlay-backdrop')
     ? target.previousElementSibling
     : null;
+  const childBackdrop = target.querySelector(':scope > .px-overlay-backdrop');
+  const backdrop = previousSibling ?? childBackdrop ?? null;
 
   function handleClick(event) {
     if (event.target === backdrop && typeof onClose === 'function') {

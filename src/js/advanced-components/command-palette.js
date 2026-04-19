@@ -1,7 +1,7 @@
-import { createModal } from '../components/modal.js';
+import { createOverlay } from '../components/overlay.js';
 
 export function createCommandPalette(element) {
-  const modal = createModal(element);
+  const modal = createOverlay(element, { type: 'command-palette' });
   const input = element?.querySelector('input, [type="search"]');
   const items = element ? [...element.querySelectorAll('.px-command-palette__item')] : [];
   let activeIndex = -1;
