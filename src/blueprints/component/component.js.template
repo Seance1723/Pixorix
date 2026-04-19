@@ -5,15 +5,17 @@ export function createComponentName(element, context = {}) {
 
   const root = element;
   const triggers = [...root.querySelectorAll('[data-px-trigger]')];
-  const targetSelector = root.dataset.pxTarget || null;
+  const targetSelector = root.dataset.pxTarget || triggers[0]?.dataset.pxTarget || null;
   const target = targetSelector ? document.querySelector(targetSelector) : null;
   let destroyed = false;
 
   function setState(nextState) {
     root.dataset.state = nextState;
+    root.setAttribute('aria-busy', String(nextState === 'loading'));
 
     if (target) {
       target.dataset.state = nextState;
+      target.hidden = nextState === 'closed';
     }
   }
 
@@ -36,6 +38,7 @@ export function createComponentName(element, context = {}) {
   }
 
   triggers.forEach((trigger) => trigger.addEventListener('click', onTriggerClick));
+  setState(root.dataset.state || 'idle');
 
   return {
     setState,

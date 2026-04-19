@@ -7,6 +7,7 @@ Included starter files:
 - `_component.scss.template`
 - `component.html.template`
 - `component.js.template`
+- `component.md.template`
 
 Recommended production placement:
 
@@ -45,4 +46,6 @@ Blueprint authoring rules:
 - use `data-px-*` for JS hooks
 - use `data-state` for JS lifecycle state
 - prefer token swaps for variants
+- support tone and appearance as separate axes when composition makes sense
 - keep HTML shallow and semantic
+- document HTML, React, Angular, and Vue against the same contract

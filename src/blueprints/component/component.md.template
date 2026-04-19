@@ -1,0 +1,189 @@
+# Pixorix `Component Name` Doc Blueprint
+
+One-line purpose statement.
+
+## 1. Purpose
+
+- What the component is for
+- Where it belongs in product UI
+- What it should not be used for
+
+## 2. UX Goal
+
+- What user outcome the component supports
+- What the interaction should feel like
+- Why this exists instead of a simpler primitive
+
+## 3. Preview
+
+- default example
+- realistic product example
+- variant gallery if needed
+
+## 4. Structure
+
+- Root class: `.px-component-name`
+- Public elements: `.px-component-name__element`
+- Required wrappers if any
+- Optional child elements
+- Recommended semantic HTML
+
+## 5. Visual Variants
+
+- Supported tone variants
+- Supported appearance variants
+- Structural variants if any
+- Shape variants if any
+
+## 6. Semantic Variants
+
+- Success if relevant
+- Warning if relevant
+- Danger if relevant
+- Info if relevant
+
+If not relevant, explicitly say so.
+
+## 7. Sizes
+
+- `xs` if supported
+- `sm` if supported
+- default
+- `lg` if supported
+- `xl` if supported
+- density notes if relevant
+
+## 8. States
+
+- default
+- hover
+- focus-visible
+- active
+- selected if relevant
+- open or expanded if relevant
+- disabled
+- loading if relevant
+- error, success, or warning if relevant
+
+## 9. Responsive Behavior
+
+- mobile behavior
+- tablet behavior
+- desktop behavior
+- overflow behavior if relevant
+
+## 10. Dark Mode Behavior
+
+- token inheritance
+- local compensation if any
+- contrast notes
+
+## 11. Accessibility Requirements
+
+- required semantic structure
+- ARIA requirements
+- keyboard rules
+- screen-reader notes
+- hit-area notes if relevant
+
+### Accessibility Checklist
+
+- [ ] Uses correct semantic HTML for the component role
+- [ ] Keyboard interaction is fully supported
+- [ ] `:focus-visible` state is obvious and meets contrast expectations
+- [ ] Interactive targets meet practical hit-area sizing
+- [ ] Labels, descriptions, and status text are programmatically associated
+- [ ] ARIA is used only where native semantics are insufficient
+- [ ] State changes are exposed through native or ARIA attributes
+- [ ] Disabled, loading, success, warning, and error states are perceivable beyond color alone
+- [ ] Motion honors `prefers-reduced-motion`
+- [ ] Screen-reader output is correct for dynamic behavior
+
+## 12. Cross-Browser Considerations
+
+- browser-sensitive CSS
+- browser-sensitive JS
+- fallback notes
+
+### Cross-Browser Checklist
+
+- [ ] Chrome and Edge layout verified
+- [ ] Firefox spacing and focus rendering verified
+- [ ] Safari and iOS Safari overflow, sticky, and transform behavior verified
+- [ ] Form-control appearance tested where native UI is involved
+- [ ] Touch interaction verified on mobile browsers
+- [ ] Reduced-motion fallback verified without GSAP enhancement
+- [ ] No component behavior depends on unsupported selectors or APIs without fallback
+- [ ] Visual regressions checked with dark mode enabled
+
+## 13. HTML Usage
+
+```html
+<!-- recommended semantic example -->
+```
+
+## 14. React Usage
+
+```jsx
+// Keep the same Pixorix class and data hook contract
+```
+
+## 15. Angular Usage
+
+```html
+<!-- Keep the same Pixorix class and data hook contract -->
+```
+
+## 16. Vue Usage
+
+```vue
+<!-- Keep the same Pixorix class and data hook contract -->
+```
+
+## 17. SCSS Architecture
+
+- imported abstracts
+- local CSS variables
+- variant axes
+- sizes
+- states
+- responsive overrides
+- dark mode compensation if any
+
+## 18. JS Architecture
+
+- required or optional
+- root hook
+- action hooks
+- state synchronization
+- emitted events
+- re-init and destroy behavior
+
+If not needed, explicitly say the component ships without JS.
+
+## 19. GSAP Enhancement Hooks
+
+- supported motion presets
+- target hooks if any
+- reduced-motion fallback
+
+If not needed, explicitly say the component ships without GSAP enhancement.
+
+## 20. Developer Customization Hooks
+
+- local CSS variables
+- modifier classes
+- data hooks
+- utility pairing guidance
+
+## 21. Lightweight Optimization Notes
+
+- import guidance
+- variant cost notes
+- JS payload notes
+- bloat avoidance notes
+
+## 22. Related Components
+
+- related component 1
+- related component 2

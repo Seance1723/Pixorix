@@ -3,6 +3,7 @@
 @use '../../scss/abstracts/placeholders';
 
 .px-component-name {
+  /* 1. Local token bridge */
   --px-component-bg: var(--px-color-surface);
   --px-component-border: var(--px-color-border);
   --px-component-color: var(--px-color-text);
@@ -11,9 +12,16 @@
   --px-component-padding-y: var(--px-space-3);
   --px-component-gap: var(--px-space-2);
   --px-component-shadow: var(--px-shadow-sm);
+  --px-component-hover-bg: var(--px-component-bg);
+  --px-component-hover-border: var(--px-component-border);
+  --px-component-hover-color: var(--px-component-color);
+  --px-component-active-bg: var(--px-component-bg);
+  --px-component-active-border: var(--px-component-border);
+  --px-component-active-color: var(--px-component-color);
 
   @include mixins.px-type-role('ui', 'body');
 
+  /* 2. Base structure */
   display: flex;
   align-items: center;
   gap: var(--px-component-gap);
@@ -27,15 +35,17 @@
   box-shadow: var(--px-component-shadow);
   color: var(--px-component-color);
 
+  /* 3. Shared interactive behavior */
   @include mixins.px-interactive-states(
-    var(--px-component-bg),
-    var(--px-component-border),
-    var(--px-component-color),
-    var(--px-component-bg),
-    var(--px-component-border),
-    var(--px-component-color)
+    var(--px-component-hover-bg),
+    var(--px-component-hover-border),
+    var(--px-component-hover-color),
+    var(--px-component-active-bg),
+    var(--px-component-active-border),
+    var(--px-component-active-color)
   );
 
+  /* 4. Public anatomy */
   &__media {
     flex: 0 0 auto;
   }
@@ -56,10 +66,15 @@
     color: var(--px-color-text-muted);
   }
 
+  /* 5. Variant axes */
   &--primary {
     --px-component-bg: var(--px-color-primary);
     --px-component-border: var(--px-color-primary);
     --px-component-color: var(--px-color-primary-contrast);
+    --px-component-hover-bg: var(--px-color-primary-hover);
+    --px-component-hover-border: var(--px-color-primary-hover);
+    --px-component-active-bg: var(--px-color-primary-active);
+    --px-component-active-border: var(--px-color-primary-active);
   }
 
   &--soft {
@@ -68,10 +83,30 @@
     --px-component-shadow: none;
   }
 
+  &--outline {
+    --px-component-bg: transparent;
+    --px-component-color: var(--px-color-text);
+    --px-component-hover-bg: var(--px-color-surface-muted);
+    --px-component-active-bg: var(--px-color-surface-muted);
+    --px-component-shadow: none;
+  }
+
   &--danger {
     --px-component-bg: var(--px-color-danger);
     --px-component-border: var(--px-color-danger);
     --px-component-color: var(--px-color-primary-contrast);
+    --px-component-hover-bg: var(--px-color-danger);
+    --px-component-hover-border: var(--px-color-danger);
+    --px-component-active-bg: var(--px-color-danger);
+    --px-component-active-border: var(--px-color-danger);
+  }
+
+  /* 6. Shared size scale */
+  &--xs {
+    --px-component-padding-x: var(--px-space-2_5);
+    --px-component-padding-y: var(--px-space-2);
+    --px-component-gap: var(--px-space-1_5);
+    --px-component-radius: var(--px-radius-sm);
   }
 
   &--sm {
@@ -88,6 +123,14 @@
     --px-component-radius: var(--px-radius-xl);
   }
 
+  &--xl {
+    --px-component-padding-x: var(--px-space-6);
+    --px-component-padding-y: var(--px-space-4);
+    --px-component-gap: var(--px-space-3);
+    --px-component-radius: var(--px-radius-xl);
+  }
+
+  /* 7. State handling */
   &.is-loading,
   &[data-state='loading'] {
     cursor: progress;
@@ -100,10 +143,12 @@
     box-shadow: none;
   }
 
+  /* 8. Theme compensation */
   @include mixins.px-theme-scope('dark') {
     --px-component-shadow: var(--px-shadow-xs);
   }
 
+  /* 9. Responsive rules */
   @include mixins.px-media-up(md) {
     --px-component-padding-x: var(--px-space-5);
   }

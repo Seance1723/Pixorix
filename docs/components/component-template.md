@@ -2,6 +2,8 @@
 
 Use this file as the required structure for every public Pixorix component doc.
 
+Component docs must stay HTML-first, framework-agnostic, and demo-ready.
+
 ## 1. Title
 
 `Component name`
@@ -40,9 +42,13 @@ Document:
 
 ## 6. Visual Variants
 
-- default
-- supported visual variants
-- when each variant should be used
+Document supported variant axes:
+
+- tone variants
+- appearance variants
+- structural variants if any
+- shape variants if any
+- when each supported variant should be used
 
 ## 7. Semantic Variants
 
@@ -55,12 +61,12 @@ If not relevant, explicitly say so.
 
 ## 8. Sizes
 
-- `xs` if relevant
-- `sm`
+- `xs` if supported
+- `sm` if supported
 - default
-- `lg`
-- `xl` if relevant
-- density notes
+- `lg` if supported
+- `xl` if supported
+- density notes if relevant
 
 ## 9. States
 
@@ -133,11 +139,22 @@ If not relevant, explicitly say so.
 <!-- minimal recommended example -->
 ```
 
+Rules:
+
+- use semantic elements first
+- keep markup shallow
+- preserve the documented Pixorix class and data hook contract
+
 ## 15. React Usage
 
 ```jsx
 // className and data-px-* hooks should mirror the HTML API
 ```
+
+Rules:
+
+- preserve the same anatomy and hooks as the HTML example
+- pass through `className`, `style`, `data-*`, and ARIA attributes
 
 ## 16. Angular Usage
 
@@ -145,11 +162,21 @@ If not relevant, explicitly say so.
 <!-- Angular template example using the same class and data hook contract -->
 ```
 
+Rules:
+
+- preserve the same anatomy and hooks as the HTML example
+- map `@Input()` values to the same class and attribute contract
+
 ## 17. Vue Usage
 
 ```vue
 <!-- Vue template example using the same class and data hook contract -->
 ```
+
+Rules:
+
+- preserve the same anatomy and hooks as the HTML example
+- map props and slots to the same DOM contract
 
 ## 18. SCSS Architecture
 
@@ -157,7 +184,7 @@ Document:
 
 - imported abstracts
 - local CSS variables
-- variants
+- variant axes
 - sizes
 - states
 - responsive overrides

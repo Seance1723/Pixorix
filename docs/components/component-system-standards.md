@@ -1,80 +1,109 @@
-# Pixorix Component System Standards
+# Pixorix Master Component Rules
 
-This document defines the framework-wide rules every Pixorix component must follow.
-
-## 1. Component architecture philosophy
+This document is the framework-level contract for every public Pixorix component.
 
 Pixorix components must be:
 
-- token-driven first
-- semantic in structure
-- shallow in selector depth
-- progressive-enhancement friendly
+- HTML-first
+- token-driven
+- shallow in markup
 - modular to import
-- framework-agnostic at the markup contract level
+- accessible by default
+- dark-mode ready
+- responsive by default
+- framework-agnostic
+- GSAP-enhanceable without depending on GSAP for core UX
 
-Architecture rules:
+## 1. Component Architecture Philosophy
 
-- One root class per component: `.px-component-name`
-- One partial per component
+Pixorix uses a layered authoring model:
+
+1. Tokens define the visual contract.
+2. Mixins and placeholders encode repeated behavior.
+3. Component SCSS defines one structural base with local CSS variables.
+4. Optional JavaScript reads `data-px-*`, `data-state`, and ARIA state.
+5. Optional GSAP enhancement adds motion without changing semantics or usability.
+
+Core architecture rules:
+
+- One component root class per component: `.px-component-name`
+- One SCSS partial per public component
 - One optional JS module per interactive component
-- One documentation page per public component
-- Variants, sizes, and states belong to the component that owns them
-- Components consume semantic tokens and shared mixins before defining local overrides
-- Components must work in plain HTML before any framework wrapper exists
-- GSAP is enhancement only, never a dependency for core usability
+- One public documentation page per component
+- One realistic example surface for demo and regression validation
+- Structure is owned by the base component, not by variants
+- Variants swap variables, not anatomy
+- Framework wrappers must preserve the same DOM contract as plain HTML
 
-Authoring model:
+Authoring priorities:
 
-1. Tokens define the design contract.
-2. Mixins encode repeated framework behavior.
-3. Component partials expose local CSS variable hooks.
-4. Optional JS reads `data-px-*` hooks and ARIA state.
-5. Optional GSAP hooks enhance transitions without changing semantics.
+1. Reuse tokens
+2. Reuse shared mixins and placeholders
+3. Expose local CSS variables
+4. Add controlled variants and sizes
+5. Add JS hooks only where behavior requires them
 
-## 2. Variant naming strategy
+## 2. Variant Naming Strategy
 
-Use BEM-style modifier classes on the component root.
+Variants are split into distinct, composable axes.
 
-Rules:
+### Variant Axes
 
-- Visual variant: `.px-button--primary`
-- Surface variant: `.px-card--elevated`
-- Layout variant: `.px-tabs--justified`
-- Directional variant only when structural: `.px-stepper--vertical`
+- Tone: communicates meaning or brand emphasis
+- Appearance: communicates surface treatment
+- Structure: changes layout or anatomy only when necessary
+- Shape: modifies silhouette only when reusable across the component family
 
-Allowed framework-wide visual variant names:
+### Standard Naming
+
+- Tone: `.px-button--primary`
+- Appearance: `.px-button--soft`
+- Structure: `.px-tabs--vertical`
+- Shape: `.px-button--pill`
+
+### Framework-Wide Tone Names
 
 - `primary`
 - `secondary`
-- `soft`
-- `ghost`
-- `outline`
-- `inverse`
+- `neutral`
 - `accent`
 - `success`
 - `warning`
 - `danger`
 - `info`
+- `inverse`
 
-Variant rules:
+### Framework-Wide Appearance Names
 
-- Variants change visual treatment, not markup requirements
-- Avoid inventing synonyms like `main`, `brand`, `alt`, `v2`
-- Semantic variants should map to semantic tokens, not hardcoded colors
-- Do not combine multiple visual variants on the same root
+- `solid`
+- `soft`
+- `outline`
+- `ghost`
+- `text`
+- `glass`
+- `gradient`
+- `elevated`
 
-## 3. State naming strategy
+### Rules
 
-Prefer native, semantic, or ARIA states first.
+- Never invent ad hoc names such as `alt`, `main`, `v2`, `special`, or `new`
+- Tone and appearance may compose when the component explicitly supports both axes
+- Structural variants are not visual shortcuts; they must represent real layout changes
+- Do not create separate markup contracts for visual variants
+- A component should document which variant axes are supported and which are intentionally omitted
 
-Priority order:
+## 3. State Naming Strategy
+
+Pixorix states must prefer native and semantic state first.
+
+### Priority Order
 
 1. Native selectors: `:hover`, `:focus-visible`, `:active`, `:disabled`, `:checked`
-2. ARIA and semantic attributes: `[aria-expanded='true']`, `[aria-selected='true']`, `[aria-current='page']`, `[data-state='open']`
-3. Framework state classes when no semantic equivalent is enough
+2. ARIA and semantic attributes: `[aria-expanded='true']`, `[aria-selected='true']`, `[aria-current='page']`
+3. Lifecycle attributes: `[data-state='open']`, `[data-state='loading']`
+4. Framework state classes for JS-managed state only
 
-Approved framework state classes:
+### Approved Framework State Classes
 
 - `.is-active`
 - `.is-current`
@@ -87,51 +116,56 @@ Approved framework state classes:
 - `.is-empty`
 - `.is-sticky`
 
-State rules:
+### Rules
 
-- Use `.is-*` only for transient or JS-managed state
-- Do not use variant-style state modifiers like `.px-button--active`
-- If a state has accessibility meaning, mirror it in ARIA or native attributes
-- Prefer `data-state='open|closed'`, `data-state='on|off'`, or `data-state='entering|exiting'` for JS lifecycle state
+- State classes always use the `.is-*` prefix
+- Never represent state as a visual modifier such as `.px-modal--open`
+- If state has accessibility meaning, reflect it in ARIA or native attributes
+- Use `data-state` for finite lifecycle values such as `open`, `closed`, `loading`, `entering`, `entered`, `exiting`
+- Keep state naming stable across components so docs and JS APIs stay predictable
 
-## 4. Size naming strategy
+## 4. Size Naming Strategy
 
-Component sizes must be shared across the framework.
+Size is a shared framework axis. It should affect density, not intent.
 
-Allowed size modifiers:
+### Standard Sizes
 
-- `--xs`
-- `--sm`
-- default with no modifier
-- `--lg`
-- `--xl`
+- `xs`
+- `sm`
+- default with no size modifier
+- `lg`
+- `xl`
 
-Rules:
+### Optional Support
 
-- Size changes density, not semantic tone
-- Size affects height, padding, gap, font size, icon size, and radius only as needed
-- Avoid one-off sizes like `--compact`, `--huge`, `--tiny`
-- Use density themes for system-wide compactness instead of multiplying component size variants
+- A component may expose only the subset it can support well
+- If a default `md` alias is needed for API clarity, it should map to the base size, not become a second default
 
-## 5. Responsive rules
+### Rules
 
-Pixorix is mobile-first by default.
+- Size modifiers only change dimensions, spacing, type scale, icon scale, and radius where relevant
+- Avoid local names such as `compact`, `dense`, `huge`, or `tiny` unless the component family has a documented structural need
+- Use theme density controls for system-wide compression instead of multiplying component-only sizes
 
-Rules:
+## 5. Responsive Rules
 
-- Base styles target mobile and small touch screens first
+Pixorix is mobile-first.
+
+### Responsive Contract
+
+- Mobile is the base authoring target
+- Tablet and desktop add space and secondary affordances
+- Components should adapt layout before introducing alternate variants
+- A component must describe mobile, tablet, and desktop behavior in its docs
+
+### Responsive Authoring Rules
+
 - Use shared breakpoint mixins from `src/scss/abstracts/_mixins.scss`
-- Prefer fluid scales and layout adaptation before adding breakpoint overrides
-- Variants must not fork into separate mobile-only versions
-- Components must define behavior at minimum for mobile, tablet, and desktop
+- Prefer fluid typography, gap, and sizing tokens before adding hard breakpoint jumps
+- Avoid separate mobile-only component variants
+- Keep interactions usable across touch and pointer devices
 
-Responsive behavior standard:
-
-- Mobile: stack, simplify spacing, reduce non-essential decoration
-- Tablet: restore secondary layout affordances if space allows
-- Desktop: enable richer spacing, alignment, and optional enhancement
-
-Breakpoint authoring:
+### Standard Authoring Pattern
 
 ```scss
 @include mixins.px-media-up(md) {
@@ -143,29 +177,33 @@ Breakpoint authoring:
 }
 ```
 
-## 6. Dark mode rules
+## 6. Dark Mode Rules
 
-Dark mode must be driven by theme variables first.
+Dark mode is token-driven first and component-local second.
 
-Rules:
+### Rules
 
-- Default theme behavior lives in `src/scss/themes/`
-- Components consume semantic CSS variables, not raw palette literals
-- Local dark compensation is allowed only when variable remapping is not enough
-- Theme selectors use `[data-px-theme='dark']`
-- Contrast and focus visibility must remain explicit in dark mode
+- Theme remapping belongs in `src/scss/themes/`
+- Components consume semantic CSS variables, not palette literals
+- Use `[data-px-theme='dark']` for scoped dark compensation
+- Local dark-mode rules should only correct places where token remapping alone is insufficient
 
-Allowed local compensation cases:
+### Allowed Local Compensation
 
-- hairline border clarity
-- overlay backdrops
-- elevated surface edge definition
-- glow or shadow tuning
-- media or illustration treatment
+- border clarity
+- elevated surface separation
+- backdrop tuning
+- glass treatment tuning
+- shadow or glow balance
+- media contrast correction
 
-## 7. Accessibility checklist template
+### Prohibited Pattern
 
-Every component doc must include this checklist.
+- Hardcoded full dark themes inside component partials
+
+## 7. Accessibility Checklist Template
+
+Every public component doc must include this section.
 
 ```md
 ## Accessibility Checklist
@@ -182,9 +220,9 @@ Every component doc must include this checklist.
 - [ ] Screen-reader output is correct for dynamic behavior
 ```
 
-## 8. Cross-browser checklist template
+## 8. Cross-Browser Checklist Template
 
-Every public component doc must include this checklist.
+Every public component doc must include this section.
 
 ```md
 ## Cross-Browser Checklist
@@ -199,77 +237,77 @@ Every public component doc must include this checklist.
 - [ ] Visual regressions checked with dark mode enabled
 ```
 
-## 9. JS hook and data-attribute strategy
+## 9. JS Hook and Data-Attribute Strategy
 
-JS hooks must be declarative and predictable.
+JS hooks must be declarative, stable, and styling-independent.
 
-Rules:
+### Standard Hooks
 
 - Root behavior hook: `data-px-component="modal"`
-- Feature shortcut hook is allowed: `data-px-modal`
-- Action hook: `data-px-toggle`, `data-px-close`, `data-px-trigger`
-- State hook: `data-state="open"`
-- Config hook: `data-px-placement="end"`, `data-px-delay="150"`
+- Shortcut root hook when useful: `data-px-modal`
+- Action hooks: `data-px-trigger`, `data-px-toggle`, `data-px-close`
 - Target hook: `data-px-target="#dialog-id"`
+- Config hooks: `data-px-placement="end"`, `data-px-delay="150"`
+- Lifecycle state: `data-state="open"`
 
-JS API rules:
+### Rules
 
-- JS must never require brittle descendant selectors when a direct hook can exist
-- Use `data-px-*` for JS-only intent
-- Use classes for styling, not JS configuration
-- Use ARIA and `data-state` together for interactive state when relevant
-- Modules must support safe re-init and `destroy()`
+- JS must not depend on brittle styling selectors
+- Use classes for CSS and `data-px-*` for behavior
+- Mirror behavioral state into ARIA when relevant
+- Modules must support safe re-init
+- Modules must return a `destroy()` method when they bind listeners or observers
 
-Recommended root pattern:
+### Recommended Root Pattern
 
 ```html
-<div class="px-modal" data-px-component="modal" data-state="closed">
+<section class="px-component-name" data-px-component="component-name" data-state="idle">
 ```
 
-## 10. Animation hook strategy
+## 10. Animation Hook Strategy
 
-Animation must be optional and token-aware.
+Motion is optional, progressive enhancement only.
 
-Rules:
+### Standard Hooks
 
-- Root opt-in hook: `data-px-motion`
-- Preset hook: `data-px-motion="reveal"`
-- Target hook: `data-px-motion-target="panel"`
-- Phase hook: `data-px-motion-state="entering|entered|exiting"`
-- Use GSAP only for enhancement tiers
+- Root opt-in: `data-px-motion`
+- Preset: `data-px-motion="reveal"`
+- Motion target: `data-px-motion-target="panel"`
+- Motion phase: `data-px-motion-state="entering"`
 
-Motion rules:
+### Rules
 
-- Core visibility and interaction cannot depend on animation finishing
-- Motion presets should map to framework tokens for duration and easing
-- Reduced-motion must disable or simplify choreographed transforms
-- Prefer transform and opacity, avoid layout-thrashing properties
+- Core visibility and interaction cannot depend on animation completion
+- Motion presets must map to Pixorix motion tokens
+- Reduced-motion must simplify or disable choreographed transforms
+- Prefer opacity and transform over layout-affecting properties
+- GSAP is enhancement only and must degrade gracefully to CSS or instant state change
 
-## 11. Lightweight modular import strategy
+## 11. Lightweight Modular Import Strategy
 
-Pixorix components must be shippable individually.
+Pixorix components must be importable at multiple scopes without forcing the full framework.
 
-SCSS import levels:
+### SCSS Import Levels
 
 - Full bundle: `src/scss/pixorix.scss`
 - Core bundle: `src/scss/pixorix-core.scss`
 - Utilities bundle: `src/scss/pixorix-utilities.scss`
-- Component-level: `@use 'src/scss/components/buttons';`
+- Component-level partials from `src/scss/components/` or `src/scss/advanced-components/`
 
-JS import levels:
+### JS Import Levels
 
-- App bootstrap: `initPixorix()`
+- Full bootstrap: `initPixorix()`
 - Per-module import: `import { createModal } from './components/modal.js';`
-- Registration: `registerPixorixComponent('modal', { selector, init })`
+- Registry-based init via `registerPixorixComponent()`
 
-Rules:
+### Rules
 
-- Each interactive component JS module must be importable in isolation
-- Avoid cross-component runtime dependencies unless truly shared
-- Shared helpers belong in `src/js/core/` or `src/js/utils/`
-- Shared SCSS logic belongs in `abstracts/`, never copied into component files
+- Each interactive module must be importable on its own
+- Cross-component runtime dependencies should stay in `src/js/core/` or `src/js/utils/`
+- Shared SCSS behavior belongs in `abstracts/`, not duplicated into component partials
+- Heavy enhancement logic must stay optional
 
-## 12. SCSS structure for component files
+## 12. SCSS Structure for Component Files
 
 Every component partial should follow one stable section order.
 
@@ -278,22 +316,22 @@ Every component partial should follow one stable section order.
 @use '../abstracts/mixins';
 @use '../abstracts/placeholders';
 
-.px-component {
+.px-component-name {
   /* 1. Local CSS variables */
 
-  /* 2. Structural layout */
+  /* 2. Base structure and layout */
 
-  /* 3. Typography */
+  /* 3. Typography and content flow */
 
   /* 4. Interactive states */
 
-  /* 5. Child elements */
+  /* 5. Public child elements */
 
-  /* 6. Variants */
+  /* 6. Tone and appearance variants */
 
-  /* 7. Sizes */
+  /* 7. Sizes and shape modifiers */
 
-  /* 8. State classes and data-state rules */
+  /* 8. State classes and data-state handling */
 
   /* 9. Theme compensation */
 
@@ -301,27 +339,28 @@ Every component partial should follow one stable section order.
 }
 ```
 
-SCSS rules:
+### SCSS Rules
 
 - Keep nesting shallow, ideally one level
 - Prefer local CSS variables over repeated declarations
 - Use logical properties where possible
 - Avoid descendant chains longer than three parts
-- Do not hardcode theme colors when semantic tokens exist
+- Prefer pseudo-elements over extra wrappers for pure decoration
+- Do not hardcode colors when semantic tokens exist
 
-## 13. Recommended HTML structure standards
+## 13. Recommended HTML Structure Standards
 
-HTML must be practical, not wrapper-heavy.
+HTML must stay practical and not wrapper-heavy.
 
-Rules:
+### Rules
 
-- Root class defines the component boundary
-- Child elements use `__element` only when they are part of the public anatomy
-- Avoid wrappers added only for styling if a pseudo-element or simpler layout can solve it
-- Prefer semantic elements such as `button`, `nav`, `ul`, `label`, `input`, `dialog`, `section`
+- The root class defines the component boundary
+- Public anatomy uses `__element` only for meaningful, reusable parts
+- Avoid wrappers that exist only to paint a surface or separator
+- Prefer semantic elements such as `button`, `nav`, `ul`, `label`, `input`, `section`, `dialog`
 - Required wrappers must be documented explicitly
 
-Recommended anatomy pattern:
+### Recommended Pattern
 
 ```html
 <button class="px-button px-button--primary">
@@ -330,62 +369,64 @@ Recommended anatomy pattern:
 </button>
 ```
 
-## 14. Multi-framework usage pattern standards
+## 14. Multi-Framework Usage Pattern Standards
 
-The public contract is always HTML-first.
+The component contract is HTML-first and wrapper-compatible.
 
-Rules:
+### Rules
 
-- React, Vue, and Angular wrappers must preserve Pixorix class names and data hooks
-- Framework wrappers may improve typing and prop ergonomics but must not redefine DOM semantics
-- Document the same component contract for HTML, React, Angular, and Vue
-- Avoid framework-specific slot or render-prop complexity in the core standard
+- React, Vue, and Angular wrappers must preserve Pixorix classes and hooks
+- Wrappers may improve props and typing but must not change semantics
+- The same public anatomy and data hooks must appear in every framework example
+- Always pass through `class`, `style`, `data-*`, and ARIA attributes
+- Avoid wrapper APIs that hide the underlying DOM contract
 
-Wrapper guidance:
+### Wrapper Guidance
 
-- React: map props to classes, attributes, and children
+- React: map props to `className`, `data-*`, ARIA, and children
 - Vue: map props and slots to the same DOM contract
-- Angular: map `@Input()` values to classes and attributes
-- All wrappers should pass through `class`, `style`, `data-*`, and ARIA attributes
+- Angular: map `@Input()` values to the same class and attribute contract
 
-## 15. Default component documentation format
+## 15. Default Component Documentation Format
 
-Every component doc must use this order:
+Every public component doc must use this order:
 
-1. Purpose
-2. UX goal
-3. Preview
-4. Structure
-5. Visual variants
-6. Semantic variants if relevant
-7. Sizes
-8. States
-9. Responsive behavior
-10. Dark mode behavior
-11. Accessibility requirements
-12. Cross-browser considerations
-13. HTML usage
-14. React usage
-15. Angular usage
-16. Vue usage
-17. SCSS architecture
-18. JS architecture if needed
-19. GSAP enhancement hooks if relevant
-20. Developer customization hooks
-21. Lightweight optimization notes
+1. Title
+2. Purpose
+3. UX goal
+4. Preview
+5. Structure
+6. Visual variants
+7. Semantic variants if relevant
+8. Sizes
+9. States
+10. Responsive behavior
+11. Dark mode behavior
+12. Accessibility requirements
+13. Cross-browser considerations
+14. HTML usage
+15. React usage
+16. Angular usage
+17. Vue usage
+18. SCSS architecture
+19. JS architecture if needed
+20. GSAP enhancement hooks if relevant
+21. Developer customization hooks
+22. Lightweight optimization notes
+23. Related components
 
-## 16. Token reuse rules
+## 16. How All Components Reuse Tokens
 
-Every component must reuse the framework token system before introducing local values.
+Every component must define a local variable layer that points at framework tokens.
 
-Rules:
+### Token Reuse Rules
 
 - Use semantic CSS variables such as `--px-color-surface`, `--px-color-text`, `--px-space-4`
-- Set component-local variables that point to framework variables
-- Use token maps and helpers for compile-time generation
-- Avoid raw hex, rgba, or fixed pixel values unless no token exists and the value is tightly scoped
+- Map those values into component-local variables such as `--px-card-bg`, `--px-card-border`, `--px-card-gap`
+- Prefer token maps and framework helpers at compile time
+- Avoid raw hex, ad hoc rgba, or isolated pixel literals unless the value is tiny, local, and not worth tokenizing
 
-Pattern:
+### Required Pattern
 
 ```scss
 .px-card {
@@ -396,92 +437,120 @@ Pattern:
 }
 ```
 
-## 17. Shared mixin reuse rules
+### Token Layer Rule
 
-Shared mixins are the first reuse layer for framework behavior.
+- Variants change component-local variables first, not raw properties
 
-Use shared mixins for:
+## 17. How All Components Reuse Shared Mixins
+
+Shared mixins are the first reuse layer for repeated framework behavior.
+
+### Use Shared Mixins For
 
 - breakpoints
 - focus ring
 - typography roles
+- elevation
 - interactive transitions
 - truncation and line clamping
-- elevation
-- theme scoping
+- theme scope
 - utility generation
 
-Rules:
+### Rules
 
-- If two or more components repeat a behavior pattern, extract or reuse a mixin
-- Mixins should encode behavior or pattern rules, not whole component skins
-- Do not duplicate focus, hover, responsive, or visually-hidden logic in component files
+- If a behavior appears in two or more components, it should be shared
+- Mixins encode patterns and behavior, not full component skins
+- Components should not duplicate focus, disabled, responsive, or visually-hidden logic
 
-## 18. How to avoid bloat
+## 18. How Pixorix Avoids Bloat
 
-Rules:
+### Rules
 
-- Support a controlled variant set
-- Keep sizes shared across components
-- Use CSS variables for variant deltas instead of duplicating full declarations
-- Reuse mixins and placeholders for repeated interaction patterns
-- Avoid utility-style explosion inside component partials
-- Do not add component-specific helpers unless the pattern is reusable
+- Keep one structural base per component
+- Keep variant names controlled and shared
+- Keep sizes shared across the system
+- Prefer variable swaps over duplicated rule blocks
+- Keep advanced behavior optional
+- Do not create one-off page-only component styles unless there is no reusable abstraction
+- Promote repeated patterns into tokens, mixins, placeholders, or utilities
 
-## 19. How to keep component CSS light but still advanced
+### Bloat Tests
 
-Rules:
+- Can this be solved with a token swap instead of a new variant?
+- Is this a density concern that belongs in theming?
+- Is this a structural difference or just visual dressing?
+- Is this used by at least two real product surfaces?
 
-- Use local CSS variables to centralize stylistic differences
-- Compose depth with borders, shadows, gradients, and surface tokens instead of heavy DOM structure
-- Prefer pseudo-elements to wrapper divs when decoration is purely visual
-- Use one enhancement layer for motion and one for theme compensation
-- Keep selectors shallow and modifier-based
+## 19. How To Keep Component CSS Light but Still Advanced
 
-## 20. How Pixorix should support many variants without becoming heavy
+### Rules
 
-Strategy:
+- Centralize styling through local CSS variables
+- Use subtle gradients, borders, elevation, and backdrop treatment instead of extra wrappers
+- Use pseudo-elements for visual flourishes
+- Keep interaction polish in shared mixins and small state sections
+- Separate structural CSS from motion-enhanced CSS
 
-- Keep one structural base
-- Define variants as variable swaps
-- Keep semantic variants mapped to global semantic tokens
-- Use density and theme systems to absorb broad visual changes
-- Reserve structural variants for genuine layout differences
+### Pixorix Visual Direction
 
-Variant model:
+- soft depth
+- layered surfaces
+- subtle gradients where useful
+- premium spacing
+- fluid typography
+- polished hover, focus, and active states
+- expressive but controlled motion
+- futuristic but usable
 
-- Base component owns structure and interaction
-- Variant modifiers swap component-local CSS variables
-- Shared states continue to work across all variants
-- Responsive behavior stays consistent unless structure genuinely changes
+## 20. How Pixorix Supports Many Variants Without Becoming Heavy
 
-## 21. Naming rules summary
+Pixorix supports breadth by separating variant concerns into reusable axes.
 
-Classes:
+### Variant Model
 
-- Root: `.px-component`
-- Element: `.px-component__part`
-- Modifier: `.px-component--primary`
+- Base owns structure and anatomy
+- Tone controls semantic color intent
+- Appearance controls surface treatment
+- Size controls density
+- Shape modifies silhouette only when broadly reusable
+- State remains independent and works across all variants
+
+### Scaling Rules
+
+- Prefer two-axis composition over one huge matrix of prebuilt combinations
+- Reserve structural variants for real layout changes
+- Put global feel changes into themes and density layers
+- Keep unsupported combinations intentionally undocumented rather than trying to support everything
+
+## 21. Naming Rules Summary
+
+### Classes
+
+- Root: `.px-component-name`
+- Element: `.px-component-name__element`
+- Modifier: `.px-component-name--primary`
 - State: `.is-loading`
 
-Data hooks:
+### Data Hooks
 
-- Component root: `data-px-component="component-name"`
-- Feature shortcut: `data-px-component-name`
-- Action: `data-px-close`
+- Root: `data-px-component="component-name"`
+- Shortcut root: `data-px-component-name`
+- Action: `data-px-trigger`
+- Toggle: `data-px-toggle`
 - Target: `data-px-target`
 - State: `data-state="open"`
 - Motion: `data-px-motion="reveal"`
 
-Files:
+### Files
 
 - SCSS: `_component-name.scss`
 - JS: `component-name.js`
 - Docs: `component-name.md`
+- Example: `examples/component-name/index.html`
 
-## 22. Recommended component file and folder structure
+## 22. Recommended Component File and Folder Structure
 
-For public components:
+### Standard Public Component
 
 ```text
 src/
@@ -501,36 +570,55 @@ examples/
     app.js
 ```
 
-For larger components with complex behavior:
+### Advanced Component
 
 ```text
 src/
+  scss/
+    advanced-components/
+      _component-name.scss
   js/
-    components/
+    advanced-components/
       component-name.js
-  js/
-    utils/
-      component-name-helpers.js
+docs/
+  components/
+    component-name.md
+examples/
+  component-name/
+    index.html
+    app.scss
+    app.js
 ```
 
-Rules:
+### Structure Rules
 
-- Do not create deep per-component folders unless the component is behavior-heavy
-- Keep the default structure flat and easy to scan
-- Group only when complexity justifies it
+- Default to a flat structure
+- Add helper modules only when behavior complexity justifies them
+- Do not split components into many micro-files for tone, size, or state
 
-## 23. Starter component blueprint expectation
+## 23. Starter Component Blueprint Template
 
-The starter blueprint for new components must include:
+New components should begin from the Pixorix starter blueprint in `src/blueprints/component/`.
 
-- a root class contract
-- element naming guidance
-- token-local CSS variables
-- variant, size, and state placeholders
+The blueprint must include:
+
+- root class contract
+- local token variable layer
+- public anatomy guidance
+- variant placeholders
+- size placeholders
+- state placeholders
 - responsive hooks
-- dark mode compensation hook
+- dark-mode compensation hook
 - HTML example
 - JS module skeleton
 - documentation skeleton
 
-See the starter files in `src/blueprints/component/` and the doc template in `docs/components/component-template.md`.
+### Starter Build Order
+
+1. Copy the SCSS template
+2. Define the root class and local CSS variable contract
+3. Add the minimal semantic HTML pattern
+4. Add only the supported variant axes
+5. Add optional JS only if the component has real behavior
+6. Document HTML, React, Angular, and Vue usage with the same contract

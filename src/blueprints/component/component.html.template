@@ -2,6 +2,7 @@
   class="px-component-name px-component-name--primary"
   data-px-component="component-name"
   data-state="idle"
+  data-px-motion="reveal"
 >
   <div class="px-component-name__media" aria-hidden="true">
     <!-- icon, avatar, image, or status -->
@@ -16,6 +17,7 @@
     type="button"
     class="px-button px-button--soft px-button--sm"
     data-px-trigger
+    data-px-target="#component-panel"
     aria-controls="component-panel"
     aria-expanded="false"
   >
