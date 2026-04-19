@@ -175,6 +175,38 @@ function BreadcrumbsPreview() {
   );
 }
 
+function NavigationPreview() {
+  return (
+    <div className="demo-stack">
+      <nav className="px-navbar px-navbar--glass" data-px-nav-collapse>
+        <div className="px-navbar__surface">
+          <a className="px-navbar__brand" href="#/">Pixorix</a>
+          <button className="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button>
+          <div className="px-navbar__panel" data-px-nav-panel hidden>
+            <ul className="px-navbar__menu">
+              <li><a className="px-navbar__link is-active" href="#/" aria-current="page">Overview</a></li>
+              <li><a className="px-navbar__link" href="#/">Components</a></li>
+              <li><a className="px-navbar__link" href="#/">Themes</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div className="px-tab-pills" data-px-tab-pills>
+        <div className="px-tab-pills__list" role="tablist" aria-label="Navigation views">
+          <button className="px-tab-pills__tab" role="tab" type="button" aria-selected="true" aria-controls="nav-pill-preview">Preview</button>
+          <button className="px-tab-pills__tab" role="tab" type="button" aria-selected="false" aria-controls="nav-pill-code">Code</button>
+        </div>
+        <div id="nav-pill-preview" className="px-tab-pills__panel" role="tabpanel">Navigation shells stay consistent across menus, tabs, and chrome.</div>
+        <div id="nav-pill-code" className="px-tab-pills__panel" role="tabpanel" hidden>Opt into JS only for collapse and disclosure behavior.</div>
+      </div>
+      <ol className="px-breadcrumbs">
+        <li className="px-breadcrumbs__item"><a className="px-breadcrumbs__link" href="#/">Docs</a></li>
+        <li className="px-breadcrumbs__item" aria-current="page">Navigation</li>
+      </ol>
+    </div>
+  );
+}
+
 function TabsPreview() {
   const [active, setActive] = useState('preview');
 
@@ -431,6 +463,23 @@ const overlayCode = `<div class="px-modal" data-state="open">
 </div>`;
 
 export const componentCatalogSections = [
+  {
+    title: 'Navigation systems',
+    description: 'Shared app chrome, pathing, section switching, and menu disclosure patterns.',
+    items: [
+      {
+        slug: 'navigation',
+        category: 'Navigation',
+        title: 'Navigation system',
+        description: 'One shared layer for navbar, topbar, sidebar, breadcrumbs, tabs, segmented nav, pagination, stepper reuse, and menu disclosure patterns.',
+        review: 'The navigation layer is materially stronger when active state, shell variants, and disclosure behavior are shared instead of navbar, tabs, and menus each inventing their own rules.',
+        notes: ['Use plain links for plain navigation and reserve menu roles for actual command menus.', 'Use collapse only where mobile density requires it.', 'Keep icon and badge usage supportive rather than noisy.'],
+        accessibility: 'Expose current page, selected tab, expanded state, and keyboard navigation consistently across the system.',
+        code: `<nav class="px-navbar px-navbar--glass" data-px-nav-collapse><div class="px-navbar__surface"><a class="px-navbar__brand" href="/">Pixorix</a><button class="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button><div class="px-navbar__panel" data-px-nav-panel hidden><ul class="px-navbar__menu"><li><a class="px-navbar__link is-active" href="/" aria-current="page">Overview</a></li><li><a class="px-navbar__link" href="/components">Components</a></li></ul></div></div></nav>`,
+        preview: NavigationPreview
+      }
+    ]
+  },
   {
     title: 'Foundations and content',
     description: 'Framework primitives that establish readable hierarchy, prose flow, and dense product copy.',

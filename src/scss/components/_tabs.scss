@@ -1,35 +1,59 @@
 @use '../abstracts/mixins' as mixins;
 
-.px-tabs {
+.px-tabs,
+.px-tab-pills {
+  --px-tabs-bg: transparent;
+  --px-tabs-border: var(--px-color-border);
+  --px-tabs-pill-bg: transparent;
+  --px-tabs-pill-hover: var(--px-color-surface-muted);
+  --px-tabs-pill-active: color-mix(in srgb, var(--px-color-primary) 12%, transparent);
+  --px-tabs-pill-color: var(--px-color-text-muted);
+  --px-tabs-pill-active-color: var(--px-color-text);
+  --px-tabs-accent: var(--px-color-primary);
+
   display: grid;
   gap: var(--px-space-4);
   min-width: 0;
 }
 
-.px-tabs__list {
+.px-tabs__list,
+.px-tab-pills__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--px-space-2);
   align-items: center;
+  gap: var(--px-space-2);
+  min-width: 0;
   padding: 0;
   margin: 0;
   list-style: none;
-  border-bottom: 1px solid var(--px-color-border);
 }
 
-.px-tabs__tab {
+.px-tabs__list {
+  border-bottom: 1px solid var(--px-tabs-border);
+}
+
+.px-tab-pills__list {
+  padding: var(--px-space-1);
+  border: 1px solid var(--px-tabs-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background: var(--px-tabs-bg);
+}
+
+.px-tabs__tab,
+.px-tab-pills__tab {
   @include mixins.px-type-role('ui', 'label-strong');
 
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--px-space-2);
   min-height: 2.75rem;
   padding-inline: var(--px-space-4);
   border: 0;
-  border-radius: var(--px-radius-md) var(--px-radius-md) 0 0;
+  border-radius: var(--px-radius-lg);
   background: transparent;
-  color: var(--px-color-text-muted);
+  color: var(--px-tabs-pill-color);
 }
 
 .px-tabs__tab::after {
@@ -42,28 +66,41 @@
   background-color: transparent;
 }
 
-.px-tabs__tab:hover {
+.px-tabs__tab:hover,
+.px-tab-pills__tab:hover {
   color: var(--px-color-text);
+  background-color: var(--px-tabs-pill-hover);
 }
 
-.px-tabs__tab:focus-visible {
+.px-tabs__tab:focus-visible,
+.px-tab-pills__tab:focus-visible {
   @include mixins.px-focus-ring;
 }
 
 .px-tabs__tab[aria-selected='true'],
-.px-tabs__tab.is-active {
-  color: var(--px-color-text);
+.px-tabs__tab.is-active,
+.px-tab-pills__tab[aria-selected='true'],
+.px-tab-pills__tab.is-active {
+  color: var(--px-tabs-pill-active-color);
 }
 
 .px-tabs__tab[aria-selected='true']::after,
 .px-tabs__tab.is-active::after {
-  background-color: var(--px-color-primary);
+  background-color: var(--px-tabs-accent);
 }
 
-.px-tabs__panel {
+.px-tab-pills__tab[aria-selected='true'],
+.px-tab-pills__tab.is-active {
+  background-color: var(--px-tabs-pill-active);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--px-tabs-accent) 18%, transparent);
+}
+
+.px-tabs__panel,
+.px-tab-pills__panel {
   min-width: 0;
 }
 
-.px-tabs__panel[hidden] {
+.px-tabs__panel[hidden],
+.px-tab-pills__panel[hidden] {
   display: none !important;
 }

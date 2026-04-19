@@ -1,13 +1,56 @@
 @use '../abstracts/mixins' as mixins;
 
 .px-sidebar-nav {
+  --px-sidebar-bg: var(--px-color-surface);
+  --px-sidebar-border: var(--px-color-border);
+  --px-sidebar-shadow: none;
+
   display: grid;
-  gap: var(--px-space-2);
+  gap: var(--px-space-3);
   min-width: 0;
+  padding: var(--px-space-3);
+  border: 1px solid var(--px-sidebar-border);
+  border-radius: var(--px-radius-2xl, var(--px-radius-xl));
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.03), rgb(255 255 255 / 0)),
+    var(--px-sidebar-bg);
+  box-shadow: var(--px-sidebar-shadow);
+}
+
+.px-sidebar-nav--soft {
+  --px-sidebar-bg: var(--px-color-surface-muted);
+}
+
+.px-sidebar-nav--outline {
+  --px-sidebar-bg: transparent;
+  --px-sidebar-border: var(--px-color-border-strong);
+}
+
+.px-sidebar-nav--glass {
+  --px-sidebar-bg: rgb(255 255 255 / 58%);
+  --px-sidebar-border: rgb(255 255 255 / 42%);
+  --px-sidebar-shadow: 0 16px 36px rgb(15 23 42 / 10%);
+  backdrop-filter: saturate(145%) blur(18px);
+  -webkit-backdrop-filter: saturate(145%) blur(18px);
+}
+
+.px-sidebar-nav--elevated {
+  --px-sidebar-shadow: var(--px-shadow-md);
+}
+
+.px-sidebar-nav--compact {
+  padding: var(--px-space-2);
 }
 
 .px-sidebar-nav__section {
   display: grid;
+  gap: var(--px-space-2);
+}
+
+.px-sidebar-nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--px-space-2);
 }
 
@@ -20,26 +63,13 @@
 .px-sidebar-nav__list {
   display: grid;
   gap: var(--px-space-1);
-  padding: 0;
-  margin: 0;
-  list-style: none;
 }
 
 .px-sidebar-nav__link {
-  @include mixins.px-type-role('ui', 'label');
-
-  display: flex;
-  align-items: center;
-  gap: var(--px-space-2);
-  min-height: 2.75rem;
-  padding-inline: var(--px-space-3);
-  border-radius: var(--px-radius-lg);
-  color: var(--px-color-text-muted);
-  text-decoration: none;
+  justify-content: flex-start;
+  width: 100%;
 }
 
-.px-sidebar-nav__link:hover,
-.px-sidebar-nav__link[aria-current='page'] {
-  background-color: var(--px-color-surface-muted);
-  color: var(--px-color-text);
+.px-sidebar-nav__section[hidden] {
+  display: none !important;
 }

@@ -11,6 +11,10 @@
   list-style: none;
 }
 
+.px-breadcrumbs--compact {
+  gap: var(--px-space-1);
+}
+
 .px-breadcrumbs__item {
   @include mixins.px-type-role('ui', 'helper');
 
@@ -18,6 +22,10 @@
   align-items: center;
   gap: var(--px-space-2);
   min-width: 0;
+  color: var(--px-color-text-soft);
+}
+
+.px-breadcrumbs__separator {
   color: var(--px-color-text-soft);
 }
 

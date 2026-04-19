@@ -1,17 +1,80 @@
 @use '../abstracts/mixins' as mixins;
 
-.px-dropdown {
+.px-nav-menu,
+.px-dropdown,
+.px-mega-menu,
+.px-context-menu {
+  --px-menu-bg: var(--px-color-surface);
+  --px-menu-border: var(--px-color-border);
+  --px-menu-shadow: var(--px-shadow-lg);
+  --px-menu-hover: var(--px-color-surface-muted);
+  --px-menu-accent: var(--px-color-primary);
+
   min-width: 13rem;
   max-width: min(22rem, calc(100vw - 2rem));
   padding: var(--px-space-2);
-  border: 1px solid var(--px-color-border);
+  border: 1px solid var(--px-menu-border);
   border-radius: var(--px-radius-xl);
-  background-color: var(--px-color-surface);
-  box-shadow: var(--px-shadow-lg);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    var(--px-menu-bg);
+  box-shadow: var(--px-menu-shadow);
+}
+
+.px-dropdown--soft,
+.px-mega-menu--soft,
+.px-context-menu--soft {
+  --px-menu-bg: var(--px-color-surface-muted);
+}
+
+.px-dropdown--outline,
+.px-mega-menu--outline,
+.px-context-menu--outline {
+  --px-menu-bg: transparent;
+  --px-menu-border: var(--px-color-border-strong);
+}
+
+.px-dropdown--glass,
+.px-mega-menu--glass,
+.px-context-menu--glass {
+  --px-menu-bg: rgb(255 255 255 / 58%);
+  --px-menu-border: rgb(255 255 255 / 42%);
+  backdrop-filter: saturate(145%) blur(18px);
+  -webkit-backdrop-filter: saturate(145%) blur(18px);
+}
+
+.px-menu-trigger,
+.px-dropdown__trigger,
+.px-mega-menu__trigger,
+.px-context-menu__trigger {
+  position: relative;
+}
+
+.px-dropdown__panel,
+.px-mega-menu__panel,
+.px-context-menu__panel {
+  position: absolute;
+  inset-block-start: calc(100% + var(--px-space-2));
+  inset-inline-start: 0;
+  z-index: var(--px-z-dropdown, 400);
+}
+
+.px-context-menu__panel {
+  position: fixed;
+  inset-block-start: auto;
+  inset-inline-start: auto;
+}
+
+.px-dropdown__panel[hidden],
+.px-mega-menu__panel[hidden],
+.px-context-menu__panel[hidden] {
+  display: none !important;
 }
 
 .px-dropdown__menu,
-.px-menu {
+.px-menu,
+.px-mega-menu__menu,
+.px-context-menu__menu {
   display: grid;
   gap: var(--px-space-1);
   padding: 0;
@@ -19,13 +82,27 @@
   list-style: none;
 }
 
+.px-mega-menu__panel {
+  min-width: min(44rem, calc(100vw - 2rem));
+}
+
+.px-mega-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--px-space-4);
+}
+
 .px-dropdown__item,
-.px-menu__item {
+.px-menu__item,
+.px-mega-menu__item,
+.px-context-menu__item {
   min-width: 0;
 }
 
 .px-dropdown__link,
-.px-menu__link {
+.px-menu__link,
+.px-mega-menu__link,
+.px-context-menu__link {
   @include mixins.px-type-role('ui', 'label');
 
   display: flex;
@@ -45,18 +122,77 @@
 .px-dropdown__link:hover,
 .px-menu__link:hover,
 .px-dropdown__link.is-active,
-.px-menu__link.is-active {
-  background-color: var(--px-color-surface-muted);
+.px-menu__link.is-active,
+.px-mega-menu__link:hover,
+.px-mega-menu__link.is-active,
+.px-context-menu__link:hover,
+.px-context-menu__link.is-active {
+  background-color: var(--px-menu-hover);
 }
 
 .px-dropdown__link:focus-visible,
-.px-menu__link:focus-visible {
+.px-menu__link:focus-visible,
+.px-mega-menu__link:focus-visible,
+.px-context-menu__link:focus-visible {
   @include mixins.px-focus-ring;
 }
 
 .px-dropdown__divider,
-.px-menu__divider {
+.px-menu__divider,
+.px-mega-menu__divider,
+.px-context-menu__divider {
   height: 1px;
   margin-block: var(--px-space-1);
   background-color: var(--px-color-border);
+}
+
+@media (max-width: 63.99rem) {
+  .px-navbar__surface,
+  .px-topbar__surface {
+    flex-wrap: wrap;
+  }
+
+  .px-navbar__toggle,
+  .px-topbar__toggle {
+    display: inline-flex;
+  }
+
+  .px-navbar__panel,
+  .px-topbar__panel {
+    display: grid;
+    width: 100%;
+    gap: var(--px-space-3);
+  }
+
+  .px-navbar__panel[hidden],
+  .px-topbar__panel[hidden] {
+    display: none !important;
+  }
+
+  .px-navbar__menu,
+  .px-topbar__menu,
+  .px-topbar__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .px-navbar__link,
+  .px-topbar__link {
+    justify-content: flex-start;
+  }
+
+  .px-mega-menu__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .px-anchor-nav,
+  .px-bottom-nav {
+    display: block;
+  }
+
+  .px-anchor-nav__surface {
+    position: static;
+  }
 }

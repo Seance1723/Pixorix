@@ -11,6 +11,7 @@ import { createButton } from '../components/button.js';
 import { createDrawer } from '../components/drawer.js';
 import { createForm } from '../components/form.js';
 import { createModal } from '../components/modal.js';
+import { createNavigation } from '../components/navigation.js';
 import { initHoverEffects } from '../motion/hover-effects.js';
 import { initPageTransition } from '../motion/page-transition.js';
 import { initReveal } from '../motion/reveal.js';
@@ -50,6 +51,10 @@ function createDefaultRegistry() {
     .register('drawer', {
       selector: '[data-px-drawer], .px-drawer[data-px-component="drawer"]',
       init: createDrawer
+    })
+    .register('navigation', {
+      selector: '[data-px-nav-collapse], [data-px-tabs], [data-px-tab-pills], [data-px-dropdown], [data-px-mega-menu], [data-px-context-menu], [data-px-sidebar-nav]',
+      init: createNavigation
     })
     .register('form', {
       selector: '[data-px-file-upload], [data-px-otp], [data-px-segmented-input], [data-px-token-input], [data-px-autocomplete], [data-px-multiselect]',

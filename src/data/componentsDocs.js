@@ -29,6 +29,83 @@ function buildSnippets({ title, html, react, angular, vue }) {
 
 export const componentsDocSections = [
   {
+    id: 'navigation',
+    title: 'Navigation',
+    description: 'Navigation provides shared shells and disclosure behavior for navbar, topbar, sidebar, breadcrumbs, tabs, menus, pagination, and mobile-aware navigation.',
+    demoDescription: 'Pixorix navigation uses one token-driven surface and active-state system so menus, tabs, and app chrome feel consistent without duplicating styles.',
+    previewDescription: 'A framework-ready navigation layer covering app bars, tabs, breadcrumbs, and menus.',
+    preview: { type: 'navigation' },
+    variants: ['Default', 'Soft', 'Outline', 'Glass', 'Elevated', 'Compact', 'Comfortable', 'Dark aware'],
+    sizes: ['Compact', 'Default', 'Comfortable'],
+    states: ['Active', 'Hover', 'Focus-visible', 'Disabled', 'Selected', 'Expanded', 'Collapsed'],
+    accessibilityNotes: [
+      'Use correct landmarks and expose current page, selected tab, or expanded menu state programmatically.',
+      'Menu roles should be reserved for command-style menus, not ordinary site navigation.',
+      'Keyboard support is required for JS-driven tabs and menus.'
+    ],
+    browserNotes: [
+      'Verify sticky nav, blur, and menu positioning in Safari and iOS Safari.',
+      'Tabs and collapse behavior should remain usable without motion or hover-specific assumptions.'
+    ],
+    responsiveNotes: [
+      'Navbar and topbar can collapse through `data-px-nav-collapse`.',
+      'Bottom nav and segmented patterns help reduce mobile overflow for dense destinations.'
+    ],
+    snippets: buildSnippets({
+      title: 'Navigation',
+      html: `<nav class="px-navbar px-navbar--glass" data-px-nav-collapse>
+  <div class="px-navbar__surface">
+    <a class="px-navbar__brand" href="/">Pixorix</a>
+    <button class="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button>
+    <div class="px-navbar__panel" data-px-nav-panel hidden>
+      <ul class="px-navbar__menu">
+        <li><a class="px-navbar__link is-active" href="/" aria-current="page">Overview</a></li>
+        <li><a class="px-navbar__link" href="/components">Components</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>`,
+      react: `<nav className="px-navbar px-navbar--glass" data-px-nav-collapse>
+  <div className="px-navbar__surface">
+    <a className="px-navbar__brand" href="/">Pixorix</a>
+    <button className="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button>
+    <div className="px-navbar__panel" data-px-nav-panel hidden>
+      <ul className="px-navbar__menu">
+        <li><a className="px-navbar__link is-active" href="/" aria-current="page">Overview</a></li>
+        <li><a className="px-navbar__link" href="/components">Components</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>`,
+      angular: `<nav class="px-navbar px-navbar--glass" data-px-nav-collapse>
+  <div class="px-navbar__surface">
+    <a class="px-navbar__brand" href="/">Pixorix</a>
+    <button class="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button>
+    <div class="px-navbar__panel" data-px-nav-panel hidden>
+      <ul class="px-navbar__menu">
+        <li><a class="px-navbar__link is-active" href="/" aria-current="page">Overview</a></li>
+        <li><a class="px-navbar__link" href="/components">Components</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>`,
+      vue: `<template>
+  <nav class="px-navbar px-navbar--glass" data-px-nav-collapse>
+    <div class="px-navbar__surface">
+      <a class="px-navbar__brand" href="/">Pixorix</a>
+      <button class="px-button px-button--ghost px-button--sm px-navbar__toggle" type="button" data-px-nav-toggle aria-expanded="false">Menu</button>
+      <div class="px-navbar__panel" data-px-nav-panel hidden>
+        <ul class="px-navbar__menu">
+          <li><a class="px-navbar__link is-active" href="/" aria-current="page">Overview</a></li>
+          <li><a class="px-navbar__link" href="/components">Components</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</template>`
+    })
+  },
+  {
     id: 'typography',
     title: 'Typography',
     description: 'Typography and content primitives provide fluid headings, prose shells, dashboard text roles, code shells, lists, dividers, and semantic text treatment.',

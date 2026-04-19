@@ -1,10 +1,20 @@
 @use '../abstracts/mixins' as mixins;
 
 .px-pagination {
+  --px-pagination-bg: var(--px-color-surface);
+  --px-pagination-border: var(--px-color-border);
+  --px-pagination-hover: var(--px-color-surface-muted);
+  --px-pagination-active: var(--px-color-primary);
+  --px-pagination-active-text: var(--px-color-primary-contrast);
+
   display: flex;
   flex-wrap: wrap;
-  gap: var(--px-space-2);
+  gap: var(--px-space-3);
   align-items: center;
+}
+
+.px-pagination--compact {
+  gap: var(--px-space-2);
 }
 
 .px-pagination__list {
@@ -17,29 +27,26 @@
   list-style: none;
 }
 
-.px-pagination__item {
-  min-width: 0;
-}
-
 .px-pagination__link {
   @include mixins.px-type-role('ui', 'label');
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--px-space-2);
   min-width: 2.5rem;
   min-height: 2.5rem;
   padding-inline: var(--px-space-3);
-  border: 1px solid var(--px-color-border);
+  border: 1px solid var(--px-pagination-border);
   border-radius: var(--px-radius-md);
-  background-color: var(--px-color-surface);
+  background-color: var(--px-pagination-bg);
   color: var(--px-color-text);
   text-decoration: none;
   box-shadow: var(--px-shadow-xs);
 }
 
 .px-pagination__link:hover {
-  background-color: var(--px-color-surface-muted);
+  background-color: var(--px-pagination-hover);
   border-color: var(--px-color-border-strong);
 }
 
@@ -49,13 +56,14 @@
 
 .px-pagination__link[aria-current='page'],
 .px-pagination__link.is-active {
-  background-color: var(--px-color-primary);
-  border-color: var(--px-color-primary);
-  color: var(--px-color-primary-contrast);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
+  background-color: var(--px-pagination-active);
+  border-color: var(--px-pagination-active);
+  color: var(--px-pagination-active-text);
+  box-shadow: 0 10px 20px rgb(37 99 235 / 16%);
 }
 
-.px-pagination__ellipsis {
+.px-pagination__ellipsis,
+.px-pagination__meta {
   @include mixins.px-type-role('ui', 'helper');
 
   color: var(--px-color-text-soft);

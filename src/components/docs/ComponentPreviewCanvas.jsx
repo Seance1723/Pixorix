@@ -54,6 +54,20 @@ export function ComponentPreviewCanvas({ preview }) {
         </section>
       );
 
+    case 'navigation':
+      return (
+        <nav className="px-navbar px-navbar--soft">
+          <div className="px-navbar__surface">
+            <a className="px-navbar__brand" href="#/">Pixorix</a>
+            <ul className="px-navbar__menu">
+              <li><a className="px-navbar__link is-active" href="#/" aria-current="page">Overview</a></li>
+              <li><a className="px-navbar__link" href="#/">Components</a></li>
+              <li><a className="px-navbar__link" href="#/">Themes</a></li>
+            </ul>
+          </div>
+        </nav>
+      );
+
     case 'form':
       return (
         <form className="px-form px-form--compact">
