@@ -19,12 +19,19 @@
 }
 
 .px-container--full,
-.px-container--bleed {
+.px-container--bleed,
+.px-container--full-bleed {
   width: 100%;
   max-width: none;
 }
 
-.px-container--bleed {
+.px-container--bleed,
+.px-container--full-bleed {
   margin-inline: calc(50% - 50vw);
   padding-inline: var(--px-space-4);
+}
+
+.px-layout-shell {
+  width: min(100% - (var(--px-space-4) * 2), var(--px-container-xxl));
+  margin-inline: auto;
 }

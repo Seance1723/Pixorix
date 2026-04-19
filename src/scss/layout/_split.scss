@@ -16,7 +16,8 @@
   grid-template-columns: minmax(0, var(--px-split-main)) var(--px-split-side);
 }
 
-.px-split--feature {
+.px-split--feature,
+.px-split--hero {
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
 }
 
@@ -32,6 +33,7 @@
   .px-split--equal,
   .px-split--aside,
   .px-split--feature,
+  .px-split--hero,
   .px-split--reverse {
     grid-template-columns: 1fr;
   }

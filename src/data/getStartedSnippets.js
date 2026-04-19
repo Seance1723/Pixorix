@@ -323,42 +323,54 @@ export const gridExampleSnippets = {
   html: {
     language: 'html',
     filename: 'grid.html',
-    code: `<section class="px-grid px-grid--responsive">
-  <article class="px-card">Overview</article>
-  <article class="px-card">Themes</article>
-  <article class="px-card">Examples</article>
-  <article class="px-card">Motion</article>
+    code: `<section class="px-container px-stack">
+  <div class="px-grid px-grid--12 px-grid--cards">
+    <article class="px-card px-col-span-4">Overview</article>
+    <article class="px-card px-col-span-4">Themes</article>
+    <article class="px-card px-col-span-4">Examples</article>
+    <article class="px-card px-col-span-8">Dashboard shell</article>
+    <article class="px-card px-col-span-4">Sticky rail</article>
+  </div>
 </section>`
   },
   react: {
     language: 'jsx',
     filename: 'GridExample.jsx',
-    code: `<section className="px-grid px-grid--responsive">
-  <article className="px-card">Overview</article>
-  <article className="px-card">Themes</article>
-  <article className="px-card">Examples</article>
-  <article className="px-card">Motion</article>
+    code: `<section className="px-container px-stack">
+  <div className="px-grid px-grid--12 px-grid--cards">
+    <article className="px-card px-col-span-4">Overview</article>
+    <article className="px-card px-col-span-4">Themes</article>
+    <article className="px-card px-col-span-4">Examples</article>
+    <article className="px-card px-col-span-8">Dashboard shell</article>
+    <article className="px-card px-col-span-4">Sticky rail</article>
+  </div>
 </section>`
   },
   angular: {
     language: 'html',
     filename: 'grid-example.component.html',
-    code: `<section class="px-grid px-grid--responsive">
-  <article class="px-card">Overview</article>
-  <article class="px-card">Themes</article>
-  <article class="px-card">Examples</article>
-  <article class="px-card">Motion</article>
+    code: `<section class="px-container px-stack">
+  <div class="px-grid px-grid--12 px-grid--cards">
+    <article class="px-card px-col-span-4">Overview</article>
+    <article class="px-card px-col-span-4">Themes</article>
+    <article class="px-card px-col-span-4">Examples</article>
+    <article class="px-card px-col-span-8">Dashboard shell</article>
+    <article class="px-card px-col-span-4">Sticky rail</article>
+  </div>
 </section>`
   },
   vue: {
     language: 'vue',
     filename: 'GridExample.vue',
     code: `<template>
-  <section class="px-grid px-grid--responsive">
-    <article class="px-card">Overview</article>
-    <article class="px-card">Themes</article>
-    <article class="px-card">Examples</article>
-    <article class="px-card">Motion</article>
+  <section class="px-container px-stack">
+    <div class="px-grid px-grid--12 px-grid--cards">
+      <article class="px-card px-col-span-4">Overview</article>
+      <article class="px-card px-col-span-4">Themes</article>
+      <article class="px-card px-col-span-4">Examples</article>
+      <article class="px-card px-col-span-8">Dashboard shell</article>
+      <article class="px-card px-col-span-4">Sticky rail</article>
+    </div>
   </section>
 </template>`
   }

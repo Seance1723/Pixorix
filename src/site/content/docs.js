@@ -97,12 +97,13 @@ export const docsEntries = [
     label: 'Layout',
     group: 'System',
     title: 'Layout',
-    intro: 'Pixorix layout primitives are designed for real product surfaces, not just symmetric marketing grids. Expect stable odd-column handling, editorial splits, and dashboard shells.',
-    summary: ['Containers create predictable reading widths.', 'Grid patterns support odd and even column counts.', 'Dashboard shells balance navigation and content density.'],
+    intro: 'Pixorix layout primitives are designed for real product surfaces, not just symmetric marketing grids. Expect stable odd and even column handling, editorial splits, dashboard shells, sticky rails, and showcase-ready page patterns.',
+    summary: ['Containers create predictable reading widths.', 'Grid patterns support 1 through 12 columns plus asymmetrical layouts.', 'Dashboard, settings, form, hero, and content-rail shells share the same structural logic.'],
     sections: [
-      { id: 'containers', title: 'Containers', body: ['Use containers to control reading comfort and keep edge alignment consistent across sections.', 'Combine them with section wrappers to avoid local spacing drift.'] },
-      { id: 'responsive-layouts', title: 'Responsive layouts and odd/even columns', body: ['Pixorix supports 2, 3, 4, 5, and 6-column layouts without the awkward last-row collapse common in simpler systems.'], bullets: ['Balanced card grids', 'Asymmetrical editorial layouts', 'Dashboard content with secondary rails'] },
-      { id: 'dashboard-layouts', title: 'Dashboard layouts', body: ['Use persistent nav, content rails, and dense surface groups without creating overflow traps. Sticky regions should remain bounded and simple.'] }
+      { id: 'containers', title: 'Containers', body: ['Use fixed, fluid, narrow, wide, or full-bleed containers to control reading comfort and edge alignment.', 'Combine containers with section wrappers instead of page-local spacing hacks.'] },
+      { id: 'responsive-layouts', title: 'Responsive layouts and odd/even columns', body: ['Pixorix supports 1 through 12-column grids, auto-fit/fill helpers, odd and even shells, and asymmetrical editorial layouts without awkward last-row collapse.'], bullets: ['Balanced card grids', 'Asymmetrical editorial layouts', 'Nested and auto-fit product grids'] },
+      { id: 'page-patterns', title: 'Showcase-ready page patterns', body: ['Use shared shells for marketing, dashboard, settings, form, content plus sidebar, and hero split layouts rather than reinventing page scaffolding each time.'] },
+      { id: 'dashboard-layouts', title: 'Dashboard layouts and sticky rails', body: ['Use persistent nav, content rails, widget grids, and bounded sticky regions without creating overflow traps. Sticky helpers should become static on smaller screens.'] }
     ]
   }),
   createDoc({
