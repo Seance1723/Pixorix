@@ -65,6 +65,13 @@
   white-space: nowrap;
   isolation: isolate;
   opacity: var(--px-button-opacity);
+  transition:
+    background-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    border-color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    color var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    box-shadow var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    transform var(--px-motion-duration-fast) var(--px-motion-easing-standard),
+    opacity var(--px-motion-duration-fast) var(--px-motion-easing-standard);
 
   > * {
     position: relative;
@@ -408,6 +415,7 @@
 
   &--block,
   &--full {
+    display: flex;
     width: 100%;
   }
 
@@ -473,11 +481,41 @@
   justify-content: center;
 }
 
+.px-social-button__meta {
+  min-width: 0;
+  display: grid;
+  gap: 0.125rem;
+}
+
+.px-social-button__title {
+  @include mixins.px-type-role('ui', 'label-strong');
+
+  min-width: 0;
+}
+
+.px-social-button__text {
+  @include mixins.px-type-role('ui', 'caption');
+
+  min-width: 0;
+  color: var(--px-color-text-muted);
+}
+
 .px-button-group {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--px-space-2);
+}
+
+.px-button-group--block {
+  display: flex;
+  width: 100%;
+}
+
+.px-button-group--block > .px-button,
+.px-button-group--block > .px-icon-button,
+.px-button-group--block > .px-link-button {
+  flex: 1 1 0;
 }
 
 .px-button-group--attached {
@@ -516,6 +554,16 @@
   display: inline-flex;
   align-items: stretch;
   vertical-align: middle;
+}
+
+.px-split-button--full {
+  display: flex;
+  width: 100%;
+}
+
+.px-split-button--full > .px-button,
+.px-split-button--full > .px-icon-button {
+  flex: 1 1 auto;
 }
 
 .px-split-button > .px-button,
@@ -591,7 +639,8 @@
 
 @include mixins.px-media-down(md) {
   .px-button-group--responsive,
-  .px-button-group[data-px-stack='mobile'] {
+  .px-button-group[data-px-stack='mobile'],
+  .px-button-group--block[data-px-stack='mobile'] {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
@@ -601,13 +650,32 @@
   .px-button-group--responsive > .px-icon-button,
   .px-button-group[data-px-stack='mobile'] > .px-button,
   .px-button-group[data-px-stack='mobile'] > .px-icon-button,
-  .px-split-button--responsive {
+  .px-button-group--block > .px-button,
+  .px-button-group--block > .px-icon-button,
+  .px-button-group--block > .px-link-button,
+  .px-split-button--responsive,
+  .px-split-button[data-px-stack='mobile'] {
     width: 100%;
   }
 
   .px-split-button--responsive > .px-button,
-  .px-split-button--responsive > .px-icon-button {
+  .px-split-button--responsive > .px-icon-button,
+  .px-split-button[data-px-stack='mobile'] > .px-button,
+  .px-split-button[data-px-stack='mobile'] > .px-icon-button {
     flex: 1 1 auto;
+  }
+
+  .px-button-group--attached.px-button-group--responsive,
+  .px-button-group--attached[data-px-stack='mobile'] {
+    gap: var(--px-space-2);
+  }
+
+  .px-button-group--attached.px-button-group--responsive > .px-button,
+  .px-button-group--attached.px-button-group--responsive > .px-icon-button,
+  .px-button-group--attached[data-px-stack='mobile'] > .px-button,
+  .px-button-group--attached[data-px-stack='mobile'] > .px-icon-button {
+    margin-inline-start: 0;
+    border-radius: var(--px-radius-md);
   }
 
   .px-fab--fixed {
@@ -630,6 +698,20 @@
   .px-link-button:active,
   .px-icon-button:active {
     transform: none;
+  }
+
+  .px-button.is-loading::after,
+  .px-button[aria-busy='true']::after,
+  .px-button[data-state='loading']::after,
+  .px-link-button.is-loading::after,
+  .px-link-button[aria-busy='true']::after,
+  .px-link-button[data-state='loading']::after,
+  .px-icon-button.is-loading::after,
+  .px-icon-button[aria-busy='true']::after,
+  .px-icon-button[data-state='loading']::after {
+    animation: none;
+    border-inline-end-color: currentColor;
+    opacity: 0.7;
   }
 }
 
