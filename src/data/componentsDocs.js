@@ -29,6 +29,63 @@ function buildSnippets({ title, html, react, angular, vue }) {
 
 export const componentsDocSections = [
   {
+    id: 'typography',
+    title: 'Typography',
+    description: 'Typography and content primitives provide fluid headings, prose shells, dashboard text roles, code shells, lists, dividers, and semantic text treatment.',
+    demoDescription: 'Pixorix typography extends semantic HTML with reusable role classes so docs, dashboards, and product screens share the same reading rhythm.',
+    previewDescription: 'A framework-ready content primitive layer for headings, intro copy, code, lists, quotes, and dashboard text.',
+    preview: { type: 'typography' },
+    variants: ['Default', 'Muted', 'Strong', 'Emphasis', 'Gradient', 'Semantic text', 'Data-dense', 'Dashboard'],
+    sizes: ['Display', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Lead', 'Body', 'Small', 'Caption', 'Overline'],
+    states: ['Default', 'Link hover', 'Link focus-visible', 'Muted', 'Strong'],
+    accessibilityNotes: [
+      'Use semantic headings, paragraphs, lists, blockquotes, and code elements before relying on class-only hierarchy.',
+      'Semantic text colors should support meaning, not replace labels or icons.',
+      'Keep link focus-visible treatment intact and maintain readable line length for prose.'
+    ],
+    browserNotes: [
+      'Gradient text must degrade to a plain readable color when text clipping differs across browsers.',
+      'Clamp typography, balanced wrapping, and code-block overflow need verification in Safari and Firefox.'
+    ],
+    responsiveNotes: [
+      'Heading and body scales are clamp-driven by default.',
+      'Use `.px-prose`, `.px-prose--dense`, or `.px-prose--dashboard` to tune rhythm without page-only media queries.'
+    ],
+    snippets: buildSnippets({
+      title: 'Typography',
+      html: `<section class="px-content-section px-prose">
+  <p class="px-overline">Content primitive</p>
+  <h2 class="px-section-title">Readable hierarchy with lightweight markup</h2>
+  <p class="px-section-intro">Pixorix typography gives headings, intros, dashboard metrics, links, lists, and code shells one shared token-driven contract.</p>
+  <p class="px-text-body">Use semantic elements first and layer Pixorix classes where stronger control is useful.</p>
+  <pre class="px-code-block"><code>npm install pixorix</code></pre>
+</section>`,
+      react: `<section className="px-content-section px-prose">
+  <p className="px-overline">Content primitive</p>
+  <h2 className="px-section-title">Readable hierarchy with lightweight markup</h2>
+  <p className="px-section-intro">Pixorix typography gives headings, intros, dashboard metrics, links, lists, and code shells one shared token-driven contract.</p>
+  <p className="px-text-body">Use semantic elements first and layer Pixorix classes where stronger control is useful.</p>
+  <pre className="px-code-block"><code>npm install pixorix</code></pre>
+</section>`,
+      angular: `<section class="px-content-section px-prose">
+  <p class="px-overline">Content primitive</p>
+  <h2 class="px-section-title">Readable hierarchy with lightweight markup</h2>
+  <p class="px-section-intro">Pixorix typography gives headings, intros, dashboard metrics, links, lists, and code shells one shared token-driven contract.</p>
+  <p class="px-text-body">Use semantic elements first and layer Pixorix classes where stronger control is useful.</p>
+  <pre class="px-code-block"><code>npm install pixorix</code></pre>
+</section>`,
+      vue: `<template>
+  <section class="px-content-section px-prose">
+    <p class="px-overline">Content primitive</p>
+    <h2 class="px-section-title">Readable hierarchy with lightweight markup</h2>
+    <p class="px-section-intro">Pixorix typography gives headings, intros, dashboard metrics, links, lists, and code shells one shared token-driven contract.</p>
+    <p class="px-text-body">Use semantic elements first and layer Pixorix classes where stronger control is useful.</p>
+    <pre class="px-code-block"><code>npm install pixorix</code></pre>
+  </section>
+</template>`
+    })
+  },
+  {
     id: 'buttons',
     title: 'Buttons',
     description: 'Buttons provide a token-driven action system for standard, icon-only, grouped, split, loading, floating, and social-shell patterns.',

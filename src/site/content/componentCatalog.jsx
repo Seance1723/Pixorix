@@ -142,6 +142,29 @@ function CardsPreview() {
   );
 }
 
+function TypographyPreview() {
+  return (
+    <section className="px-content-section px-prose px-prose--dashboard">
+      <p className="px-overline">Content primitive</p>
+      <h2 className="px-section-title">Readable hierarchy with fluid scaling</h2>
+      <p className="px-section-intro">
+        Pixorix typography keeps docs, dashboards, and product copy on one token-driven system instead of scattering page-only text rules.
+      </p>
+      <p className="px-text-body">
+        Use semantic elements first, then layer role classes for section intros, dense metrics, captions, and code shells.
+      </p>
+      <div className="demo-stack" style={{ gap: '0.5rem' }}>
+        <span className="px-dashboard-label">Release health</span>
+        <span className="px-dashboard-metric">98.4%</span>
+        <span className="px-dashboard-note">Stable across docs and workspace shells.</span>
+      </div>
+      <pre className="px-code-block">
+        <code>npm install pixorix</code>
+      </pre>
+    </section>
+  );
+}
+
 function BreadcrumbsPreview() {
   return (
     <ol className="px-breadcrumbs">
@@ -396,6 +419,23 @@ const overlayCode = `<div class="px-modal" data-state="open">
 </div>`;
 
 export const componentCatalogSections = [
+  {
+    title: 'Foundations and content',
+    description: 'Framework primitives that establish readable hierarchy, prose flow, and dense product copy.',
+    items: [
+      {
+        slug: 'typography',
+        category: 'Foundation',
+        title: 'Typography and content primitives',
+        description: 'Fluid headings, intro copy, semantic text tones, dashboard labels, lists, blockquotes, links, dividers, and code shells from one token-driven base layer.',
+        review: 'This system is stronger as a foundation than as a standalone widget because semantic HTML and shared tokens carry most of the work with almost no runtime cost.',
+        notes: ['Use semantic elements first and add Pixorix role classes only where stronger control is needed.', 'Reserve gradient text for short headings or highlight copy.', 'Use prose and dashboard modifiers to tune rhythm instead of writing page-specific typography CSS.'],
+        accessibility: 'Keep heading order logical, preserve visible link focus, and never rely on semantic color classes as the only signal.',
+        code: `<section class="px-content-section px-prose"><p class="px-overline">Content primitive</p><h2 class="px-section-title">Readable hierarchy</h2><p class="px-section-intro">Use token-driven text roles for docs, dashboards, and product UI.</p><pre class="px-code-block"><code>npm install pixorix</code></pre></section>`,
+        preview: TypographyPreview
+      }
+    ]
+  },
   {
     title: 'Actions and feedback',
     description: 'Core action and response components used across product UI, docs, and dashboards.',

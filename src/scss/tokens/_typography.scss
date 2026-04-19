@@ -45,6 +45,13 @@ $px-type-scale: (
 ) !default;
 
 $px-heading-scale: (
+  display: (
+    size: 5xl,
+    weight: extrabold,
+    line-height: 2xs,
+    letter-spacing: tighter,
+    margin-block-end: 5
+  ),
   h1: (
     size: 5xl,
     weight: bold,
@@ -86,6 +93,20 @@ $px-heading-scale: (
     line-height: sm,
     letter-spacing: wide,
     margin-block-end: 2
+  ),
+  subheading: (
+    size: xl,
+    weight: semibold,
+    line-height: sm,
+    letter-spacing: snug,
+    margin-block-end: 2
+  ),
+  section-title: (
+    size: 2xl,
+    weight: semibold,
+    line-height: sm,
+    letter-spacing: snug,
+    margin-block-end: 3
   )
 ) !default;
 
@@ -113,6 +134,12 @@ $px-body-scale: (
     line-height: md,
     letter-spacing: normal,
     max-width: 70ch
+  ),
+  section-intro: (
+    size: lg,
+    line-height: lg,
+    letter-spacing: normal,
+    max-width: 64ch
   )
 ) !default;
 
@@ -130,6 +157,12 @@ $px-ui-type-scale: (
     letter-spacing: normal
   ),
   helper: (
+    size: xs,
+    weight: regular,
+    line-height: md,
+    letter-spacing: normal
+  ),
+  small: (
     size: xs,
     weight: regular,
     line-height: md,
@@ -179,6 +212,18 @@ $px-data-type-scale: (
     weight: bold,
     line-height: xs,
     letter-spacing: tighter
+  ),
+  dashboard-label: (
+    size: xs,
+    weight: medium,
+    line-height: sm,
+    letter-spacing: wider
+  ),
+  dashboard-note: (
+    size: xs,
+    weight: regular,
+    line-height: md,
+    letter-spacing: normal
   )
 ) !default;
 

@@ -38,6 +38,7 @@ export const componentInventoryGroups = [
       { name: 'Tabs', classes: '.px-tabs', code: html(`<div class="px-tabs"><div class="px-tabs__list"><button class="px-tabs__tab" aria-selected="true">Preview</button></div><div class="px-tabs__panel">Panel content</div></div>`) },
       { name: 'Timeline', classes: '.px-timeline', code: html(`<ol class="px-timeline"><li class="px-timeline__item"><div class="px-timeline__title">Started</div></li></ol>`) },
       { name: 'Toast', classes: '.px-toast', code: html(`<div class="px-toast px-toast--success"><div class="px-toast__body"><strong class="px-toast__title">Saved</strong><div class="px-toast__text">Changes were stored.</div></div></div>`) },
+      { name: 'Typography', classes: '.px-prose, .px-section-title, .px-section-intro, .px-code-block', code: html(`<section class="px-content-section px-prose"><p class="px-overline">Content primitive</p><h2 class="px-section-title">Readable hierarchy</h2><p class="px-section-intro">Use token-driven text roles for docs, dashboards, and product UI.</p></section>`) },
       { name: 'Tooltip', classes: '.px-tooltip', code: html(`<div class="px-tooltip">Helpful text</div>`) },
       { name: 'Validation', classes: '.px-validation', code: html(`<p class="px-validation px-validation--danger">This field is required.</p>`) }
     ]

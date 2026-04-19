@@ -41,6 +41,19 @@ export function ComponentPreviewCanvas({ preview }) {
         </div>
       );
 
+    case 'typography':
+      return (
+        <section className="px-content-section px-prose px-prose--dashboard">
+          <p className="px-overline">Content primitive</p>
+          <h3 className="px-section-title">Readable hierarchy</h3>
+          <p className="px-section-intro">
+            Pixorix keeps body copy, dashboard metrics, lists, and code shells on one token-driven typography layer.
+          </p>
+          <p className="px-dashboard-label">Workspace health</p>
+          <p className="px-dashboard-metric">98.4%</p>
+        </section>
+      );
+
     case 'form':
       return (
         <form className="component-preview__form">

@@ -7,6 +7,27 @@
 .px-text-end { text-align: end !important; }
 .px-text-balance { text-wrap: balance !important; }
 .px-text-pretty { text-wrap: pretty !important; }
+.px-text-default { color: var(--px-color-text) !important; }
+.px-text-muted { color: var(--px-color-text-muted) !important; }
+.px-text-soft { color: var(--px-color-text-soft) !important; }
+.px-text-strong {
+  color: var(--px-color-text) !important;
+  font-weight: var(--px-font-weight-semibold) !important;
+}
+.px-text-emphasis {
+  color: var(--px-color-primary) !important;
+  font-style: italic !important;
+}
+.px-text-primary { color: var(--px-color-primary) !important; }
+.px-text-secondary { color: var(--px-color-secondary) !important; }
+.px-text-success { color: var(--px-color-success) !important; }
+.px-text-info { color: var(--px-color-info) !important; }
+.px-text-warning { color: var(--px-color-warning) !important; }
+.px-text-danger { color: var(--px-color-danger) !important; }
+.px-text-neutral { color: var(--px-color-text) !important; }
+.px-font-sans { font-family: var(--px-font-sans) !important; }
+.px-font-serif { font-family: var(--px-font-serif) !important; }
+.px-font-mono { font-family: var(--px-font-mono) !important; }
 .px-text-truncate { @include mixins.px-truncate; }
 .px-line-clamp-2 { @include mixins.px-line-clamp(2); }
 .px-line-clamp-3 { @include mixins.px-line-clamp(3); }
